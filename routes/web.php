@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 // use App\Models\User;
 use Illuminate\Support\Facades\DB;
-
+use App\Http\Controllers\DepartmentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,3 +24,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     $users = DB::table('users')->get();
     return view('dashboard', compact('users'));
 })->name('dashboard');
+
+
+Route::get('/department/all',[DepartmentController::class,'index'])->name('department');
+Route::post('/department/add',[DepartmentController::class,'store'])->name('addDepartment');
