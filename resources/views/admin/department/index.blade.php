@@ -20,7 +20,7 @@
                                 <tr>
                                 <th scope="col">ลำดับ</th>
                                 <th scope="col">ชื่อแผนก</th>
-                                <th scope="col">User ID</th>
+                                <th scope="col">พนักงาน</th>
                                 <th scope="col">created_at</th>
                                 </tr>
                             </thead>
@@ -29,7 +29,8 @@
                                 <tr>
                                     <th>{{$departments->firstItem()+$loop->index}}</th>
                                     <td>{{$row->department_name}}</td>
-                                    <td>{{$row->user_id}}</td>
+                                    {{-- <td>{{$row->user->name}}</td> --}}
+                                    <td>{{$row->name}}</td>
                                     <td>
                                         @if($row->created_at == NULL)
                                             ไม่ถูกนิยาย
