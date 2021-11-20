@@ -11,11 +11,12 @@ class DepartmentController extends Controller
 {
     public function index(){
         $departments = Department::paginate(5);
+        $trashDepartments = Department::onlyTrashed()->paginate(1);
         // $departments = DB::table('departments')
         // ->join('users', 'departments.user_id', 'users.id')
         // ->select('departments.*', 'users.name')
         // ->paginate(5);
-        return view('admin.department.index', compact('departments'));
+        return view('admin.department.index', compact('departments','trashDepartments'));
     }
     
     public function store(Request $request){
@@ -66,5 +67,15 @@ class DepartmentController extends Controller
     public function softdelete($id){
         $delete = Department::find($id)->delete();
         return redirect()->back()->with('success','ลบข้อมูลเรียบร้อย');
+    }
+
+    public function restore($id){
+        $restore = Department::withTrashed()->find($id)->restore();
+        return redirect()->back()->with('success','กู้คืนข้อมูลเรียบร้อย');
+    }
+
+    public function delete($id){
+        $delete = Department::onlyTrashed()->find($id)->forceDelete();
+        return redirect()->back()->with('success','ลบถาวรข้อมูลเรียบร้อย');
     }
 }
