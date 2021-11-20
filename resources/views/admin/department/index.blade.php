@@ -22,6 +22,8 @@
                                 <th scope="col">ชื่อแผนก</th>
                                 <th scope="col">พนักงาน</th>
                                 <th scope="col">created_at</th>
+                                <th scope="col">Edit</th>
+                                <th scope="col">delete</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -29,8 +31,8 @@
                                 <tr>
                                     <th>{{$departments->firstItem()+$loop->index}}</th>
                                     <td>{{$row->department_name}}</td>
-                                    {{-- <td>{{$row->user->name}}</td> --}}
-                                    <td>{{$row->name}}</td>
+                                    <td>{{$row->user->name}}</td>
+                                    {{-- <td>{{$row->name}}</td> --}}
                                     <td>
                                         @if($row->created_at == NULL)
                                             ไม่ถูกนิยาย
@@ -38,7 +40,13 @@
                                             {{Carbon\Carbon::parse($row->created_at)->diffForHumans() }}
                                         @endif
                                     </td>
-                                    </tr>
+                                    <td>
+                                        <a href="{{url('/department/edit/'.$row->id)}}" class="btn btn-warning">แก้ไข</a>
+                                    </td>
+                                    <td>
+                                        <a href="{{url('/department/softdelete/'.$row->id)}}" class="btn btn-danger">ลบ</a>
+                                    </td>
+                                </tr>
                                 @endforeach
                             </tbody>
                         </table>
