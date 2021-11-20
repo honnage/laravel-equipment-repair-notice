@@ -3,6 +3,7 @@
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{-- {{ __('Dashboard') }} --}}
             สวัสดี , {{Auth::user()->name }}
+            <b class="float-end">จำนวนผู้ใช้ระบบ <span>{{count($users)}}</span> คน</b>
         </h2>
     </x-slot>
 
@@ -25,7 +26,8 @@
                             <th>{{$i++}}</th>
                             <td>{{$row->name}}</td>
                             <td>{{$row->email}}</td>
-                            <td>{{$row->created_at->diffForHumans()}}</td>
+                            <td>{{Carbon\Carbon::parse($row->created_at)->diffForHumans() }}</td>
+                            {{-- <td>{{$row->created_at->diffForHumans()}}</td> --}}
                           </tr>
                         @endforeach
                     </tbody>
