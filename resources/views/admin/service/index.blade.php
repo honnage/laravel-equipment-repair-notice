@@ -41,10 +41,11 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <a href="{{url('/department/edit/'.$row->id)}}" class="btn btn-warning">แก้ไข</a>
+                                            <a href="{{url('/service/edit/'.$row->id)}}" class="btn btn-warning">แก้ไข</a>
                                         </td>
                                         <td>
-                                            <a href="{{url('/department/softdelete/'.$row->id)}}" class="btn btn-danger">ลบ</a>
+                                            <a href="{{url('/service/delete/'.$row->id)}}" class="btn btn-danger"
+                                               onclick="return confirm('คุณต้องการลบข้อมูลบริการหรือไม่?')">ลบ</a>
                                         </td>
                                     </tr>
                                     @endforeach
@@ -78,7 +79,7 @@
                                 <div class="my-2">
                                     <span class="text-danger">{{$message}}</span>
                                 </div>
-                            @enderror
+                                @enderror
                                 <br>
                                 <input type="submit" value="บันทึก" class="btn btn-primary">
                             </form>
