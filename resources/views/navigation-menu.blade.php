@@ -5,26 +5,31 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
-                        <x-jet-application-mark class="block h-9 w-auto" />
+                    <a href="{{ route('dashboard') }}" style="text-decoration: none; font-size: 20px; color: #000; font-weight: bold">
+                        ระบบแจ้งซ่อมครุภัณฑ์
+                        {{-- <x-jet-application-mark class="block h-9 w-auto" /> --}}
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex ">
+                    {{-- <x-jet-nav-link style="text-decoration: none;" href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         User
-                    </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('department') }}" >
-                        Department
-                    </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('service') }}" >
-                        Services
-                    </x-jet-nav-link>
+                    </x-jet-nav-link> --}}
                 </div>
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">
+                <x-jet-nav-link style="text-decoration: none; margin-right: 20px" href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                    User
+                </x-jet-nav-link>
+                <x-jet-nav-link style="text-decoration: none; margin-right: 20px" href="{{ route('department') }}" >
+                    Department
+                </x-jet-nav-link>
+                <x-jet-nav-link style="text-decoration: none; margin-right: 20px" href="{{ route('service') }}" >
+                    Services
+                </x-jet-nav-link>
+
                 <!-- Teams Dropdown -->
                 @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
                     <div class="ml-3 relative">
