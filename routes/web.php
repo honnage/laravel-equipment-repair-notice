@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,12 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function(){
+    // Department
+    Route::get('/category/all',[CategoryController::class,'index'])->name('category');
+    Route::post('/category/add',[CategoryController::class,'store'])->name('addCategory');
+    Route::get('/category/edit/{id}',[CategoryController::class,'edit']);
+    Route::post('/category/update/{id}',[CategoryController::class,'update']);
+
     // Department
     Route::get('/department/all',[DepartmentController::class,'index'])->name('department');
     Route::post('/department/add',[DepartmentController::class,'store'])->name('addDepartment');

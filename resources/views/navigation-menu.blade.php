@@ -13,21 +13,22 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex ">
-                    {{-- <x-jet-nav-link style="text-decoration: none;" href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                    {{-- <x-jet-nav-link style="text-decoration: none; margin-right: 20px" href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         User
+                    </x-jet-nav-link>
+                    <x-jet-nav-link style="text-decoration: none; margin-right: 20px" href="{{ route('department') }}" >
+                        Department
+                    </x-jet-nav-link>
+                    <x-jet-nav-link style="text-decoration: none; margin-right: 20px" href="{{ route('service') }}" >
+                        Services
                     </x-jet-nav-link> --}}
                 </div>
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">
-                <x-jet-nav-link style="text-decoration: none; margin-right: 20px" href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                    User
-                </x-jet-nav-link>
-                <x-jet-nav-link style="text-decoration: none; margin-right: 20px" href="{{ route('department') }}" >
-                    Department
-                </x-jet-nav-link>
-                <x-jet-nav-link style="text-decoration: none; margin-right: 20px" href="{{ route('service') }}" >
-                    Services
+        
+                <x-jet-nav-link style="text-decoration: none; margin-right: 20px" href="{{ route('category') }}" >
+                    หมวดหมู่
                 </x-jet-nav-link>
 
                 <!-- Teams Dropdown -->
