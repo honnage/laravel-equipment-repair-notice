@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\CategoryController;
-
+use App\Http\Controllers\CustomerController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,6 +34,13 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function(){
     Route::post('/category/add',[CategoryController::class,'store'])->name('addCategory');
     Route::get('/category/edit/{id}',[CategoryController::class,'edit']);
     Route::post('/category/update/{id}',[CategoryController::class,'update']);
+
+    // Customer
+    Route::get('/customer/all',[CustomerController::class,'index'])->name('customer');
+    Route::post('/customer/add',[CustomerController::class,'store'])->name('addCustomer');
+    Route::get('/customer/edit/{id}',[CustomerController::class,'edit']);
+    Route::get('/customer/detail/{id}',[CustomerController::class,'detail']);
+    Route::post('/customer/update/{id}',[CustomerController::class,'update']);
 
     // Department
     Route::get('/department/all',[DepartmentController::class,'index'])->name('department');

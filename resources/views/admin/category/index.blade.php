@@ -14,7 +14,7 @@
                         <div class="alert alert-success">{{ session("success") }}</div>
                     @endif
                     <div class="card">
-                        <div class="card-header" style="font-size: 24px;">ตารางข้อมูลหมวดหมู่</div>
+                        <div class="card-header" style="font-size: 24px;">ตารางข้อมูล หมวดหมู่</div>
                         <div class="table-responsive">
                             @if($categories->count()>0)
                             <table class="table table-striped">
@@ -53,7 +53,7 @@
                                 </tbody>
                             </table>
                             @else
-                                <h3 style="color:red; text-align:center ;padding-top: 20px; padding-bottom: 20px">-- ไม่มีข้อมูลหมวดหมู่ --</h3>
+                                <h3 style="color:red; text-align:center ;padding-top: 20px; padding-bottom: 20px">-- ไม่มีข้อมูล หมวดหมู่ --</h3>
                             @endif
                         </div>
                         {{$categories->links()}}
@@ -61,13 +61,13 @@
                 </div>
                 <div class="col-md-4">
                     <div class="card">
-                        <div class="card-header" style="font-size: 24px;">แบบฟอร์มหมวดหมู่</div>
+                        <div class="card-header" style="font-size: 24px;">แบบฟอร์ม หมวดหมู่</div>
                         <div class="card-body">
                             <form action="{{route('addCategory')}}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group">
                                     <label for="categories_name">ชื่อหมวดหมู่</label>
-                                    <input type="text" class="form-control" name="categories_name"placeholder="เช่น พัดลม">
+                                    <input type="text" class="form-control" name="categories_name"placeholder="กรุณาป้อน ชื่อหมวดหมู่">
                                 </div>
                                 @error('categories_name')
                                     <div class="my-2">

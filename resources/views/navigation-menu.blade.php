@@ -26,6 +26,10 @@
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">
+
+                <x-jet-nav-link style="text-decoration: none; margin-right: 20px" href="{{ route('customer') }}" >
+                    ลูกค้า
+                </x-jet-nav-link>
         
                 <x-jet-nav-link style="text-decoration: none; margin-right: 20px" href="{{ route('category') }}" >
                     หมวดหมู่

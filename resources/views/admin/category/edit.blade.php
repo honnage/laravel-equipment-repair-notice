@@ -14,7 +14,7 @@
                         <div class="alert alert-success">{{ session("success") }}</div>
                     @endif
                     <div class="card">
-                        <div class="card-header" style="font-size: 24px;">ตารางข้อมูลหมวดหมู่</div>
+                        <div class="card-header" style="font-size: 24px;">ตารางข้อมูล หมวดหมู่</div>
                         <div class="table-responsive">
                             @if($categories->count()>0)
                             <table class="table table-striped">
@@ -53,7 +53,7 @@
                                 </tbody>
                             </table>
                             @else
-                                <h3 style="color:red; text-align:center ;padding-top: 20px; padding-bottom: 20px">-- ไม่มีข้อมูลหมวดหมู่ --</h3>
+                                <h3 style="color:red; text-align:center ;padding-top: 20px; padding-bottom: 20px">-- ไม่มีข้อมูลห มวดหมู่ --</h3>
                             @endif
                         </div>
                         {{$categories->links()}}
