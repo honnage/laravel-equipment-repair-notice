@@ -8,10 +8,37 @@
 
         <form method="POST" action="{{ route('register') }}">
             @csrf
+            <div class="mt-4">
+                <x-jet-label for="firstname" value="{{ __('firstname') }}" />
+                <x-jet-input id="firstname" class="block mt-1 w-full" type="text" name="firstname" :value="old('firstname')" required autofocus autocomplete="firstname" />
+            </div>
 
-            <div>
-                <x-jet-label for="name" value="{{ __('Name') }}" />
-                <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+            <div class="mt-4"> 
+                <x-jet-label for="lastname" value="{{ __('lastname') }}" />
+                <x-jet-input id="lastname" class="block mt-1 w-full" type="text" name="lastname" :value="old('lastname')" required autofocus autocomplete="lastname" />
+            </div>
+
+            <div class="mt-4">
+                <x-jet-label for="firstname" value="{{ __('gender') }}" />
+                <label >
+                    <input type="radio" id="gender" name="gender" value="M"> &nbsp;&nbsp;
+                    <label for="male">male </label>
+                </label> 
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <label>
+                    <input type="radio" id="gender" name="gender" value="F"> &nbsp;&nbsp;
+                    <label for="female">female </label>
+                </label>
+            </div>
+
+            <div class="mt-4">
+                <x-jet-label for="phone" value="{{ __('phone') }}" />
+                <x-jet-input id="phone" class="block mt-1 w-full" type="text" name="phone" :value="old('phone')" required autofocus autocomplete="phone" />
+            </div>
+
+            <div class="mt-4">
+                <x-jet-label for="address" value="{{ __('address') }}" />
+                <x-jet-input id="address" class="block mt-1 w-full" type="text" name="address" :value="old('address')" required autofocus autocomplete="address" />
             </div>
 
             <div class="mt-4">

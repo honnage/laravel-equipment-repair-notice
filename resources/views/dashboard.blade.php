@@ -14,7 +14,7 @@
                     <thead>
                       <tr>
                         <th scope="col">ลำดับ</th>
-                        <th scope="col">ชื่อ</th>
+                        {{-- <th scope="col">ชื่อ</th> --}}
                         <th scope="col">อีเมล</th>
                         <th scope="col">เริ่มใช้งานระบบ</th>
                       </tr>
@@ -24,7 +24,7 @@
                         @foreach ( $users as $row )
                         <tr>
                             <th>{{$i++}}</th>
-                            <td>{{$row->name}}</td>
+                            {{-- <td>{{$row->name}}</td> --}}
                             <td>{{$row->email}}</td>
                             <td>{{Carbon\Carbon::parse($row->created_at)->diffForHumans() }}</td>
                             {{-- <td>{{$row->created_at->diffForHumans()}}</td> --}}

@@ -77,7 +77,7 @@ class CustomerController extends Controller
         [
             'firstname.required'=>"กรุณาป้อนชื่อจริง",
             'firstname.max'=>"ห้ามป้อนเกิน 255 ตัวอักษร",
-            'lastname.required'=>"กรุณาป้อนชื่อจริง",
+            'lastname.required'=>"กรุณาป้อนนามสกุล",
             'lastname.max'=>"ห้ามป้อนเกิน 255 ตัวอักษร",
             'gender.required'=>"กรุณาเลือกเพศ",
             'email.required'=>"กรุณาป้อนอีเมล",
