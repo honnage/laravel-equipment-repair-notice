@@ -2,7 +2,7 @@
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{-- {{ __('Dashboard') }} --}}
-            สวัสดี , {{Auth::user()->name }}
+            สวัสดีคุณ {{Auth::user()->firstname }}
             <b class="float-end">จำนวนผู้ใช้ระบบ <span>{{count($users)}}</span> คน</b>
         </h2>
     </x-slot>
@@ -14,7 +14,11 @@
                     <thead>
                       <tr>
                         <th scope="col">ลำดับ</th>
-                        {{-- <th scope="col">ชื่อ</th> --}}
+                        <th scope="col">ชื่อ</th>
+                        <th scope="col">นามสกุล</th>
+                        <th scope="col">สถานะ</th>
+                        <th scope="col">ตำแหน่ง</th>
+                        <th scope="col">เบอร์โทร</th>
                         <th scope="col">อีเมล</th>
                         <th scope="col">เริ่มใช้งานระบบ</th>
                       </tr>
@@ -24,7 +28,11 @@
                         @foreach ( $users as $row )
                         <tr>
                             <th>{{$i++}}</th>
-                            {{-- <td>{{$row->name}}</td> --}}
+                            <td>{{$row->firstname}}</td>
+                            <td>{{$row->lastname}}</td>
+                            <td>{{$row->status}}</td>
+                            <td>{{$row->department}}</td>
+                            <td>{{$row->phone}}</td>
                             <td>{{$row->email}}</td>
                             <td>{{Carbon\Carbon::parse($row->created_at)->diffForHumans() }}</td>
                             {{-- <td>{{$row->created_at->diffForHumans()}}</td> --}}

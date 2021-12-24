@@ -32,6 +32,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::middleware(['auth:sanctum', 'verified'])->group(function(){
     // transactions
     Route::get('/transaction/all',[transactionController::class,'index'])->name('transaction');
+    Route::post('/transaction/add',[transactionController::class,'store'])->name('addTransaction');
 
     // Department
     Route::get('/category/all',[CategoryController::class,'index'])->name('category');
