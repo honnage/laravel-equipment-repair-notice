@@ -7,6 +7,7 @@ use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\transactionController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,6 +30,9 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function(){
+    // transactions
+    Route::get('/transaction/all',[transactionController::class,'index'])->name('transaction');
+
     // Department
     Route::get('/category/all',[CategoryController::class,'index'])->name('category');
     Route::post('/category/add',[CategoryController::class,'store'])->name('addCategory');

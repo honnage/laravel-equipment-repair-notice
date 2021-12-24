@@ -1,7 +1,7 @@
 <x-guest-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">
-            <x-jet-authentication-card-logo />
+            {{-- <x-jet-authentication-card-logo /> --}}
         </x-slot>
 
         <x-jet-validation-errors class="mb-4" />
@@ -39,6 +39,11 @@
             <div class="mt-4">
                 <x-jet-label for="address" value="{{ __('address') }}" />
                 <x-jet-input id="address" class="block mt-1 w-full" type="text" name="address" :value="old('address')" required autofocus autocomplete="address" />
+            </div>
+
+            <div class="mt-4">
+                <x-jet-label for="department" value="{{ __('department') }}" />
+                <x-jet-input id="department" class="block mt-1 w-full" type="text" name="department" :value="old('department')" required autofocus autocomplete="department" />
             </div>
 
             <div class="mt-4">
