@@ -7,6 +7,8 @@ use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
+
+use App\Http\Controllers\TypeEquipmentController;
 use App\Http\Controllers\transactionController;
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +35,12 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function(){
     // transactions
     Route::get('/transaction/all',[transactionController::class,'index'])->name('transaction');
     Route::post('/transaction/add',[transactionController::class,'store'])->name('addTransaction');
+
+
+    Route::get('/type/all',[TypeEquipmentController::class,'index'])->name('type');
+    Route::get('/type/create',[TypeEquipmentController::class,'create'])->name('typeCreate');
+    Route::post('/type/add',[TypeEquipmentController::class,'store'])->name('addType');
+    Route::get('/type/destroy/{id}',[TypeEquipmentController::class,'destroy']);
 
     // Department
     Route::get('/category/all',[CategoryController::class,'index'])->name('category');
