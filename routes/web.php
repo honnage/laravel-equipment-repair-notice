@@ -44,11 +44,21 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function(){
     Route::post('/type/update/{id}',[TypeEquipmentController::class,'update']);
     Route::get('/type/destroy/{id}',[TypeEquipmentController::class,'destroy']);
 
-    // Department
+
     Route::get('/category/all',[CategoryController::class,'index'])->name('category');
+    Route::get('/category/create',[CategoryController::class,'create'])->name('createCategory');
     Route::post('/category/add',[CategoryController::class,'store'])->name('addCategory');
     Route::get('/category/edit/{id}',[CategoryController::class,'edit']);
     Route::post('/category/update/{id}',[CategoryController::class,'update']);
+    Route::get('/category/destroy/{id}',[CategoryController::class,'destroy']);
+
+
+
+    // Department
+    // Route::get('/category/all',[CategoryController::class,'index'])->name('category');
+    // Route::post('/category/add',[CategoryController::class,'store'])->name('addCategory');
+    // Route::get('/category/edit/{id}',[CategoryController::class,'edit']);
+    // Route::post('/category/update/{id}',[CategoryController::class,'update']);
 
     // Customer
     Route::get('/customer/all',[CustomerController::class,'index'])->name('customer');

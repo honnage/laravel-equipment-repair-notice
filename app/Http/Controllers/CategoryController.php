@@ -1,12 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
-use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
+use App\Models\Category;
+
+
 class CategoryController extends Controller
 {
     public function index(){
@@ -14,80 +16,63 @@ class CategoryController extends Controller
         return view('admin.category.index', compact('categories'));
     }
 
+    public function create()
+    {
+        return view('admin.category.form');
+    }
+
     public function store(Request $request){
+      
         $request->validate([
-            'categories_name'=>'required|unique:categories|max:255',
-            'categories_image'=>'required|mimes:jpg,jpeg,png',
+            'name'=>'required|unique:categories|max:191'
         ],
         [
-            'categories_name.required'=>"กรุณาป้อนชื่อหมวดหมู่",
-            'categories_name.max'=>"ห้ามป้อนเกิน 255 ตัวอักษร",
-            'categories_name.unique'=>"มีข้มูลชื่อหมวดหมู่นี้ในฐานข้อมูลแล้ว",
-            'categories_image.required'=>"กรุณาใส่ภาพประกอบหมวดหมู่"
+            'name.required'=>"กรุณาป้อนประเภทครุภัณฑ์",
+            'name.max'=>"ห้ามป้อนนเกิน 191 ตัวอักษร",
+            'name.unique'=>"มีข้มูลประเภทครุภัณฑ์นี้ในฐานข้อมูลแล้ว"
         ]);
 
-        // เข้ารหัสรุปภาพ
-        $categories_image = $request->file('categories_image');
-        $name_gen = hexdec(uniqid());
-        $img_ext =  strtolower($categories_image->getClientOriginalExtension());
-        $img_name = $name_gen.".".$img_ext;
-    
-        $upload_location = "image/categories/";
-        $full_path = $upload_location.$img_name;
-     
-        Category::insert([
-            'categories_name'=>$request->categories_name,
-            'categories_image'=>$full_path,
-            'created_at'=>Carbon::now(),
-            'updated_at'=>Carbon::now()
-        ]); 
-        $categories_image->move($upload_location,$img_name);
-        return redirect()->back()->with('success','บันทึกข้อมูลเรียบร้อย');
+        $Category = new Category;
+        $Category->name = $request->name;
+        $Category->save();
+        return redirect('/category/all')->with('success','บันทึกข้อมูลเรียบร้อย');
     }
 
-    public function edit($id){
-        $categories = Category::paginate(10);
-        $category = Category::find($id);
-        return view('admin.category.edit', compact('categories','category'));
+    public function edit($id)
+    {
+        $Category = Category::find($id);
+        return view('admin.category.form', compact('Category'));
     }
 
-    public function update(Request $request, $id){
+    public function update(Request $request, $id)
+    {
         $request->validate([
-            'categories_name'=>'required|max:255',
+            'name'=>'required|unique:categories|max:191'
         ],
         [
-            'categories_name.required'=>"กรุณาป้อนชื่อหมวดหมู่",
-            'categories_name.max'=>"ห้ามป้อนเกิน 255 ตัวอักษร",
+            'name.required'=>"กรุณาป้อนประเภทครุภัณฑ์",
+            'name.max'=>"ห้ามป้อนนเกิน 191 ตัวอักษร",
+            'name.unique'=>"มีข้มูลประเภทครุภัณฑ์นี้ในฐานข้อมูลแล้ว"
         ]);
 
-        // เข้ารหัสรุปภาพ
-        $categories_image = $request->file('categories_image');
+        // dd($request->all());
+        Category::find($id)->update($request->all());
+        return redirect('/category/all')->with('success','อัพเดทข้อมูลเรียบร้อย');
+    }
 
-        if( $categories_image){
-            $name_gen = hexdec(uniqid());
-            $img_ext =  strtolower($categories_image->getClientOriginalExtension());
-            $img_name = $name_gen.".".$img_ext;
-        
-            $upload_location = "image/categories/";
-            $full_path = $upload_location.$img_name;
+    public function destroy($id)
+    {
+        // dd($id);
+        // $license = LicenseModel::find($id);
+        // if($license->asset->count() > 0){
+        //     Session()->flash('error','ไม่สามารถลบได้เนื่องจากมีชื่อชิ้นงานใช้งานอยู่');
+        //     return redirect()->back();
+        // }
 
-            Category::find($id)->update([
-                'categories_name'=>$request->categories_name,
-                'categories_image'=>$full_path,
-                'updated_at'=>Carbon::now()
-            ]); 
-
-            $old_image = $request->old_image;
-            unlink($old_image);
-
-            $categories_image->move($upload_location,$img_name);
-            return redirect()->route('category')->with('success','อัปเดตภาพข้อมูลเรียบร้อย');
-        }else{
-            Category::find($id)->update([
-                'categories_name'=>$request->categories_name,
-                'updated_at'=>Carbon::now()
-            ]); 
-            return redirect()->route('category')->with('success','อัปเดตข้อมูลเรียบร้อย');
-        }
+        // DB::table('type_equipment')
+        // ->where('id','=',$id)
+        // ->delete();
+        Category::find($id)->delete();
+        return redirect('/category/all')->with('success','ลบข้อมูลเรียบร้อย');
     }
 }

@@ -106,17 +106,10 @@
                                     <form action="{{url('/type/destroy/'.$row->id)}}" method="get">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger" style="width: 70px"><i class="fas fa-trash-alt"></i></button>                                
+
+                                        <a type="submit"  class="btn btn-danger deleteform" data-name="{{$row->name}}"><i class="fas fa-trash-alt"></i></a>
                                     </form>
                                 </td>
-                  
-                                {{-- <td>
-                                    <center><a href="{{url('/category/edit/'.$row->id)}}" class="btn btn-warning">แก้ไข</a></center>
-                                </td>
-                                <td>
-                                    <center><a href="{{url('/category/delete/'.$row->id)}}" class="btn btn-danger"
-                                    onclick="return confirm('คุณต้องการลบข้อมูลบริการหรือไม่?')">ลบ</a></center>
-                                </td> --}}
                             </tr>
                             @endforeach
                         </tbody>
