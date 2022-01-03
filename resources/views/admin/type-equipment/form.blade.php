@@ -58,7 +58,7 @@
             </div> --}}
           
             <div class=" mb-4">
-                <form action="{{route('addType')}}" method="post" enctype="multipart/form-data">
+                <form action="{{isset($TypeEquipment)?"/type/update/$TypeEquipment->id":route('addType') }}" method="post">
                     {{csrf_field()}}
                     <div class="row">
                         
@@ -73,7 +73,9 @@
                                     @enderror
                                 </div>
                                 <div class="col-sm-12">
-                                    <input type="text" class="form-control col-sm-6" name="name" placeholder="">
+                                    <input type="text" class="form-control col-sm-6"  name="name" value="{{isset($TypeEquipment)?"$TypeEquipment->name":''}}" >
+
+                                    {{-- <input type="text" class="form-control col-sm-6" name="name" placeholder=""> --}}
                                 </div>
                             </div>
                         </div>
@@ -81,7 +83,7 @@
                         </div>
                     </div>
                     <div class="col-md-6 d-flex flex-row-reverse bd-highlight mt-4">
-                        <button type="submit" name="submit" class="btn btn-success col-sm-2">เพิ่มข้อมูล</button>
+                        <input type="submit" name="submit" value="{{isset($TypeEquipment)? "แก้ไข":"เพิ่มข้อมูล"}}" class="{{isset($TypeEquipment)? "btn btn-warning col-sm-2":"btn btn-success col-sm-2"}}">
                         &nbsp;&nbsp;
                         <button class="btn btn-secondary col-sm-1" type="reset">ยกเลิก</button>      
                     </div>

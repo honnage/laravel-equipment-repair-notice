@@ -40,6 +40,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function(){
     Route::get('/type/all',[TypeEquipmentController::class,'index'])->name('type');
     Route::get('/type/create',[TypeEquipmentController::class,'create'])->name('typeCreate');
     Route::post('/type/add',[TypeEquipmentController::class,'store'])->name('addType');
+    Route::get('/type/edit/{id}',[TypeEquipmentController::class,'edit']);
+    Route::post('/type/update/{id}',[TypeEquipmentController::class,'update']);
     Route::get('/type/destroy/{id}',[TypeEquipmentController::class,'destroy']);
 
     // Department

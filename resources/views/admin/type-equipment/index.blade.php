@@ -100,27 +100,13 @@
                                 
                                 </td>
                                 <td style="width: 6%">
-                                
+                                    <center><a href="{{url('/type/edit/'.$row->id)}}" class="btn btn-warning" style="width: 70px"><i class="fas fa-edit"></i></a></center>
                                 </td>
                                 <td style="width: 6% ; text-align: center">
-                                    {{-- <form action="{{route('addType')}}" method="post" enctype="multipart/form-data"> --}}
-
-                                    {{-- <form action="{{url('/type/destroy/'.$row->id)}}" method="post">
-                                    
-                                        <a style="color:white; width: 50px" type="submit" class="btn btn-danger " style><i class="fas fa-trash-alt"></i></a>
-                                    </form> --}}
-
-                                    {{-- <form class="delete_form" action="/type/destroy/{{$row->id}}" method="post">
-                                        {{csrf_field()}}
-                                        <input type="hidden" class="_method" value="DELETE">
-                                        <input type="submit" class="btn btn-danger col-sm-12" name="" value="ลบ">
-                                    </form> --}}
-
-                                    {{-- /type/destroy/{{$row->id}} --}}
                                     <form action="{{url('/type/destroy/'.$row->id)}}" method="get">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>                                
+                                        <button type="submit" class="btn btn-danger" style="width: 70px"><i class="fas fa-trash-alt"></i></button>                                
                                     </form>
                                 </td>
                   
@@ -133,8 +119,6 @@
                                 </td> --}}
                             </tr>
                             @endforeach
-                           
-                
                         </tbody>
                     </table>
                     @else

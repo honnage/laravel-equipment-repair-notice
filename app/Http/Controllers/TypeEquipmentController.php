@@ -19,7 +19,7 @@ class TypeEquipmentController extends Controller
 
     public function create()
     {
-        return view('admin.type-equipment.create');
+        return view('admin.type-equipment.form');
     }
 
     public function store(Request $request){
@@ -38,6 +38,29 @@ class TypeEquipmentController extends Controller
         $TypeEquipment->save();
         return redirect('/type/all')->with('success','บันทึกข้อมูลเรียบร้อย');
     }
+
+    public function edit($id)
+    {
+        $TypeEquipment = TypeEquipment::find($id);
+        return view('admin.type-equipment.form', compact('TypeEquipment'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'name'=>'required|unique:type_equipment|max:191'
+        ],
+        [
+            'name.required'=>"กรุณาป้อนประเภทครุภัณฑ์",
+            'name.max'=>"ห้ามป้อนนเกิน 191 ตัวอักษร",
+            'name.unique'=>"มีข้มูลประเภทครุภัณฑ์นี้ในฐานข้อมูลแล้ว"
+        ]);
+
+        // dd($request->all());
+        TypeEquipment::find($id)->update($request->all());
+        return redirect('/type/all')->with('success','อัพเดทข้อมูลเรียบร้อย');
+    }
+
 
     public function destroy($id)
     {
