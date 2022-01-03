@@ -8,6 +8,11 @@
                     {{Session()->get('success')}}
                 </div>
             @endif
+            @if(Session()->has('error'))
+                <div class="alert alert-danger  mt-4" role="alert">
+                    {{Session()->get('error')}}
+                </div>
+            @endif
 
             <div class="d-flex justify-content-between mt-4">
                 <div class=" flex-row-reverse  ">
@@ -87,18 +92,18 @@
                             <tr>
                                 {{-- <th>{{$categories->firstItem()+$loop->index}}</th> --}}
                                 {{-- <td><img src="{{asset($row->categories_image)}}" width="70px" height="70px"></td> --}}
-                                <td style="width: 7%">{{$row->id}}</td>
-                                <td style="width: 65%">{{$row->name}}</td>
-                                <td style="width: 10%">
+                                <td style="width: 7%; vertical-align: middle;">{{$row->id}}</td>
+                                <td style="width: 65%; vertical-align: middle;">{{$row->name}}</td>
+                                <td style="width: 10%; vertical-align: middle;">
+                                    <center>{{ number_format( $row->TypeEquipment->count() )}}<center>
+                                </td>
+                                <td style="width: 6%; vertical-align: middle;">
                                 
                                 </td>
-                                <td style="width: 6%">
-                                
-                                </td>
-                                <td style="width: 6%">
+                                <td style="width: 6%; vertical-align: middle;">
                                     <center><a href="{{url('/category/edit/'.$row->id)}}" class="btn btn-warning" style="width: 70px"><i class="fas fa-edit"></i></a></center>
                                 </td>
-                                <td style="width: 6% ; text-align: center">
+                                <td style="width: 6%; text-align: center; vertical-align: middle;">
                                     <form action="{{url('/category/destroy/'.$row->id)}}" method="get">
                                         @csrf
                                         @method('DELETE')
@@ -126,7 +131,7 @@
                                             </div>
                                         </div> --}}
                             
-                                        <a type="submit" class="btn btn-danger deleteform" data-name="{{$row->name}}"><i class="fas fa-trash-alt"></i></a>
+                                        <a type="submit" class="btn btn-danger deleteform" data-name="{{$row->name}}" style="width: 70px;"><i class="fas fa-trash-alt"></i></a>
                                     </form>
                                 </td>
                             </tr>

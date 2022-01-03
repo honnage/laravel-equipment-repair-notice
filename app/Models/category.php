@@ -12,4 +12,8 @@ class Category extends Model
     protected $fillable = [
         'name',
     ];
+
+    public function TypeEquipment(){
+        return $this->hasMany(TypeEquipment::class, 'category_id');      
+    }
 }

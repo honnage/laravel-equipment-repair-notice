@@ -62,16 +62,12 @@ class CategoryController extends Controller
 
     public function destroy($id)
     {
-        // dd($id);
-        // $license = LicenseModel::find($id);
-        // if($license->asset->count() > 0){
-        //     Session()->flash('error','ไม่สามารถลบได้เนื่องจากมีชื่อชิ้นงานใช้งานอยู่');
-        //     return redirect()->back();
-        // }
-
-        // DB::table('type_equipment')
-        // ->where('id','=',$id)
-        // ->delete();
+        $category = Category::find($id);
+        if($category->TypeEquipment->count() > 0){
+            Session()->flash('error','ไม่สามารถลบได้เนื่องจากมีหมวดหมู่ครุภัณฑ์นี้ใช้งานอยู่');
+            return redirect()->back();
+        }
+       
         Category::find($id)->delete();
         return redirect('/category/all')->with('success','ลบข้อมูลเรียบร้อย');
     }

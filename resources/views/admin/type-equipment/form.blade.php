@@ -74,10 +74,35 @@
                                 </div>
                                 <div class="col-sm-12">
                                     <input type="text" class="form-control col-sm-6"  name="name" value="{{isset($TypeEquipment)?"$TypeEquipment->name":''}}" >
-
-                                    {{-- <input type="text" class="form-control col-sm-6" name="name" placeholder=""> --}}
                                 </div>
                             </div>
+
+                            <div class="form-group my-4">
+                                <div class="col-sm-12">
+                                    <label for="category_id">หมวดหมู่ <span style="color: red">*</span></label>
+                                    @error('category_id')
+                                        <label>
+                                            <span class="text-danger">{{$message}}</span>
+                                        </label>
+                                    @enderror
+                                </div>
+                                <select class="form-control" name="category_id">
+                                    @if (!isset($TypeEquipment))
+                                        <option value="" style="color:red;">--- กรุณาเลือกหมวดหมู่ --- </option>
+                                    @endif
+
+                                    @foreach($categories as $category)
+                                        <option value="{{$category->id}}"
+                                            @if(isset($TypeEquipment))
+                                                @if($TypeEquipment->category_id == $TypeEquipment->category_id)
+                                                    selected
+                                                @endif
+                                            @endif
+                                        >{{$category->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
                         </div>
                         <div class="col-md-6">
                         </div>
