@@ -101,12 +101,8 @@
                                     @enderror
                                 </div>
                                 <div class="col-sm-12">
-                                    <div><label>Amount $
-                                        <input type="number" placeholder="0.00" required name="price" min="0" value="0" step="0.01" title="Currency" pattern="^\d+(?:\.\d{1,2})?$" onblur="
-                                    this.parentNode.parentNode.style.backgroundColor=/^\d+(?:\.\d{1,2})?$/.test(this.value)?'inherit':'red'
-                                    "></label></div>
-
-                                    {{-- <input type="number" class="form-control col-sm-6"  name="price" value="{{isset($Equipment)?"$Equipment->price":''}}" > --}}
+                                    <input type="number" class="form-control col-sm-6" required name="price" min="0" value="{{isset($Equipment)?"$Equipment->price":''}}" step="0.01" title="Currency" 
+                                        pattern="^\d+(?:\.\d{1,2})?$" onblur="this.parentNode.parentNode.style.backgroundColor=/^\d+(?:\.\d{1,2})?$/.test(this.value)?'inherit':'red'">
                                 </div>
                             </div>
 

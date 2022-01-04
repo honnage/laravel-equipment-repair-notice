@@ -24,7 +24,7 @@
                 <li class="breadcrumb-item active">จำนวนรายการทั้งหมด</li>
             </ol> --}}
             <br>
-            <div class="row">
+            {{-- <div class="row">
                 <div class="col-xl-3 col-md-6">
                     <div class="card bg-primary text-white mb-4">
                         <div class="card-body">Primary Card</div>
@@ -61,7 +61,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
           
             <div class="card mb-4">
                 <div class="card-header">
@@ -77,6 +77,7 @@
                                 <th>หมายเลขครุภัณฑ์</th>
                                 <th>ชื่อครุภัณฑ์</th>
                                 <th>ประเภทครุภัณฑ์</th>
+                                <th>หมวดหมู่ครุภัณฑ์</th>
                                 <th style="text-align: center">ราคา </th>
                                 <th style="text-align: center">อายุประกัน</th>
                                 <th style="text-align: center">วันที่ซื้อ</th>
@@ -91,7 +92,8 @@
                                 <td style="width: 4%; vertical-align: middle;">{{$row->id}}</td>
                                 <td style="width: 10%; vertical-align: middle;">{{$row->equipment_number}}</td>
                                 <td style="width: 30%; vertical-align: middle;">{{$row->name}}</td>
-                                <td style="width: 20%; vertical-align: middle;">{{$row->TypeEquipment->category->name}} / {{$row->TypeEquipment->name}} </td>
+                                <td style="width: 10%; vertical-align: middle;">{{$row->TypeEquipment->name}} </td>
+                                <td style="width: 10%; vertical-align: middle;">{{$row->TypeEquipment->category->name}} </td>
                                 <td style="width: 7%; vertical-align: middle; text-align: right;">{{ number_format( $row->price, 2, '.', ',')}} </td>
                                 <td style="width: 7%; vertical-align: middle; text-align: right;">{{$row->insurance}}</td>
                                 <td style="width: 6%; vertical-align: middle; text-align: center;">{{$row->purchase_date}}</td>

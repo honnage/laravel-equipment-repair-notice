@@ -5,12 +5,14 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\ServiceController;
-use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\transactionController;
 use App\Http\Controllers\CustomerController;
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TypeEquipmentController;
-use App\Http\Controllers\transactionController;
 use App\Http\Controllers\EquipmentController;
+use App\Http\Controllers\UserController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -58,7 +60,10 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function(){
     Route::post('/category/update/{id}',[CategoryController::class,'update']);
     Route::get('/category/destroy/{id}',[CategoryController::class,'destroy']);
 
-
+    Route::get('/user/all',[UserController::class,'index'])->name('user');
+    Route::get('/user/edit/{id}',[UserController::class,'edit']);
+    Route::post('/user/update/{id}',[UserController::class,'update']);
+    
 
 
 

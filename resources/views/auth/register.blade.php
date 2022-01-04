@@ -21,12 +21,12 @@
             <div class="mt-4">
                 <x-jet-label for="firstname" value="{{ __('gender') }}" />
                 <label >
-                    <input type="radio" id="gender" name="gender" value="M"> &nbsp;&nbsp;
+                    <input type="radio" id="gender" name="gender" value="ชาย"> &nbsp;&nbsp;
                     <label for="male">male </label>
                 </label> 
                 &nbsp;&nbsp;&nbsp;&nbsp;
                 <label>
-                    <input type="radio" id="gender" name="gender" value="F"> &nbsp;&nbsp;
+                    <input type="radio" id="gender" name="gender" value="หญิง"> &nbsp;&nbsp;
                     <label for="female">female </label>
                 </label>
             </div>
