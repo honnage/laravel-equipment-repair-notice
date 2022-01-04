@@ -8,6 +8,11 @@
                     {{Session()->get('success')}}
                 </div>
             @endif
+            @if(Session()->has('error'))
+                <div class="alert alert-danger  mt-4" role="alert">
+                    {{Session()->get('error')}}
+                </div>
+            @endif
 
             {{-- <h1 class="mt-4">ประเภทครุภัณฑ์</h1>
             <div class="d-flex flex-row-reverse  ">
@@ -96,7 +101,7 @@
                                 <td style="width: 35%; vertical-align: middle;">{{$row->name}}</td>
                                 <td style="width: 30%; vertical-align: middle;">{{$row->category->name}}</td>
                                 <td style="width: 10%; vertical-align: middle;">
-                                
+                                    <center>{{ number_format( $row->equipment->count() )}}<center>
                                 </td>
                                 <td style="width: 6%; vertical-align: middle;">
                                 

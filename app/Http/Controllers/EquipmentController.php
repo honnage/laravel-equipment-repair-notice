@@ -67,6 +67,54 @@ class EquipmentController extends Controller
         return redirect('/equipment/all')->with('success','บันทึกข้อมูลเรียบร้อย');
     }
 
+    public function edit($id)
+    {
+        $Equipment = Equipment::find($id);
+        $categories = Category::all();
+        $typeEquipment = TypeEquipment::all();
+        return view('admin.equipment.form', compact('Equipment', 'categories', 'typeEquipment'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'name'=>'required|max:191',
+            'equipment_number'=>'required|max:191',
+            'purchase_date'=>'required',
+            'type_equipment_id'=>'required',
+            'insurance'=>'required|max:191',
+            'price'=>'required|max:10',
+        ],
+        [
+            'name.required'=>"กรุณาป้อนครุภัณฑ์",
+            'name.max'=>"ห้ามป้อนเกิน 191 ตัวอักษร",
+
+            'equipment_number.required'=>"กรุณาป้อนหมายเลขครุภัณฑ์",
+            'equipment_number.max'=>"ห้ามป้อนเกิน 191 ตัวอักษร",
+
+            'purchase_date.required'=>"กรุณาเลือกวันที่ซื้อ",
+            'type_equipment_id.required'=>"กรุณาเลือกประเภทครุภัณฑ์",
+
+            'insurance.required'=>"กรุณาป้อนอายุประกัน",
+            'insurance.max'=>"ห้ามป้อนเกิน 191 ตัวอักษร",
+
+            'price.required'=>"กรุณาราคาครุภัณฑ์",
+            'price.max'=>"ห้ามป้อนเกิน 2 ตัวอักษร",
+        ]);
+
+        // Equipment::find($id)->update($request->all());
+        Equipment::find($id)->update([
+            'name'=>$request->name,
+            'equipment_number'=>$request->equipment_number,
+            'purchase_date'=>$request->purchase_date,
+            'type_equipment_id'=>$request->type_equipment_id,
+            'insurance'=>$request->insurance,
+            'price'=>$request->price,
+            'user_id_updated'=> Auth::user()->id
+        ]);
+        return redirect('/equipment/all')->with('success','อัพเดทข้อมูลเรียบร้อย');
+    }
+
     public function destroy($id)
     {
         // dd($id);

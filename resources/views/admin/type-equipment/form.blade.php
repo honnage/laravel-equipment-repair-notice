@@ -91,14 +91,14 @@
                                         <option value="" style="color:red;">--- กรุณาเลือกหมวดหมู่ --- </option>
                                     @endif
 
-                                    @foreach($categories as $category)
-                                        <option value="{{$category->id}}"
+                                    @foreach($categories as $row)
+                                        <option value="{{$row->id}}"
                                             @if(isset($TypeEquipment))
-                                                @if($TypeEquipment->category_id == $category->id)
+                                                @if($TypeEquipment->category_id == $row->id)
                                                     selected
                                                 @endif
                                             @endif
-                                        >{{$category->name}}</option>
+                                        >{{$row->name}}</option>
                                     @endforeach
                                 </select>
                             </div>

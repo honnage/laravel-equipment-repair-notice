@@ -80,7 +80,7 @@
                                 <th style="text-align: center">ราคา </th>
                                 <th style="text-align: center">อายุประกัน</th>
                                 <th style="text-align: center">วันที่ซื้อ</th>
-                                <th style="text-align: center">เพิ่มเติม</th>
+                                {{-- <th style="text-align: center">เพิ่มเติม</th> --}}
                                 <th style="text-align: center">แก้ไข</th>
                                 <th style="text-align: center">ลบ</th>
                             </tr>
@@ -90,12 +90,12 @@
                             <tr>
                                 <td style="width: 4%; vertical-align: middle;">{{$row->id}}</td>
                                 <td style="width: 10%; vertical-align: middle;">{{$row->equipment_number}}</td>
-                                <td style="width: 20%; vertical-align: middle;">{{$row->name}}</td>
-                                <td style="width: 18%; vertical-align: middle;">{{$row->TypeEquipment->category->name}} / {{$row->TypeEquipment->name}} </td>
-                                <td style="width: 8%; vertical-align: middle; text-align: right;">{{$row->price}}</td>
-                                <td style="width: 8%; vertical-align: middle; text-align: right;">{{$row->insurance}}</td>
-                                <td style="width: 8%; vertical-align: middle; text-align: center;">{{$row->purchase_date}}</td>
-                                <td style="width: 6%; vertical-align: middle;"></td>
+                                <td style="width: 30%; vertical-align: middle;">{{$row->name}}</td>
+                                <td style="width: 20%; vertical-align: middle;">{{$row->TypeEquipment->category->name}} / {{$row->TypeEquipment->name}} </td>
+                                <td style="width: 7%; vertical-align: middle; text-align: right;">{{ number_format( $row->price, 2, '.', ',')}} </td>
+                                <td style="width: 7%; vertical-align: middle; text-align: right;">{{$row->insurance}}</td>
+                                <td style="width: 6%; vertical-align: middle; text-align: center;">{{$row->purchase_date}}</td>
+                                {{-- <td style="width: 6%; vertical-align: middle;"></td> --}}
                                 <td style="width: 6%; vertical-align: middle;">
                                     <center><a href="{{url('/equipment/edit/'.$row->id)}}" class="btn btn-warning" style="width: 70px;"><i class="fas fa-edit"></i></a></center>
                                 </td>

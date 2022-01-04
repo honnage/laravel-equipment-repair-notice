@@ -16,7 +16,7 @@
             <br>
      
             <div class=" mb-4">
-                <form action="{{isset($Category)?"/category/update/$Category->id":route('addEquipment') }}" method="post">
+                <form action="{{isset($Equipment)?"/equipment/update/$Equipment->id":route('addEquipment') }}" method="post">
                     {{csrf_field()}}
                     <div class="row">
                         
@@ -31,7 +31,7 @@
                                     @enderror
                                 </div>
                                 <div class="col-sm-12">
-                                    <input type="text" class="form-control col-sm-6"  name="equipment_number" value="{{isset($Category)?"$Category->equipment_number":''}}" >
+                                    <input type="text" class="form-control col-sm-6"  name="equipment_number" value="{{isset($Equipment)?"$Equipment->equipment_number":''}}" >
                                 </div>
                             </div>
 
@@ -45,7 +45,7 @@
                                     @enderror
                                 </div>
                                 <div class="col-sm-12">
-                                    <input type="text" class="form-control col-sm-6"  name="name" value="{{isset($Category)?"$Category->name":''}}" >
+                                    <input type="text" class="form-control col-sm-6"  name="name" value="{{isset($Equipment)?"$Equipment->name":''}}" >
                                 </div>
                             </div>
 
@@ -59,7 +59,7 @@
                                     @enderror
                                 </div>
                                 <div class="col-sm-12">
-                                    <input type="date" class="form-control col-sm-6"  name="purchase_date" value="{{isset($Category)?"$Category->purchase_date":''}}" >
+                                    <input type="date" class="form-control col-sm-6"  name="purchase_date" value="{{isset($Equipment)?"$Equipment->purchase_date":''}}" >
                                 </div>
                             </div>
                         </div>
@@ -75,14 +75,14 @@
                                     @enderror
                                 </div>
                                 <select class="form-control" name="type_equipment_id">
-                                    @if (!isset($TypeEquipment))
+                                    @if (!isset($Equipment))
                                         <option value="" style="color:red;">--- กรุณาเลือกประเภทครุภัณฑ์ --- </option>
                                     @endif
 
                                     @foreach($typeEquipment as $row)
                                         <option value="{{$row->id}}"
-                                            @if(isset($TypeEquipment))
-                                                @if($TypeEquipment->category_id == $TypeEquipment->category_id)
+                                            @if(isset($Equipment))
+                                                @if($Equipment->type_equipment_id == $row->id)
                                                     selected
                                                 @endif
                                             @endif
@@ -101,7 +101,12 @@
                                     @enderror
                                 </div>
                                 <div class="col-sm-12">
-                                    <input type="number" class="form-control col-sm-6"  name="price" value="{{isset($Category)?"$Category->price":''}}" >
+                                    <div><label>Amount $
+                                        <input type="number" placeholder="0.00" required name="price" min="0" value="0" step="0.01" title="Currency" pattern="^\d+(?:\.\d{1,2})?$" onblur="
+                                    this.parentNode.parentNode.style.backgroundColor=/^\d+(?:\.\d{1,2})?$/.test(this.value)?'inherit':'red'
+                                    "></label></div>
+
+                                    {{-- <input type="number" class="form-control col-sm-6"  name="price" value="{{isset($Equipment)?"$Equipment->price":''}}" > --}}
                                 </div>
                             </div>
 
@@ -115,7 +120,7 @@
                                     @enderror
                                 </div>
                                 <div class="col-sm-12">
-                                    <input type="text" class="form-control col-sm-6"  name="insurance" value="{{isset($Category)?"$Category->insurance":''}}" >
+                                    <input type="text" class="form-control col-sm-6"  name="insurance" value="{{isset($Equipment)?"$Equipment->insurance":''}}" >
                                 </div>
                             </div>
 
@@ -127,7 +132,7 @@
 
                     </div>
                     <div class="col-md-8 d-flex flex-row-reverse bd-highlight mt-4">
-                        <input type="submit" name="submit" value="{{isset($Category)? "แก้ไข":"เพิ่มข้อมูล"}}" class="{{isset($Category)? "btn btn-warning col-sm-2":"btn btn-success col-sm-2"}}">
+                        <input type="submit" name="submit" value="{{isset($Equipment)? "แก้ไข":"เพิ่มข้อมูล"}}" class="{{isset($Equipment)? "btn btn-warning col-sm-2":"btn btn-success col-sm-2"}}">
                         &nbsp;&nbsp;
                         <button class="btn btn-secondary col-sm-1" type="reset">ยกเลิก</button>      
                     </div>

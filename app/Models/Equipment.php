@@ -23,4 +23,7 @@ class Equipment extends Model
     public function TypeEquipment(){
         return $this->belongsTo(TypeEquipment::class);
     }
+
+ 
+
 }

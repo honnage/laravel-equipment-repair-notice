@@ -78,6 +78,12 @@ class TypeEquipmentController extends Controller
 
     public function destroy($id)
     {
+        $TypeEquipment = TypeEquipment::find($id);
+        if($TypeEquipment->equipment->count() > 0){
+            Session()->flash('error','ไม่สามารถลบได้เนื่องจากมีประเภทครุภัณฑ์นี้ใช้งานอยู่');
+            return redirect()->back();
+        }
+
         // dd($id);
         // $license = LicenseModel::find($id);
         // if($license->asset->count() > 0){
