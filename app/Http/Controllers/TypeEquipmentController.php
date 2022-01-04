@@ -14,7 +14,8 @@ class TypeEquipmentController extends Controller
     public function index()
     {
         // $TypeEquipment = TypeEquipment::paginate(10);
-        $TypeEquipment = TypeEquipment::all();
+        // $TypeEquipment = TypeEquipment::all();
+        $TypeEquipment = TypeEquipment::orderBy('id', 'desc')->get();
         return view('admin.type-equipment.index', compact('TypeEquipment'));
     }
 
@@ -32,7 +33,7 @@ class TypeEquipmentController extends Controller
         ],
         [
             'name.required'=>"กรุณาป้อนประเภทครุภัณฑ์",
-            'name.max'=>"ห้ามป้อนนเกิน 191 ตัวอักษร",
+            'name.max'=>"ห้ามป้อนเกิน 191 ตัวอักษร",
             'name.unique'=>"มีข้มูลประเภทครุภัณฑ์นี้ในฐานข้อมูลแล้ว",
             'category_id.required'=>"กรุณาเลือกหมวดหมู่ครุภัณฑ์",
         ]);
@@ -58,7 +59,7 @@ class TypeEquipmentController extends Controller
         ],
         [
             'name.required'=>"กรุณาป้อนประเภทครุภัณฑ์",
-            'name.max'=>"ห้ามป้อนนเกิน 191 ตัวอักษร",
+            'name.max'=>"ห้ามป้อนเกิน 191 ตัวอักษร",
             'name.unique'=>"มีข้มูลประเภทครุภัณฑ์นี้ในฐานข้อมูลแล้ว"
         ]);
 

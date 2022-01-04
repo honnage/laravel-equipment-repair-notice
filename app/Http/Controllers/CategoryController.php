@@ -12,7 +12,8 @@ use App\Models\Category;
 class CategoryController extends Controller
 {
     public function index(){
-        $categories = Category::paginate(10);
+        // $categories = Category::paginate(10);
+        $categories = Category::orderBy('id', 'desc')->get();
         return view('admin.category.index', compact('categories'));
     }
 
@@ -28,7 +29,7 @@ class CategoryController extends Controller
         ],
         [
             'name.required'=>"กรุณาป้อนประเภทครุภัณฑ์",
-            'name.max'=>"ห้ามป้อนนเกิน 191 ตัวอักษร",
+            'name.max'=>"ห้ามป้อนเกิน 191 ตัวอักษร",
             'name.unique'=>"มีข้มูลประเภทครุภัณฑ์นี้ในฐานข้อมูลแล้ว"
         ]);
 
@@ -51,7 +52,7 @@ class CategoryController extends Controller
         ],
         [
             'name.required'=>"กรุณาป้อนประเภทครุภัณฑ์",
-            'name.max'=>"ห้ามป้อนนเกิน 191 ตัวอักษร",
+            'name.max'=>"ห้ามป้อนเกิน 191 ตัวอักษร",
             'name.unique'=>"มีข้มูลประเภทครุภัณฑ์นี้ในฐานข้อมูลแล้ว"
         ]);
 

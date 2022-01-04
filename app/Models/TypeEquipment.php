@@ -18,4 +18,8 @@ class TypeEquipment extends Model
         return $this->belongsTo(Category::class);
     }
 
+    public function TypeEquipment(){
+        return $this->hasMany(TypeEquipment::class, 'category_id');      
+    }
+
 }

@@ -31,11 +31,7 @@
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
         <script src="{{ asset('js/sweetalert_delete.js') }}"></script>
-
-
-    
-
-        
+  
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark" style="height: 60px">
@@ -84,12 +80,12 @@
                             {{-- <div class="sb-sidenav-menu-heading">Core</div> --}}
                              <div class="sb-sidenav-menu-heading"></div>
                             <a class="nav-link" href="">
-                              <div class="sb-nav-link-icon"><i class="fas fa-chart-pie"></i></i></div>
-                              ข้อมูลการแจ้งซ่อม
+                                <div class="sb-nav-link-icon"><i class="fas fa-chart-pie"></i></i></div>
+                                ข้อมูลการแจ้งซ่อม
                             </a>
-                            <a class="nav-link" href="index.html">
-                              <div class="sb-nav-link-icon"><i class="fas fa-th"></i></i></div>
-                              จัดการครุภัณฑ์
+                            <a class="nav-link" href="{{ route('equipment') }}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-th"></i></i></div>
+                                จัดการครุภัณฑ์
                             </a>
                             <a class="nav-link" href="{{ route('type') }}">
                                 <div class="sb-nav-link-icon"><i class="far fa-copy"></i></i></div>
