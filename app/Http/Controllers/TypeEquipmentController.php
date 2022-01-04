@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Carbon\Carbon;
@@ -29,7 +30,7 @@ class TypeEquipmentController extends Controller
       
         $request->validate([
             'name'=>'required|unique:type_equipment|max:191',
-            'category_id'=>'required'
+            'category_id'=>'required',
         ],
         [
             'name.required'=>"กรุณาป้อนประเภทครุภัณฑ์",
@@ -41,6 +42,8 @@ class TypeEquipmentController extends Controller
         $TypeEquipment = new TypeEquipment;
         $TypeEquipment->name = $request->name;
         $TypeEquipment->category_id = $request->category_id;
+        $TypeEquipment->user_id_created = Auth::user()->id;
+        $TypeEquipment->user_id_updated = Auth::user()->id;
         $TypeEquipment->save();
         return redirect('/type/all')->with('success','บันทึกข้อมูลเรียบร้อย');
     }
@@ -55,7 +58,7 @@ class TypeEquipmentController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name'=>'required|unique:type_equipment|max:191'
+            'name'=>'required|unique:type_equipment|max:191',
         ],
         [
             'name.required'=>"กรุณาป้อนประเภทครุภัณฑ์",
@@ -64,7 +67,11 @@ class TypeEquipmentController extends Controller
         ]);
 
         // dd($request->all());
-        TypeEquipment::find($id)->update($request->all());
+        // TypeEquipment::find($id)->update($request->all());
+        TypeEquipment::find($id)->update([
+            'name'=>$request->name,
+            'user_id_updated'=> Auth::user()->id
+        ]);
         return redirect('/type/all')->with('success','อัพเดทข้อมูลเรียบร้อย');
     }
 

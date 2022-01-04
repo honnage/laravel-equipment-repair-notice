@@ -17,6 +17,8 @@ class CreateTypeEquipmentTable extends Migration
             $table->id();
             $table->integer('category_id');
             $table->string('name');
+            $table->integer('user_id_created');
+            $table->integer('user_id_updated');
             $table->timestamps();
         });
     }

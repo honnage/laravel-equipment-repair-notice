@@ -94,7 +94,7 @@
                                     @foreach($categories as $category)
                                         <option value="{{$category->id}}"
                                             @if(isset($TypeEquipment))
-                                                @if($TypeEquipment->category_id == $TypeEquipment->category_id)
+                                                @if($TypeEquipment->category_id == $category->id)
                                                     selected
                                                 @endif
                                             @endif

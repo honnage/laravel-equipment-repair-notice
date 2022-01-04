@@ -25,16 +25,17 @@ class CategoryController extends Controller
     public function store(Request $request){
       
         $request->validate([
-            'name'=>'required|unique:categories|max:191'
+            'name'=>'required|unique:categories|max:191',
         ],
         [
             'name.required'=>"กรุณาป้อนประเภทครุภัณฑ์",
             'name.max'=>"ห้ามป้อนเกิน 191 ตัวอักษร",
             'name.unique'=>"มีข้มูลประเภทครุภัณฑ์นี้ในฐานข้อมูลแล้ว"
         ]);
-
         $Category = new Category;
         $Category->name = $request->name;
+        $Category->user_id_created = Auth::user()->id;
+        $Category->user_id_updated = Auth::user()->id;
         $Category->save();
         return redirect('/category/all')->with('success','บันทึกข้อมูลเรียบร้อย');
     }
@@ -48,16 +49,20 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name'=>'required|unique:categories|max:191'
+            'name'=>'required|unique:categories|max:191',
         ],
         [
             'name.required'=>"กรุณาป้อนประเภทครุภัณฑ์",
             'name.max'=>"ห้ามป้อนเกิน 191 ตัวอักษร",
             'name.unique'=>"มีข้มูลประเภทครุภัณฑ์นี้ในฐานข้อมูลแล้ว"
         ]);
-
-        // dd($request->all());
-        Category::find($id)->update($request->all());
+        
+        // dd($request->user_id);
+        // Category::find($id)->update($request->all());
+        Category::find($id)->update([
+            'name'=>$request->name,
+            'user_id_updated'=> Auth::user()->id
+        ]);
         return redirect('/category/all')->with('success','อัพเดทข้อมูลเรียบร้อย');
     }
 

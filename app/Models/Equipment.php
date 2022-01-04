@@ -16,6 +16,8 @@ class Equipment extends Model
         'purchase_date',
         'insurance',
         'price',
+        'user_id_created',
+        'user_id_updated',
     ];
 
     public function TypeEquipment(){

@@ -4,9 +4,10 @@
         <div class="container-fluid px-4">
             <div class="d-flex justify-content-between mt-4">
                 <div class=" flex-row-reverse  ">
-                    <h1 class="text-left">เพิ่มข้อมูล หมวดหมู่</h1>
+                    <h1 class="text-left">เพิ่มข้อมูล หมวดหมู่  {{Auth::user()->id }}</h1>
                 </div>
-              
+
+               
             </div>
 
             {{-- <ol class="breadcrumb mb-4">
@@ -33,7 +34,8 @@
                                 <div class="col-sm-12">
                                     <input type="text" class="form-control col-sm-6"  name="name" value="{{isset($Category)?"$Category->name":''}}" >
 
-                                    {{-- <input type="text" class="form-control col-sm-6" name="name" placeholder=""> --}}
+                                    <input type="hidden" id="user_id" name="user_id" value="{{Auth::user()->id }}">
+            
                                 </div>
                             </div>
                         </div>

@@ -12,6 +12,8 @@ class TypeEquipment extends Model
     protected $fillable = [
         'category_id',
         'name',
+        'user_id_created',
+        'user_id_updated',
     ];
 
     public function category(){

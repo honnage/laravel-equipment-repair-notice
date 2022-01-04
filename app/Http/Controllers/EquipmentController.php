@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Carbon\Carbon;
@@ -60,6 +61,8 @@ class EquipmentController extends Controller
         $Equipment->type_equipment_id = $request->type_equipment_id;
         $Equipment->insurance = $request->insurance;
         $Equipment->price = $request->price;
+        $Equipment->user_id_created = Auth::user()->id;
+        $Equipment->user_id_updated = Auth::user()->id;
         $Equipment->save();
         return redirect('/equipment/all')->with('success','บันทึกข้อมูลเรียบร้อย');
     }

@@ -72,7 +72,7 @@
             <div class="card mb-4">
                 <div class="card-header">
                     <i class="fas fa-table me-1"></i>
-                    ตาราง หมวดหมู่ครุภัณฑ์
+                    ตาราง หมวดหมู่ครุภัณฑ์ 
                 </div>
                 <div class="card-body">
                     @if($categories->count() > 0)
