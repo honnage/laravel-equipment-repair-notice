@@ -16,17 +16,17 @@ class CreateTransactionsTable extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
-            $table->string('device_id');
-            $table->string('name');
-            $table->string('problem');
-            $table->string('category');
-            $table->string('details');
+            $table->string('code');
+            $table->string('problem'); //ปัญหา
+            $table->integer('equipment_id');
+            $table->string('details'); //รายละเอียด
             $table->string('status');
-            $table->string('note')->nullable();
-            $table->decimal('price', 10, 2)->nullable();
             $table->string('fileImage')->nullable();
-            $table->string('guaranty')->nullable();
-            $table->date('set_at')->nullable();
+            $table->decimal('price', 10, 2)->nullable();
+            $table->string('guaranty')->nullable(); //ประกัน
+            $table->date('set_at')->nullable(); //กำหนดส่งคืน
+            $table->integer('user_id_created');
+            $table->integer('user_id_updated');
             $table->timestamps();
         });
     }

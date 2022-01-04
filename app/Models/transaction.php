@@ -11,16 +11,16 @@ class transaction extends Model
 
     protected $fillable = [
         'user_id',
-        'device_id',
-        'name',
+        'code',
         'problem',
-        'category',
+        'equipment_id',
         'details',
         'status',
-        'note',
-        'price',
         'fileImage',
+        'price',
         'guaranty',
         'set_at',
+        'user_id_created',
+        'user_id_updated',
     ];
 }
