@@ -1,0 +1,207 @@
+@extends('layouts.index')
+@section('content')
+    <main>
+        <div class="container-fluid px-4">
+            <div class="d-flex justify-content-between mt-4">
+                <div class=" flex-row-reverse  ">
+                    <h1 class="text-left">เพิ่มข้อมูล แจ้งซ่อมครุภัณฑ์ </h1>
+                </div>
+            </div>
+
+            {{-- <ol class="breadcrumb mb-4">
+                <li class="breadcrumb-item active">จำนวนรายการทั้งหมด</li>
+            </ol> --}}
+
+            <br>
+            <div class=" mb-4">
+                <form action="{{isset($Category)?"/category/update/$Category->id":route('addCategory') }}" method="post">
+                    {{csrf_field()}}
+                    <div class="row">
+                        
+                        <div class="col-md-4"> {{-- left  --}}
+                            <div class="row align-items-center form-group ">
+                                <div class="col-sm-12">
+                                    <label for="name">รหัสผู้แจ้งซ่อม <span style="color: red">*</span></label>
+                                    @error('name')
+                                        <label>
+                                            <span class="text-danger">{{$message}}</span>
+                                        </label>
+                                    @enderror
+                                </div>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control col-sm-6"  name="name" value="{{isset($Category)?"$Category->name":''}}" >
+
+                                    <input type="hidden" id="user_id" name="user_id" value="{{Auth::user()->id }}">
+            
+                                </div>
+                            </div>
+
+                            <div class="row align-items-center form-group mt-4">
+                                <div class="col-sm-12">
+                                    <label for="name">อาการหรือปัญหา <span style="color: red">*</span></label>
+                                    @error('name')
+                                        <label>
+                                            <span class="text-danger">{{$message}}</span>
+                                        </label>
+                                    @enderror
+                                </div>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control col-sm-6"  name="name" value="{{isset($Category)?"$Category->name":''}}" >
+
+                                    <input type="hidden" id="user_id" name="user_id" value="{{Auth::user()->id }}">
+            
+                                </div>
+                            </div>
+
+                            <div class="row align-items-center form-group mt-4">
+                                <div class="col-sm-12">
+                                    <label for="name">รายละเอียด <span style="color: red">*</span></label>
+                                    @error('name')
+                                        <label>
+                                            <span class="text-danger">{{$message}}</span>
+                                        </label>
+                                    @enderror
+                                </div>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control col-sm-6"  name="name" value="{{isset($Category)?"$Category->name":''}}" >
+
+                                    <input type="hidden" id="user_id" name="user_id" value="{{Auth::user()->id }}">
+            
+                                </div>
+                            </div>
+
+                            <div class="row align-items-center form-group mt-4">
+                                <div class="col-sm-12">
+                                    <label for="name">วันที่กำหนดส่งคืน <span style="color: red">*</span></label>
+                                    @error('name')
+                                        <label>
+                                            <span class="text-danger">{{$message}}</span>
+                                        </label>
+                                    @enderror
+                                </div>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control col-sm-6"  name="name" value="{{isset($Category)?"$Category->name":''}}" >
+
+                                    <input type="hidden" id="user_id" name="user_id" value="{{Auth::user()->id }}">
+            
+                                </div>
+                            </div>
+
+                            <div class="row align-items-center form-group mt-4">
+                                <div class="col-sm-12">
+                                    <label for="name">ไฟล์ <span style="color: red">*</span></label>
+                                    @error('name')
+                                        <label>
+                                            <span class="text-danger">{{$message}}</span>
+                                        </label>
+                                    @enderror
+                                </div>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control col-sm-6"  name="name" value="{{isset($Category)?"$Category->name":''}}" >
+
+                                    <input type="hidden" id="user_id" name="user_id" value="{{Auth::user()->id }}">
+            
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="row align-items-center form-group ">
+                                <div class="col-sm-12">
+                                    <label for="name">รหัสการแจ้งซ่อม <span style="color: red">*</span></label>
+                                    @error('name')
+                                        <label>
+                                            <span class="text-danger">{{$message}}</span>
+                                        </label>
+                                    @enderror
+                                </div>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control col-sm-6"  name="name" value="{{isset($Category)?"$Category->name":''}}" >
+
+                                    <input type="hidden" id="user_id" name="user_id" value="{{Auth::user()->id }}">
+            
+                                </div>
+                            </div>
+
+                            <div class="row align-items-center form-group mt-4">
+                                <div class="col-sm-12">
+                                    <label for="name">รหัสครุภัณฑ์ <span style="color: red">*</span></label>
+                                    @error('name')
+                                        <label>
+                                            <span class="text-danger">{{$message}}</span>
+                                        </label>
+                                    @enderror
+                                </div>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control col-sm-6"  name="name" value="{{isset($Category)?"$Category->name":''}}" >
+
+                                    <input type="hidden" id="user_id" name="user_id" value="{{Auth::user()->id }}">
+            
+                                </div>
+                            </div>
+
+                            <div class="row align-items-center form-group mt-4">
+                                <div class="col-sm-12">
+                                    <label for="name">สถานะ <span style="color: red">*</span></label>
+                                    @error('name')
+                                        <label>
+                                            <span class="text-danger">{{$message}}</span>
+                                        </label>
+                                    @enderror
+                                </div>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control col-sm-6"  name="name" value="{{isset($Category)?"$Category->name":''}}" >
+
+                                    <input type="hidden" id="user_id" name="user_id" value="{{Auth::user()->id }}">
+            
+                                </div>
+                            </div>
+
+                            <div class="row align-items-center form-group mt-4">
+                                <div class="col-sm-12">
+                                    <label for="name">ประกัน <span style="color: red">*</span></label>
+                                    @error('name')
+                                        <label>
+                                            <span class="text-danger">{{$message}}</span>
+                                        </label>
+                                    @enderror
+                                </div>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control col-sm-6"  name="name" value="{{isset($Category)?"$Category->name":''}}" >
+
+                                    <input type="hidden" id="user_id" name="user_id" value="{{Auth::user()->id }}">
+            
+                                </div>
+                            </div>
+
+                            <div class="row align-items-center form-group mt-4">
+                                <div class="col-sm-12">
+                                    <label for="name">ราคา <span style="color: red">*</span></label>
+                                    @error('name')
+                                        <label>
+                                            <span class="text-danger">{{$message}}</span>
+                                        </label>
+                                    @enderror
+                                </div>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control col-sm-6"  name="name" value="{{isset($Category)?"$Category->name":''}}" >
+
+                                    <input type="hidden" id="user_id" name="user_id" value="{{Auth::user()->id }}">
+            
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-8 d-flex flex-row-reverse bd-highlight mt-4">
+                        <input type="submit" name="submit" value="{{isset($Category)? "แก้ไข":"เพิ่มข้อมูล"}}" class="{{isset($Category)? "btn btn-warning col-sm-2":"btn btn-success col-sm-2"}}">
+                        &nbsp;&nbsp;
+                        <button class="btn btn-secondary col-sm-1" type="reset">ยกเลิก</button>      
+                    </div>
+                </form>
+            </div>
+          
+        </div>
+    </main>
+    
+
+@endsection

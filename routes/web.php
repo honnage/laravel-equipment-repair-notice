@@ -5,9 +5,9 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\ServiceController;
-use App\Http\Controllers\transactionController;
 use App\Http\Controllers\CustomerController;
 
+use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TypeEquipmentController;
 use App\Http\Controllers\EquipmentController;
@@ -28,26 +28,28 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    // $users = User::all();
-    $users = DB::table('users')->get();
-    return view('dashboard', compact('users'));
-})->name('dashboard');
+// Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+//     // $users = User::all();
+//     $users = DB::table('users')->get();
+//     return view('dashboard', compact('users'));
+// })->name('dashboard');
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function(){
     // transactions
-    Route::get('/transaction/all',[transactionController::class,'index'])->name('transaction');
-    Route::post('/transaction/add',[transactionController::class,'store'])->name('addTransaction');
+    Route::get('/dashboard',[TransactionController::class,'index'])->name('dashboard');
+    Route::get('/transaction/all',[TransactionController::class,'index'])->name('transaction');
+    Route::get('/transaction/create',[TransactionController::class,'create'])->name('createTransaction');
+    Route::post('/transaction/add',[TransactionController::class,'store'])->name('addTransaction');
 
     Route::get('/equipment/all',[EquipmentController::class,'index'])->name('equipment');
-    Route::get('/equipment/create',[EquipmentController::class,'create'])->name('typeEquipment');
+    Route::get('/equipment/create',[EquipmentController::class,'create'])->name('createEquipment');
     Route::post('/equipment/add',[EquipmentController::class,'store'])->name('addEquipment');
     Route::get('/equipment/edit/{id}',[EquipmentController::class,'edit']);
     Route::post('/equipment/update/{id}',[EquipmentController::class,'update']);
     Route::get('/equipment/destroy/{id}',[EquipmentController::class,'destroy']);
 
     Route::get('/type/all',[TypeEquipmentController::class,'index'])->name('type');
-    Route::get('/type/create',[TypeEquipmentController::class,'create'])->name('typeCreate');
+    Route::get('/type/create',[TypeEquipmentController::class,'create'])->name('createType');
     Route::post('/type/add',[TypeEquipmentController::class,'store'])->name('addType');
     Route::get('/type/edit/{id}',[TypeEquipmentController::class,'edit']);
     Route::post('/type/update/{id}',[TypeEquipmentController::class,'update']);
@@ -74,21 +76,21 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function(){
     Route::get('/customer/detail/{id}',[CustomerController::class,'detail']);
     Route::post('/customer/update/{id}',[CustomerController::class,'update']);
 
-    // Department
-    Route::get('/department/all',[DepartmentController::class,'index'])->name('department');
-    Route::post('/department/add',[DepartmentController::class,'store'])->name('addDepartment');
-    Route::get('/department/edit/{id}',[DepartmentController::class,'edit']);
-    Route::post('/department/update/{id}',[DepartmentController::class,'update']);
+    // // Department
+    // Route::get('/department/all',[DepartmentController::class,'index'])->name('department');
+    // Route::post('/department/add',[DepartmentController::class,'store'])->name('addDepartment');
+    // Route::get('/department/edit/{id}',[DepartmentController::class,'edit']);
+    // Route::post('/department/update/{id}',[DepartmentController::class,'update']);
 
-    Route::get('/department/softdelete/{id}',[DepartmentController::class,'softdelete']);
-    Route::get('/department/restore/{id}',[DepartmentController::class,'restore']);
-    Route::get('/department/delete/{id}',[DepartmentController::class,'delete']);
+    // Route::get('/department/softdelete/{id}',[DepartmentController::class,'softdelete']);
+    // Route::get('/department/restore/{id}',[DepartmentController::class,'restore']);
+    // Route::get('/department/delete/{id}',[DepartmentController::class,'delete']);
 
-    // Service
-    Route::get('/service/all',[ServiceController::class,'index'])->name('service');
-    Route::post('/service/add',[ServiceController::class,'store'])->name('addService');
-    Route::get('/service/edit/{id}',[ServiceController::class,'edit']);
-    Route::post('/service/update/{id}',[ServiceController::class,'update']);
-    Route::get('/service/delete/{id}',[ServiceController::class,'delete']);
+    // // Service
+    // Route::get('/service/all',[ServiceController::class,'index'])->name('service');
+    // Route::post('/service/add',[ServiceController::class,'store'])->name('addService');
+    // Route::get('/service/edit/{id}',[ServiceController::class,'edit']);
+    // Route::post('/service/update/{id}',[ServiceController::class,'update']);
+    // Route::get('/service/delete/{id}',[ServiceController::class,'delete']);
 
 });

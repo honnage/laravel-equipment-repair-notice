@@ -25,7 +25,7 @@
               
                 <div class="d-flex flex-row-reverse  ">
                     {{-- <a class="nav-link" href="{{ route('type') }}"> --}}
-                    <a href="{{ route('typeCreate') }}" class="btn btn-outline-success" style=" display: flex; align-items: center"><i class="fas fa-plus-circle"></i>&nbsp; เพิ่มประเภท </a>
+                    <a href="{{ route('createType') }}" class="btn btn-outline-success" style=" display: flex; align-items: center"><i class="fas fa-plus-circle"></i>&nbsp; เพิ่มประเภท </a>
                 </div>
               
             </div>

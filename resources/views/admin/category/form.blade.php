@@ -4,10 +4,8 @@
         <div class="container-fluid px-4">
             <div class="d-flex justify-content-between mt-4">
                 <div class=" flex-row-reverse  ">
-                    <h1 class="text-left">เพิ่มข้อมูล หมวดหมู่  {{Auth::user()->id }}</h1>
+                    <h1 class="text-left">เพิ่มข้อมูล หมวดหมู่ </h1>
                 </div>
-
-               
             </div>
 
             {{-- <ol class="breadcrumb mb-4">
@@ -15,7 +13,6 @@
             </ol> --}}
 
             <br>
-     
             <div class=" mb-4">
                 <form action="{{isset($Category)?"/category/update/$Category->id":route('addCategory') }}" method="post">
                     {{csrf_field()}}

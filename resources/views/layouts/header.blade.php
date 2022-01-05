@@ -79,7 +79,7 @@
                         <div class="nav">
                             {{-- <div class="sb-sidenav-menu-heading">Core</div> --}}
                              <div class="sb-sidenav-menu-heading"></div>
-                            <a class="nav-link" href="">
+                            <a class="nav-link" href="{{ route('transaction') }}" >
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-pie"></i></i></div>
                                 ข้อมูลการแจ้งซ่อม
                             </a>
@@ -143,7 +143,7 @@
                                     </div>
                                 </nav>
                             </div> --}}
-                            
+
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">

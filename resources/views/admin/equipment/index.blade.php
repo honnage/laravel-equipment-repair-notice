@@ -15,7 +15,7 @@
                 </div>
               
                 <div class="d-flex flex-row-reverse  ">
-                    <a href="{{ route('typeEquipment') }}" class="btn btn-outline-success" style=" display: flex; align-items: center"><i class="fas fa-plus-circle"></i>&nbsp; เพิ่มครุภัณฑ์ </a>
+                    <a href="{{ route('createEquipment') }}" class="btn btn-outline-success" style=" display: flex; align-items: center"><i class="fas fa-plus-circle"></i>&nbsp; เพิ่มครุภัณฑ์ </a>
                 </div>
               
             </div>

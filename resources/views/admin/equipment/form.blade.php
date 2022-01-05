@@ -102,7 +102,7 @@
                                 </div>
                                 <div class="col-sm-12">
                                     <input type="number" class="form-control col-sm-6" required name="price" min="0" value="{{isset($Equipment)?"$Equipment->price":''}}" step="0.01" title="Currency" 
-                                        pattern="^\d+(?:\.\d{1,2})?$" onblur="this.parentNode.parentNode.style.backgroundColor=/^\d+(?:\.\d{1,2})?$/.test(this.value)?'inherit':'red'">
+                                        pattern="^\d+(?:\.\d{1,2})?$" onblur="this.parentNode.parentNode.style.backgroundColor=/^\d+(?:\.\d{1,2})?$/.test(this.value)?'inherit':''">
                                 </div>
                             </div>
 
