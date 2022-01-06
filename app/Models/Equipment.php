@@ -24,6 +24,11 @@ class Equipment extends Model
         return $this->belongsTo(TypeEquipment::class);
     }
 
+    
+    public function Transaction(){
+        return $this->hasMany(Transaction::class, 'equipment_id');      
+    }
+
  
 
 }

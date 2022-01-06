@@ -40,6 +40,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function(){
     Route::get('/transaction/all',[TransactionController::class,'index'])->name('transaction');
     Route::get('/transaction/create',[TransactionController::class,'create'])->name('createTransaction');
     Route::post('/transaction/add',[TransactionController::class,'store'])->name('addTransaction');
+    Route::get('/transaction/destroy/{id}',[TransactionController::class,'destroy']);
 
     Route::get('/equipment/all',[EquipmentController::class,'index'])->name('equipment');
     Route::get('/equipment/create',[EquipmentController::class,'create'])->name('createEquipment');

@@ -5,10 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class transaction extends Model
+class Transaction extends Model
 {
     use HasFactory;
-
     protected $fillable = [
         'user_id',
         'code',
@@ -23,4 +22,16 @@ class transaction extends Model
         'user_id_created',
         'user_id_updated',
     ];
+
+    public function Equipment(){
+        return $this->belongsTo(Equipment::class);
+    }
+
+    public function User(){
+        return $this->belongsTo(User::class);
+    }
+
+    // public function user(){
+    //     return $this->hasOne(User::class, 'id','user_id');
+    // }
 }

@@ -36,7 +36,7 @@ class EquipmentController extends Controller
             'price'=>'required|max:10',
         ],
         [
-            'name.required'=>"กรุณาป้อนครุภัณฑ์",
+            'name.required'=>"กรุณาป้อนชื่อครุภัณฑ์",
             'name.max'=>"ห้ามป้อนเกิน 191 ตัวอักษร",
             'name.unique'=>"มีข้มูลประเภทครุภัณฑ์นี้ในฐานข้อมูลแล้ว",
 

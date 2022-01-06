@@ -75,32 +75,51 @@
                     ตาราง แจ้งซ่อมครุภัณฑ์
                 </div>
                 <div class="card-body">
-                    {{-- @if($categories->count() > 0)
+                    @if($Translation->count() > 0)
                     <table id="datatablesSimple">
                         <thead>
                             <tr>
-                                <th>รหัส</th>
-                                <th>หมวดหมู่ครุภัณฑ์</th>
-                                <th style="text-align: center">จำนวน</th>
-                                <th style="text-align: center">เพิ่มเติม</th>
-                                <th style="text-align: center">แก้ไข</th>
-                                <th style="text-align: center">ลบ</th>
+                                <th style="vertical-align: middle;">รหัส</th>
+                                <th style="vertical-align: middle;">รหัสแจ้งซ่อม</th>
+                                <th style="text-align: center; vertical-align: middle;">ผู้แจ้งซ่อม</th>
+                                <th style="text-align: center; vertical-align: middle;">ชื่อครุภัณฑ์</th>
+                                <th style="text-align: center; vertical-align: middle;">ประเภท / หมวดหมู่</th>
+                                <th style="text-align: center; vertical-align: middle;">อาการหรือปัญหา</th>
+                                <th style="text-align: center; vertical-align: middle;">กำหนดส่งคืน </th>
+                                <th style="text-align: center; vertical-align: middle;">สถานะ </th>
+                                <th style="text-align: center; vertical-align: middle;">เพิ่มเติม</th>
+                                <th style="text-align: center; vertical-align: middle;">แก้ไข</th>
+                                <th style="text-align: center; vertical-align: middle;">ลบ</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ( $categories as $row )
+                            @foreach ( $Translation as $row )
                             <tr>
                                
-                                <td style="width: 7%; vertical-align: middle;">{{$row->id}}</td>
-                                <td style="width: 65%; vertical-align: middle;">{{$row->name}}</td>
-                                <td style="width: 10%; vertical-align: middle;">
-                                    <center>{{ number_format( $row->TypeEquipment->count() )}}<center>
+                                <td style="width: 4%; vertical-align: middle;">{{$row->id}}</td>
+                                <td style="width: 7%; vertical-align: middle;">{{$row->code}}</td>
+                                <td style="width: 10%; vertical-align: middle;">{{$row->User->firstname}} {{$row->User->lastname}}</td>
+                                <td style="width: 15%; vertical-align: middle;">{{$row->Equipment->name}}</td>
+                                <td style="width: 16%; vertical-align: middle; text-align: center">{{$row->Equipment->TypeEquipment->name}} / {{$row->Equipment->TypeEquipment->category->name}}</td>
+                                <td style="width: 15%; vertical-align: middle;">{{$row->problem}}</td>
+                                <td style="width: 8%; vertical-align: middle; text-align: center">{{$row->set_at}}</td>
+                                <td style="width: 4%; vertical-align: middle; text-align: center">{{$row->status}}</td>
+                                <td style="width: 4%; vertical-align: middle;">
+                                    <center><a href="{{url('/type/edit/'.$row->id)}}" class="btn btn-success" style="width: 70px;"><i class="fas fa-eye"></i></a></center>
                                 </td>
-                                <td style="width: 6%; vertical-align: middle;">
-                                
-                                </td>
-                                <td style="width: 6%; vertical-align: middle;">
+                                <td style="width: 4%; vertical-align: middle;">
                                     <center><a href="{{url('/category/edit/'.$row->id)}}" class="btn btn-warning" style="width: 70px"><i class="fas fa-edit"></i></a></center>
+                                </td>
+                                <td style="width: 4%; vertical-align: middle; text-align: center">
+                                    <form action="{{url('/transaction/destroy/'.$row->id)}}" method="get">
+                                        @csrf
+                                        @method('DELETE')
+                                        @if ($row->status != "แจ้งซ่อม")
+
+                                        @else
+                                            <a type="submit" class="btn btn-danger deleteform" data-name="{{$row->code}}" style="width: 70px;"><i class="fas fa-trash-alt"></i></a>
+                                        @endif
+                                    </form>
                                 </td>
                                
                             </tr>
@@ -109,7 +128,7 @@
                     </table>
                     @else
                         <h3 style="color:red; text-align:center ;padding-top: 20px; padding-bottom: 20px">-- ไม่มีข้อมูล หมวดหมู่ครุภัณฑ์ --</h3>
-                    @endif --}}
+                    @endif
                 </div>
             </div>
           

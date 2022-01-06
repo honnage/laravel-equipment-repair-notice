@@ -19,12 +19,14 @@ class CreateTransactionsTable extends Migration
             $table->string('code');
             $table->string('problem'); //ปัญหา
             $table->integer('equipment_id');
-            $table->string('details'); //รายละเอียด
+            $table->string('details')->nullable(); //รายละเอียด
+
             $table->string('status');
             $table->string('fileImage')->nullable();
             $table->decimal('price', 10, 2)->nullable();
             $table->string('guaranty')->nullable(); //ประกัน
-            $table->date('set_at')->nullable(); //กำหนดส่งคืน
+            $table->date('set_at'); //กำหนดส่งคืน
+
             $table->integer('user_id_created');
             $table->integer('user_id_updated');
             $table->timestamps();
