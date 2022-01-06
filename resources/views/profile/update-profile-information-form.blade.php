@@ -70,12 +70,12 @@
         <div class="col-span-6 sm:col-span-4">
             <x-jet-label for="gender" value="{{ __('Gender') }}" />
             <label >
-                <input type="radio" id="gender" name="gender" value="M" autocomplete="gender" wire:model.defer="state.gender"> &nbsp;&nbsp;
+                <input type="radio" id="gender" name="gender" value="ชาย" autocomplete="gender" wire:model.defer="state.gender" autocomplete="gender"> &nbsp;&nbsp;
                 <label for="male">male </label>
             </label> 
             &nbsp;&nbsp;&nbsp;&nbsp;
             <label>
-                <input type="radio" id="gender" name="gender" value="F" autocomplete="gender" wire:model.defer="state.gender"> &nbsp;&nbsp;
+                <input type="radio" id="gender" name="gender" value="หญิง" autocomplete="gender" wire:model.defer="state.gender" autocomplete="gender"> &nbsp;&nbsp;
                 <label for="female">female </label>
             </label>
 

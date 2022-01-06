@@ -73,8 +73,70 @@ class CategoryController extends Controller
             Session()->flash('error','ไม่สามารถลบได้เนื่องจากมีหมวดหมู่ครุภัณฑ์นี้ใช้งานอยู่');
             return redirect()->back();
         }
-       
         Category::find($id)->delete();
         return redirect('/category/all')->with('success','ลบข้อมูลเรียบร้อย');
     }
+
+    public function query($id){
+        $status_notifyRepair = DB::table('transactions')
+            ->select('*')
+            ->where('status', 'แจ้งซ่อม')
+            ->orderBy('id', 'DESC')
+            ->get();
+
+        $status_cancelr = DB::table('transactions')
+            ->select('*')
+            ->where('status', 'ยกเลิก')
+            ->orderBy('id', 'DESC')
+            ->get();
+
+        $status_beingRepaired = DB::table('transactions')
+            ->select('*')
+            ->where('status', 'กำลังซ่อม')
+            ->orderBy('id', 'DESC')
+            ->get();
+
+        $status_sussecc = DB::table('transactions')
+            ->select('*')
+            ->where('status', 'เรียบร้อย')
+            ->orderBy('id', 'DESC')
+            ->get();
+
+    
+        $count_status_notifyRepair = $status_notifyRepair->count();
+        $count_status_cancelr = $status_cancelr->count();
+        $count_status_beingRepaired = $status_beingRepaired->count();
+        $count_status_sussecc = $status_sussecc->count();
+
+        $Translation = DB::table('categories')
+        ->select(
+            DB::raw('transactions.id as id'),
+            DB::raw('transactions.code as code'),
+            DB::raw('transactions.problem as problem'),
+            DB::raw('transactions.status as status'),
+            DB::raw('transactions.set_at as set_at'),
+            DB::raw('users.firstname as firstname'),
+            DB::raw('users.lastname as lastname'),  
+            DB::raw('equipment.name as name_equipment'),
+            DB::raw('type_equipment.name as name_type_equipment'),
+            DB::raw('categories.name as name_categories'),
+        )
+        ->join('type_equipment', 'type_equipment.category_id', '=', 'categories.id')
+        ->join('equipment', 'equipment.type_equipment_id', '=', 'type_equipment.id')
+        ->join('transactions', 'transactions.equipment_id', '=', 'equipment.id')
+        ->join('users', 'users.id', '=', 'transactions.user_id')
+        ->where('categories.id', $id)
+        // ->groupBy('refNumber', 'machineId')
+        // ->having('statusActive', 'Active')
+        // ->orderBy('startDate')
+        ->get();
+
+        $count_translation = $Translation->count();
+        $category = Category::find($id);
+        
+        return view('admin.transaction.query', compact('category','count_status_notifyRepair', 'count_status_cancelr', 'count_status_beingRepaired', 'count_status_sussecc', 'count_translation', 'Translation'));
+
+    }
+
+    
 }

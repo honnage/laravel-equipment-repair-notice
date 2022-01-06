@@ -98,7 +98,7 @@
                                     <center>{{ number_format( $row->TypeEquipment->count() )}}<center>
                                 </td>
                                 <td style="width: 6%; vertical-align: middle;">
-                                
+                                    <center><a href="{{url('/category/query/'.$row->id)}}" class="btn btn-success" style="width: 70px;"><i class="fas fa-eye"></i></a></center>
                                 </td>
                                 <td style="width: 6%; vertical-align: middle;">
                                     <center><a href="{{url('/category/edit/'.$row->id)}}" class="btn btn-warning" style="width: 70px"><i class="fas fa-edit"></i></a></center>
@@ -107,30 +107,6 @@
                                     <form action="{{url('/category/destroy/'.$row->id)}}" method="get">
                                         @csrf
                                         @method('DELETE')
-
-                                        {{-- <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" style="width: 70px">
-                                            <i class="fas fa-trash-alt"></i>
-                                        </button>
-                                        
-                                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">คุณต้องการลบข้อมูล</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                   <h3> {{$row->id}} หรือไม่ ? </h3>
-                                                   <h6 style="color: red">ถ้าลบแล้วไม่สามารถกู้คืนได้</h6>
-                                                </div>
-                                                <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
-                                                <button type="submit" class="btn btn-danger" style="width: 70px">ลบ</button>
-                                                </div>
-                                            </div>
-                                            </div>
-                                        </div> --}}
-                            
                                         <a type="submit" class="btn btn-danger deleteform" data-name="{{$row->name}}" style="width: 70px;"><i class="fas fa-trash-alt"></i></a>
                                     </form>
                                 </td>

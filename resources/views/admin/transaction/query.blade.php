@@ -16,7 +16,7 @@
 
             <div class="d-flex justify-content-between mt-4">
                 <div class=" flex-row-reverse  ">
-                    <h1 class="text-left">แจ้งซ่อมครุภัณฑ์</h1>
+                    <h1 class="text-left">ค้นหาแจ้งซ่อม {{$category->name}} </h1>
                 </div>
               
                 <div class="d-flex flex-row-reverse  ">
@@ -102,10 +102,10 @@
                                
                                 {{-- <td style="width: 4%; vertical-align: middle;">{{$row->id}}</td> --}}
                                 <td style="width: 7%; vertical-align: middle;">{{$row->code}}</td>
-                                <td style="width: 10%; vertical-align: middle;">{{$row->User->firstname}} {{$row->User->lastname}}</td>
-                                <td style="width: 15%; vertical-align: middle;">{{$row->Equipment->name}}</td>
-                                <td style="width: 10%; vertical-align: middle;">{{$row->Equipment->TypeEquipment->name}}</td>
-                                <td style="width: 8%; vertical-align: middle;">{{$row->Equipment->TypeEquipment->category->name}}</td>
+                                <td style="width: 10%; vertical-align: middle;">{{$row->firstname}} {{$row->lastname}}</td>
+                                <td style="width: 15%; vertical-align: middle;">{{$row->name_equipment}}</td>
+                                <td style="width: 10%; vertical-align: middle;">{{$row->name_type_equipment}}</td>
+                                <td style="width: 8%; vertical-align: middle;">{{$row->name_categories}}</td>
                                 <td style="width: 15%; vertical-align: middle;">{{$row->problem}}</td>
                                 <td style="width: 8%; vertical-align: middle; text-align: center">{{$row->set_at}}</td>
                                 <td style="width: 6%; vertical-align: middle; "> 
@@ -149,7 +149,7 @@
                         </tbody>
                     </table>
                     @else
-                        <h3 style="color:red; text-align:center ;padding-top: 20px; padding-bottom: 20px">-- ไม่มีข้อมูล หมวดหมู่ครุภัณฑ์ --</h3>
+                        <h3 style="color:red; text-align:center ;padding-top: 20px; padding-bottom: 20px">-- ไม่มีข้อมูล {{$category->name}} --</h3>
                     @endif
                 </div>
             </div>
