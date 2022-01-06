@@ -88,7 +88,7 @@
                                 <th>ประเภทครุภัณฑ์</th>
                                 <th>หมวดหมู่ครุภัณฑ์</th>
                                 <th style="text-align: center">จำนวน</th>
-                                <th style="text-align: center">เพิ่มเติม</th>
+                                <th style="text-align: center">แสดง</th>
                                 <th style="text-align: center">แก้ไข</th>
                                 <th style="text-align: center">ลบ</th>
                             </tr>

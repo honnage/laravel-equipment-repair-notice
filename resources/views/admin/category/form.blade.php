@@ -4,7 +4,11 @@
         <div class="container-fluid px-4">
             <div class="d-flex justify-content-between mt-4">
                 <div class=" flex-row-reverse  ">
-                    <h1 class="text-left">เพิ่มข้อมูล หมวดหมู่ </h1>
+                    @if(isset($Category))
+                        <h1 class="text-left">แก้ไขข้อมูล หมวดหมู่ครุภัณฑ์ </h1>
+                    @else
+                        <h1 class="text-left">เพิ่มข้อมูล หมวดหมู่ครุภัณฑ์</h1>
+                    @endif
                 </div>
             </div>
 

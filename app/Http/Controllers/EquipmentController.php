@@ -21,7 +21,8 @@ class EquipmentController extends Controller
     public function create()
     {
         $categories = Category::all();
-        $typeEquipment = TypeEquipment::all();
+        // $typeEquipment = TypeEquipment::all();
+        $typeEquipment = TypeEquipment::orderBy('category_id', 'DESC')->get();
         return view('admin.equipment.form',  compact('categories','typeEquipment')); 
     }
 
@@ -71,7 +72,7 @@ class EquipmentController extends Controller
     {
         $Equipment = Equipment::find($id);
         $categories = Category::all();
-        $typeEquipment = TypeEquipment::all();
+        $typeEquipment = TypeEquipment::orderBy('category_id', 'DESC')->get();
         return view('admin.equipment.form', compact('Equipment', 'categories', 'typeEquipment'));
     }
 
@@ -117,16 +118,12 @@ class EquipmentController extends Controller
 
     public function destroy($id)
     {
-        // dd($id);
-        // $license = LicenseModel::find($id);
-        // if($license->asset->count() > 0){
-        //     Session()->flash('error','ไม่สามารถลบได้เนื่องจากมีชื่อชิ้นงานใช้งานอยู่');
-        //     return redirect()->back();
-        // }
-
-        // DB::table('type_equipment')
-        // ->where('id','=',$id)
-        // ->delete();
+        $Equipment = Equipment::find($id);
+        if($Equipment->Transaction->count() > 0){
+            Session()->flash('error','ไม่สามารถลบได้เนื่องจากมีครุภัณฑ์นี้ใช้งานอยู่');
+            return redirect()->back();
+        }
+        
         TypeEquipment::find($id)->delete();
         return redirect('/type/all')->with('success','ลบข้อมูลเรียบร้อย');
     }

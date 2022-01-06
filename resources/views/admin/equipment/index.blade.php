@@ -8,6 +8,11 @@
                     {{Session()->get('success')}}
                 </div>
             @endif
+            @if(Session()->has('error'))
+                <div class="alert alert-danger  mt-4" role="alert">
+                    {{Session()->get('error')}}
+                </div>
+            @endif
 
             <div class="d-flex justify-content-between mt-4">
                 <div class=" flex-row-reverse  ">
@@ -73,7 +78,7 @@
                     <table id="datatablesSimple">
                         <thead>
                             <tr>
-                                <th>รหัส</th>
+                                {{-- <th>รหัส</th> --}}
                                 <th>หมายเลขครุภัณฑ์</th>
                                 <th>ชื่อครุภัณฑ์</th>
                                 <th>ประเภทครุภัณฑ์</th>
@@ -81,7 +86,8 @@
                                 <th style="text-align: center">ราคา </th>
                                 <th style="text-align: center">อายุประกัน</th>
                                 <th style="text-align: center">วันที่ซื้อ</th>
-                                {{-- <th style="text-align: center">เพิ่มเติม</th> --}}
+                                <th style="text-align: center">ประวัติ</th>
+                                <th style="text-align: center">แสดง</th>
                                 <th style="text-align: center">แก้ไข</th>
                                 <th style="text-align: center">ลบ</th>
                             </tr>
@@ -89,15 +95,16 @@
                         <tbody>
                             @foreach ( $Equipment as $row )
                             <tr>
-                                <td style="width: 4%; vertical-align: middle;">{{$row->id}}</td>
+                                {{-- <td style="width: 4%; vertical-align: middle;">{{$row->id}}</td> --}}
                                 <td style="width: 10%; vertical-align: middle;">{{$row->equipment_number}}</td>
                                 <td style="width: 30%; vertical-align: middle;">{{$row->name}}</td>
                                 <td style="width: 10%; vertical-align: middle;">{{$row->TypeEquipment->name}} </td>
                                 <td style="width: 10%; vertical-align: middle;">{{$row->TypeEquipment->category->name}} </td>
                                 <td style="width: 7%; vertical-align: middle; text-align: right;">{{ number_format( $row->price, 2, '.', ',')}} </td>
                                 <td style="width: 7%; vertical-align: middle; text-align: right;">{{$row->insurance}}</td>
-                                <td style="width: 6%; vertical-align: middle; text-align: center;">{{$row->purchase_date}}</td>
-                                {{-- <td style="width: 6%; vertical-align: middle;"></td> --}}
+                                <td style="width: 8%; vertical-align: middle; text-align: center;">{{$row->purchase_date}}</td>
+                                <td style="width: 6%; vertical-align: middle;"> <center>{{ number_format( $row->Transaction->count() )}} ครั้ง<center></td>
+                                <td style="width: 6%; vertical-align: middle;"></td>
                                 <td style="width: 6%; vertical-align: middle;">
                                     <center><a href="{{url('/equipment/edit/'.$row->id)}}" class="btn btn-warning" style="width: 70px;"><i class="fas fa-edit"></i></a></center>
                                 </td>

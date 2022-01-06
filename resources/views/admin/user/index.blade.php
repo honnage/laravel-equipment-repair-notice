@@ -80,7 +80,7 @@
                                 <td style="width: 3%; vertical-align: middle;">{{$row->phone}}</td>
                                 <td style="width: 20%; vertical-align: middle;">{{$row->address}}</td>
                                 <td style="width: 6%; vertical-align: middle;">
-
+                                    <center>{{ number_format( $row->Transaction->count() )}} ครั้ง<center>
                                 </td>
                                 <td style="width: 6%; vertical-align: middle;">
                                     <center><a href="{{url('/type/edit/'.$row->id)}}" class="btn btn-success" style="width: 70px;"><i class="fas fa-eye"></i></a></center>

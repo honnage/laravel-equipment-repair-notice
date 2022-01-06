@@ -21,19 +21,16 @@
               
                 <div class="d-flex flex-row-reverse  ">
                     {{-- <a class="nav-link" href="{{ route('type') }}"> --}}
-                    <a href="{{ route('createTransaction') }}" class="btn btn-outline-success" style=" display: flex; align-items: center"><i class="fas fa-plus-circle"></i>&nbsp; เพิ่มหมวดหมู่ </a>
+                    <a href="{{ route('createTransaction') }}" class="btn btn-outline-success" style=" display: flex; align-items: center"><i class="fas fa-plus-circle"></i>&nbsp; แจ้งซ่อม </a>
                 </div>
               
             </div>
 
-            {{-- <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item active">จำนวนรายการทั้งหมด</li>
-            </ol> --}}
             <br>
             <div class="row">
                 <div class="col-xl-3 col-md-6">
                     <div class="card bg-primary text-white mb-4">
-                        <div class="card-body">Primary Card</div>
+                        <div class="card-body" style="font-size: 26px">{{ number_format( $count_status_notifyRepair ) }} </div>
                         <div class="card-footer d-flex align-items-center justify-content-between">
                             <a class="small text-white stretched-link" style="text-decoration: none; font-size: 20px;" href="#">แจ้งซ่อม</a>
                             <div class="small text-white"><i class="fas fa-angle-right"></i></div>
@@ -42,7 +39,7 @@
                 </div>
                 <div class="col-xl-3 col-md-6">
                     <div class="card bg-warning  mb-4">
-                        <div class="card-body">Warning Card</div>
+                        <div class="card-body" style="font-size: 26px"> {{ number_format( $count_status_beingRepaired ) }} </div>
                         <div class="card-footer d-flex align-items-center justify-content-between">
                             <a class="small text-dark stretched-link" style="text-decoration: none; font-size: 20px;" href="#">กำลังซ่อม</a>
                             <div class="small text-white"><i class="fas fa-angle-right"></i></div>
@@ -51,16 +48,16 @@
                 </div>
                 <div class="col-xl-3 col-md-6">
                     <div class="card bg-success text-white mb-4">
-                        <div class="card-body">Success Card</div>
+                        <div class="card-body" style="font-size: 26px">{{ number_format( $count_status_sussecc ) }} </div>
                         <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" style="text-decoration: none; font-size: 20px;" href="#">สำเร็จ</a>
+                            <a class="small text-white stretched-link" style="text-decoration: none; font-size: 20px;" href="#">เรียบร้อย</a>
                             <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                         </div>
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-6">
                     <div class="card bg-secondary text-white mb-4">
-                        <div class="card-body">Danger Card</div>
+                        <div class="card-body" style="font-size: 26px">{{ number_format( $count_status_cancelr ) }} </div>
                         <div class="card-footer d-flex align-items-center justify-content-between">
                             <a class="small text-white stretched-link" style="text-decoration: none; font-size: 20px;" href="#">ยกเลิก</a>
                             <div class="small text-white"><i class="fas fa-angle-right"></i></div>
@@ -68,6 +65,10 @@
                     </div>
                 </div>
             </div>
+
+            <ol class="breadcrumb mt-2">
+                <li class="breadcrumb-item active">จำนวนแจ้งซ่อมครุภัณฑ์ทั้งหมด {{ number_format( $count_translation ) }} รายการ</li>
+            </ol>
           
             <div class="card mb-4">
                 <div class="card-header">
@@ -79,14 +80,17 @@
                     <table id="datatablesSimple">
                         <thead>
                             <tr>
-                                <th style="vertical-align: middle;">รหัส</th>
+                                {{-- <th style="vertical-align: middle;">รหัส</th> --}}
                                 <th style="vertical-align: middle;">รหัสแจ้งซ่อม</th>
                                 <th style="text-align: center; vertical-align: middle;">ผู้แจ้งซ่อม</th>
                                 <th style="text-align: center; vertical-align: middle;">ชื่อครุภัณฑ์</th>
-                                <th style="text-align: center; vertical-align: middle;">ประเภท / หมวดหมู่</th>
+                                <th style="text-align: center; vertical-align: middle;">ประเภท</th>
+                                <th style="text-align: center; vertical-align: middle;">หมวดหมู่</th>
                                 <th style="text-align: center; vertical-align: middle;">อาการหรือปัญหา</th>
                                 <th style="text-align: center; vertical-align: middle;">กำหนดส่งคืน </th>
                                 <th style="text-align: center; vertical-align: middle;">สถานะ </th>
+                                {{-- <th style="text-align: center; vertical-align: middle;">รูป </th> --}}
+                                
                                 <th style="text-align: center; vertical-align: middle;">เพิ่มเติม</th>
                                 <th style="text-align: center; vertical-align: middle;">แก้ไข</th>
                                 <th style="text-align: center; vertical-align: middle;">ลบ</th>
@@ -96,19 +100,37 @@
                             @foreach ( $Translation as $row )
                             <tr>
                                
-                                <td style="width: 4%; vertical-align: middle;">{{$row->id}}</td>
+                                {{-- <td style="width: 4%; vertical-align: middle;">{{$row->id}}</td> --}}
                                 <td style="width: 7%; vertical-align: middle;">{{$row->code}}</td>
                                 <td style="width: 10%; vertical-align: middle;">{{$row->User->firstname}} {{$row->User->lastname}}</td>
                                 <td style="width: 15%; vertical-align: middle;">{{$row->Equipment->name}}</td>
-                                <td style="width: 16%; vertical-align: middle; text-align: center">{{$row->Equipment->TypeEquipment->name}} / {{$row->Equipment->TypeEquipment->category->name}}</td>
+                                <td style="width: 6%; vertical-align: middle;">{{$row->Equipment->TypeEquipment->name}}</td>
+                                <td style="width: 8%; vertical-align: middle;">{{$row->Equipment->TypeEquipment->category->name}}</td>
                                 <td style="width: 15%; vertical-align: middle;">{{$row->problem}}</td>
                                 <td style="width: 8%; vertical-align: middle; text-align: center">{{$row->set_at}}</td>
-                                <td style="width: 4%; vertical-align: middle; text-align: center">{{$row->status}}</td>
+                                <td style="width: 6%; vertical-align: middle; "> 
+                                        @if ( $row->status== "เรียบร้อย" )
+                                            <nav style="height: 30px; border-radius: 10px; background-color: green; vertical-align: middle; text-align: center; padding: 5px; color: #fff">  {{$row->status}} </nav>
+                                        @elseif ( $row->status== "กำลังซ่อม")
+                                            <nav style="height: 30px; border-radius: 10px; background-color: #eb9d29; vertical-align: middle; text-align: center; padding: 5px; color: #fff">  {{$row->status}} </nav>
+                                        @elseif ( $row->status== "ยกเลิก")
+                                            <nav style="height: 30px; border-radius: 10px; background-color: #808080; vertical-align: middle; text-align: center; padding: 5px; color: #fff">  {{$row->status}} </nav>
+                                        @else
+                                            <nav style="height: 30px; border-radius: 10px; background-color: #2591f7; vertical-align: middle; text-align: center; padding: 5px; color: #fff">  {{$row->status}} </nav>
+                                        @endif
+                                            
+                                    </nav>                  
+                                </td>
+                                {{-- <td> 
+                                    @if($row->fileImage != null)
+                                        <img src="{{ asset($row->fileImage) }}"  width="80px" height="80px">
+                                    @endif
+                                </td> --}}
                                 <td style="width: 4%; vertical-align: middle;">
-                                    <center><a href="{{url('/type/edit/'.$row->id)}}" class="btn btn-success" style="width: 70px;"><i class="fas fa-eye"></i></a></center>
+                                    <center><a href="{{url('/transaction/edit/'.$row->id)}}" class="btn btn-success" style="width: 70px;"><i class="fas fa-eye"></i></a></center>
                                 </td>
                                 <td style="width: 4%; vertical-align: middle;">
-                                    <center><a href="{{url('/category/edit/'.$row->id)}}" class="btn btn-warning" style="width: 70px"><i class="fas fa-edit"></i></a></center>
+                                    <center><a href="{{url('/transaction/edit/'.$row->id)}}" class="btn btn-warning" style="width: 70px"><i class="fas fa-edit"></i></a></center>
                                 </td>
                                 <td style="width: 4%; vertical-align: middle; text-align: center">
                                     <form action="{{url('/transaction/destroy/'.$row->id)}}" method="get">

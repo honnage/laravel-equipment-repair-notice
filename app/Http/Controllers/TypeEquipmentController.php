@@ -22,7 +22,7 @@ class TypeEquipmentController extends Controller
 
     public function create()
     {
-        $categories = Category::all();
+        $categories = Category::orderBy('name', 'DESC')->get();
         return view('admin.type-equipment.form',  compact('categories'));
     }
 
@@ -51,7 +51,8 @@ class TypeEquipmentController extends Controller
     public function edit($id)
     {
         $TypeEquipment = TypeEquipment::find($id);
-        $categories = Category::all();
+
+        $categories = Category::orderBy('name', 'DESC')->get();
         return view('admin.type-equipment.form', compact('TypeEquipment', 'categories'));
     }
 
@@ -83,13 +84,6 @@ class TypeEquipmentController extends Controller
             Session()->flash('error','ไม่สามารถลบได้เนื่องจากมีประเภทครุภัณฑ์นี้ใช้งานอยู่');
             return redirect()->back();
         }
-
-        // dd($id);
-        // $license = LicenseModel::find($id);
-        // if($license->asset->count() > 0){
-        //     Session()->flash('error','ไม่สามารถลบได้เนื่องจากมีชื่อชิ้นงานใช้งานอยู่');
-        //     return redirect()->back();
-        // }
 
         // DB::table('type_equipment')
         // ->where('id','=',$id)

@@ -13,16 +13,6 @@ use App\Http\Controllers\TypeEquipmentController;
 use App\Http\Controllers\EquipmentController;
 use App\Http\Controllers\UserController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 Route::get('/', function () {
     return view('welcome');
@@ -40,6 +30,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function(){
     Route::get('/transaction/all',[TransactionController::class,'index'])->name('transaction');
     Route::get('/transaction/create',[TransactionController::class,'create'])->name('createTransaction');
     Route::post('/transaction/add',[TransactionController::class,'store'])->name('addTransaction');
+    Route::get('/transaction/edit/{id}',[TransactionController::class,'edit']);
+    Route::post('/transaction/update/{id}',[TransactionController::class,'update']);
     Route::get('/transaction/destroy/{id}',[TransactionController::class,'destroy']);
 
     Route::get('/equipment/all',[EquipmentController::class,'index'])->name('equipment');

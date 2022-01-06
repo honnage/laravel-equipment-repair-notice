@@ -4,7 +4,11 @@
         <div class="container-fluid px-4">
             <div class="d-flex justify-content-between mt-4">
                 <div class=" flex-row-reverse  ">
-                    <h1 class="text-left">เพิ่มข้อมูล ครุภัณฑ์</h1>
+                    @if(isset($Equipment))
+                        <h1 class="text-left">แก้ไขข้อมูล ครุภัณฑ์ </h1>
+                    @else
+                        <h1 class="text-left">เพิ่มข้อมูล ครุภัณฑ์</h1>
+                    @endif
                 </div>
               
             </div>
@@ -31,7 +35,11 @@
                                     @enderror
                                 </div>
                                 <div class="col-sm-12">
-                                    <input type="text" class="form-control col-sm-6"  name="equipment_number" value="{{isset($Equipment)?"$Equipment->equipment_number":''}}" >
+                                    @if(isset($Equipment))
+                                        <input type="text" class="form-control col-sm-6"  name="equipment_number" value="{{isset($Equipment)?"$Equipment->equipment_number":''}}"  readonly>
+                                    @else
+                                        <input type="text" class="form-control col-sm-6"  name="equipment_number" value="{{isset($Equipment)?"$Equipment->equipment_number":''}}" >
+                                    @endif
                                 </div>
                             </div>
 

@@ -2,15 +2,15 @@
 @section('content')
     <main>
         <div class="container-fluid px-4">
-            {{-- <h1 class="mt-4">ประเภทครุภัณฑ์</h1>
-            <div class="d-flex flex-row-reverse  ">
-                <button href="#" class="  btn btn-outline-success" >ฟอร์มข้อมูล </button>
-            </div> --}}
+           
             <div class="d-flex justify-content-between mt-4">
-                <div class=" flex-row-reverse  ">
-                    <h1 class="text-left">เพิ่มข้อมูล ประเภทครุภัณฑ์</h1>
+                <div class=" flex-row-reverse">
+                    @if(isset($TypeEquipment))
+                        <h1 class="text-left">แก้ไขข้อมูล ประเภทครุภัณฑ์ </h1>
+                    @else
+                        <h1 class="text-left">เพิ่มข้อมูล ประเภทครุภัณฑ์</h1>
+                    @endif
                 </div>
-              
             </div>
 
             {{-- <ol class="breadcrumb mb-4">
@@ -18,45 +18,7 @@
             </ol> --}}
 
             <br>
-            {{-- <div class="row">
-                <div class="col-xl-3 col-md-6">
-                    <div class="card bg-primary text-white mb-4">
-                        <div class="card-body">Primary Card</div>
-                        <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" style="text-decoration: none; font-size: 20px;" href="#">แจ้งซ่อม</a>
-                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-md-6">
-                    <div class="card bg-warning  mb-4">
-                        <div class="card-body">Warning Card</div>
-                        <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-dark stretched-link" style="text-decoration: none; font-size: 20px;" href="#">กำลังซ่อม</a>
-                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-md-6">
-                    <div class="card bg-success text-white mb-4">
-                        <div class="card-body">Success Card</div>
-                        <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" style="text-decoration: none; font-size: 20px;" href="#">สำเร็จ</a>
-                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-md-6">
-                    <div class="card bg-secondary text-white mb-4">
-                        <div class="card-body">Danger Card</div>
-                        <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" style="text-decoration: none; font-size: 20px;" href="#">ยกเลิก</a>
-                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                        </div>
-                    </div>
-                </div>
-            </div> --}}
-          
+       
             <div class=" mb-4">
                 <form action="{{isset($TypeEquipment)?"/type/update/$TypeEquipment->id":route('addType') }}" method="post">
                     {{csrf_field()}}
