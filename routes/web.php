@@ -62,6 +62,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function(){
     Route::get('/user/all',[UserController::class,'index'])->name('user');
     Route::get('/user/edit/{id}',[UserController::class,'edit']);
     Route::post('/user/update/{id}',[UserController::class,'update']);
+    Route::get('/user/query/{id}',[UserController::class,'query']);
     
 
 

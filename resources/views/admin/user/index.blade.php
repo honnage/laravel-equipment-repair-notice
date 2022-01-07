@@ -83,7 +83,7 @@
                                     <center>{{ number_format( $row->Transaction->count() )}} ครั้ง<center>
                                 </td>
                                 <td style="width: 6%; vertical-align: middle;">
-                                    <center><a href="{{url('/type/edit/'.$row->id)}}" class="btn btn-success" style="width: 70px;"><i class="fas fa-eye"></i></a></center>
+                                    <center><a href="{{url('/user/query/'.$row->id)}}" class="btn btn-success" style="width: 70px;"><i class="fas fa-eye"></i></a></center>
                                 </td>
                                 <td style="width: 6%; vertical-align: middle;">
                                     <center><a href="{{url('/user/edit/'.$row->id)}}" class="btn btn-warning" style="width: 70px;"><i class="fas fa-edit"></i></a></center>
