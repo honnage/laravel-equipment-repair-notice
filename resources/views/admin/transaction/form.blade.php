@@ -94,24 +94,35 @@
                                     @enderror
                                 </div>
                                 <div class="col-sm-12">
+                                    {{-- {{$Transaction->fileImage}} --}}
                                     <input type="file" class="form-control col-sm-6"  name="fileImage" value="{{isset($Transaction)?"$Transaction->fileImage":''}}" >         
                                 </div>
                             </div>
 
                             @if ( isset($Transaction) )
-                                @if ($Transaction->fileImage != NULL)
-                                    <div class="row align-items-center form-group mt-4">
-                                        <div class="col-sm-12">
-                                            <label for="guaranty">รูป</label>
-                                            @error('fileImage')
-                                                <label>
-                                                    <span class="text-danger">{{$message}}</span>
-                                                </label>
-                                            @enderror
+                                @if ($Transaction->type_file != "pdf")
+                                    @if ($Transaction->fileImage != NULL)
+                                        <div class="row align-items-center form-group mt-4">
+                                            <div class="col-sm-12">
+                                                <label for="guaranty">รูป</label>
+                                                @error('fileImage')
+                                                    <label>
+                                                        <span class="text-danger">{{$message}}</span>
+                                                    </label>
+                                                @enderror
+                                            </div>
+                                        
+                                            <img src="{{ asset($Transaction->fileImage) }}" >
                                         </div>
-                                    
-                                        <img src="{{ asset($Transaction->fileImage) }}" >
+                                    @endif
+                                @else
+                                <div class="row align-items-center form-group ">
+                                    <div class=" align-items-start bd-highlight mt-4" >
+                                        <a href="{{ asset($Transaction->fileImage) }}"  class="btn btn-outline-primary mt-4">Open file PDF</a>
                                     </div>
+                                </div>
+                                
+                                
                                 @endif
                             @endif
                            

@@ -15,6 +15,7 @@ class Transaction extends Model
         'details',
         'status',
         'fileImage',
+        'type_file',
         'price',
         'guaranty',
         'set_at',

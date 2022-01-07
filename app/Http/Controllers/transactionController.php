@@ -65,7 +65,7 @@ class TransactionController extends Controller
                 'equipment_id' => 'required',
                 'status' => 'required',
                 'set_at' => 'required',
-                'fileImage' => 'mimes:pdf,png,jpg,jpeg,pdf,zip,',
+                'fileImage' => 'mimes:pdf,png,jpg,jpeg,pdf',
             ],
             [
                 'user_id.required' => "กรุณาป้อนรหัสผู้แจ้งซ่อม",
@@ -77,7 +77,7 @@ class TransactionController extends Controller
                 'equipment_id.required' => "กรุณาเลือรหัสครุภัณฑ์",
                 'status.required' => "กรุณาเลือกสถานะการซ่อม",
                 'set_at.required' => "กรุณาเลือกวันที่กำหนดส่งคืน",
-                'fileImage.mimes' => "นามสกุลไฟล์ต้องเป็น pdf png jpg jpeg pdf zip เท่านั้น",
+                'fileImage.mimes' => "นามสกุลไฟล์ต้องเป็น pdf png jpg jpeg pdf เท่านั้น",
             ]
         );
 
@@ -103,6 +103,7 @@ class TransactionController extends Controller
             $request->fileImage->move(public_path('file'),  $newFile);
             // $path = $file->storeAs('public/', $newFile);
             $Transaction->fileImage = 'file/'.$newFile;
+            $Transaction->type_file = $file_ext;
         }
 
         $Transaction->save();
@@ -113,6 +114,8 @@ class TransactionController extends Controller
     {
         $Transaction = Transaction::find($id);
         $Equipment = Equipment::orderBy('id', 'DESC')->get();
+
+       
         return view('admin.transaction.form', compact('Transaction', 'Equipment'));
     }
 
@@ -165,6 +168,7 @@ class TransactionController extends Controller
                 'price'=> $request->price,
     
                 'fileImage'=>  $fileImage,
+                'type_file'=>  $file_ext,
                 'user_id_updated'=> Auth::user()->id
             ]);
         }
@@ -188,12 +192,9 @@ class TransactionController extends Controller
     public function destroy($id)
     {
         $transaction = Transaction::find($id);
-        if($transaction->Equipment->count() > 0){
-            Session()->flash('error','ไม่สามารถลบได้เนื่องจากมี  นี้ใช้งานอยู่');
-            return redirect()->back();
-        }
-        $transaction = Transaction::find($id);
+        // dd($transaction->fileImage);
         File::delete(public_path($transaction->fileImage));
+    
         Transaction::find($id)->delete();
         return redirect('/transaction/all')->with('success', 'ลบข้อมูลเรียบร้อย');
     }

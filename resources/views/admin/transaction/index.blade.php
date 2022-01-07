@@ -133,15 +133,17 @@
                                     <center><a href="{{url('/transaction/edit/'.$row->id)}}" class="btn btn-warning" style="width: 70px"><i class="fas fa-edit"></i></a></center>
                                 </td>
                                 <td style="width: 4%; vertical-align: middle; text-align: center">
-                                    <form action="{{url('/transaction/destroy/'.$row->id)}}" method="get">
-                                        @csrf
-                                        @method('DELETE')
-                                        @if ($row->status != "แจ้งซ่อม")
-                                            <a type="#" class="btn btn-secondary " data-name="{{$row->code}}" style="width: 70px;">-</a>
-                                        @else
+                                    @if ($row->status != "แจ้งซ่อม")
+                                        <form action="" method="get">
+                                            <a type="#" class="btn btn-secondary deletecancel" data-name="{{$row->code}}" style="width: 70px;">-</a>
+                                        </form>
+                                    @else
+                                        <form action="{{url('/transaction/destroy/'.$row->id)}}" method="get">
+                                            @csrf
+                                            @method('DELETE')
                                             <a type="submit" class="btn btn-danger deleteform" data-name="{{$row->code}}" style="width: 70px;"><i class="fas fa-trash-alt"></i></a>
-                                        @endif
-                                    </form>
+                                        </form>
+                                    @endif
                                 </td>
                                
                             </tr>
