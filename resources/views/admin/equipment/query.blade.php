@@ -16,14 +16,11 @@
 
             <div class="d-flex justify-content-between mt-4">
                 <div class=" flex-row-reverse  ">
-                    <h1 class="text-left">ค้นหาแจ้งซ่อม {{$category->name}} </h1>
+                    <h1 class="text-left">ค้นหาแจ้งซ่อมครุภัณฑ์ {{$Equipment->name}}</h1>
                 </div>
-              
                 <div class="d-flex flex-row-reverse  ">
-                    {{-- <a class="nav-link" href="{{ route('type') }}"> --}}
                     <a href="{{ route('createTransaction') }}" class="btn btn-outline-success" style=" display: flex; align-items: center"><i class="fas fa-plus-circle"></i>&nbsp; แจ้งซ่อม </a>
                 </div>
-              
             </div>
 
             <br>
@@ -76,7 +73,7 @@
                     ตาราง แจ้งซ่อมครุภัณฑ์
                 </div>
                 <div class="card-body">
-                    @if($Translation->count() > 0)
+                    @if($query->count() > 0)
                     <table id="datatablesSimple">
                         <thead>
                             <tr>
@@ -87,25 +84,28 @@
                                 <th style="text-align: center; vertical-align: middle;">ประเภท</th>
                                 <th style="text-align: center; vertical-align: middle;">หมวดหมู่</th>
                                 <th style="text-align: center; vertical-align: middle;">อาการหรือปัญหา</th>
+                                <th style="text-align: center; vertical-align: middle;">วันที่แจ้งซ่อม </th>
                                 <th style="text-align: center; vertical-align: middle;">กำหนดส่งคืน </th>
                                 <th style="text-align: center; vertical-align: middle;">สถานะ </th>
                                 {{-- <th style="text-align: center; vertical-align: middle;">รูป </th> --}}
+                                
                                 <th style="text-align: center; vertical-align: middle;">เพิ่มเติม</th>
                                 <th style="text-align: center; vertical-align: middle;">แก้ไข</th>
                                 <th style="text-align: center; vertical-align: middle;">ลบ</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ( $Translation as $row )
+                            @foreach ( $query as $row )
                             <tr>
                                
                                 {{-- <td style="width: 4%; vertical-align: middle;">{{$row->id}}</td> --}}
                                 <td style="width: 7%; vertical-align: middle;">{{$row->code}}</td>
-                                <td style="width: 10%; vertical-align: middle;">{{$row->firstname}} {{$row->lastname}}</td>
-                                <td style="width: 15%; vertical-align: middle;">{{$row->name_equipment}}</td>
-                                <td style="width: 10%; vertical-align: middle;">{{$row->name_type_equipment}}</td>
-                                <td style="width: 8%; vertical-align: middle;">{{$row->name_categories}}</td>
+                                <td style="width: 10%; vertical-align: middle;">{{$row->User->firstname}} {{$row->User->lastname}}</td>
+                                <td style="width: 15%; vertical-align: middle;">{{$row->Equipment->name}}</td>
+                                <td style="width: 10%; vertical-align: middle;">{{$row->Equipment->TypeEquipment->name}}</td>
+                                <td style="width: 8%; vertical-align: middle;">{{$row->Equipment->TypeEquipment->category->name}}</td>
                                 <td style="width: 15%; vertical-align: middle;">{{$row->problem}}</td>
+                                <td style="width: 14%; vertical-align: middle; text-align: center">{{$row->created_at}}</td>
                                 <td style="width: 8%; vertical-align: middle; text-align: center">{{$row->set_at}}</td>
                                 <td style="width: 6%; vertical-align: middle; "> 
                                         @if ( $row->status== "เรียบร้อย" )
@@ -117,6 +117,7 @@
                                         @else
                                             <nav style="height: 30px; border-radius: 10px; background-color: #2591f7; vertical-align: middle; text-align: center; padding: 5px; color: #fff">  {{$row->status}} </nav>
                                         @endif
+                                            
                                     </nav>                  
                                 </td>
                                 {{-- <td> 
@@ -135,7 +136,7 @@
                                         @csrf
                                         @method('DELETE')
                                         @if ($row->status != "แจ้งซ่อม")
-
+                                            <a type="#" class="btn btn-secondary " data-name="{{$row->code}}" style="width: 70px;">-</a>
                                         @else
                                             <a type="submit" class="btn btn-danger deleteform" data-name="{{$row->code}}" style="width: 70px;"><i class="fas fa-trash-alt"></i></a>
                                         @endif
@@ -147,7 +148,7 @@
                         </tbody>
                     </table>
                     @else
-                        <h3 style="color:red; text-align:center ;padding-top: 20px; padding-bottom: 20px">-- ไม่มีข้อมูล {{$category->name}} --</h3>
+                        <h3 style="color:red; text-align:center ;padding-top: 20px; padding-bottom: 20px">-- ไม่มีข้อมูลค้นหาแจ้งซ่อมครุภัณฑ์ {{$Equipment->name}} --</h3>
                     @endif
                 </div>
             </div>

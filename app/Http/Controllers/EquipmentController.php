@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\Equipment;
 use App\Models\Category;
 use App\Models\TypeEquipment;
+use App\Models\Transaction;
 
 class EquipmentController extends Controller
 {
@@ -123,69 +124,23 @@ class EquipmentController extends Controller
             Session()->flash('error','ไม่สามารถลบได้เนื่องจากมีครุภัณฑ์นี้ใช้งานอยู่');
             return redirect()->back();
         }
-        
         TypeEquipment::find($id)->delete();
         return redirect('/type/all')->with('success','ลบข้อมูลเรียบร้อย');
     }
 
-    // public function query($id){
-    //     $status_notifyRepair = DB::table('transactions')
-    //         ->select('*')
-    //         ->where('status', 'แจ้งซ่อม')
-    //         ->orderBy('id', 'DESC')
-    //         ->get();
+    public function query($id){
+        $Equipment = Equipment::find($id);
+        $query = Transaction::where('equipment_id', $id)->orderBy('id', 'DESC')->get();
 
-    //     $status_cancelr = DB::table('transactions')
-    //         ->select('*')
-    //         ->where('status', 'ยกเลิก')
-    //         ->orderBy('id', 'DESC')
-    //         ->get();
-
-    //     $status_beingRepaired = DB::table('transactions')
-    //         ->select('*')
-    //         ->where('status', 'กำลังซ่อม')
-    //         ->orderBy('id', 'DESC')
-    //         ->get();
-
-    //     $status_sussecc = DB::table('transactions')
-    //         ->select('*')
-    //         ->where('status', 'เรียบร้อย')
-    //         ->orderBy('id', 'DESC')
-    //         ->get();
-
-    
-    //     $count_status_notifyRepair = $status_notifyRepair->count();
-    //     $count_status_cancelr = $status_cancelr->count();
-    //     $count_status_beingRepaired = $status_beingRepaired->count();
-    //     $count_status_sussecc = $status_sussecc->count();
-
-    //     $Translation = DB::table('categories')
-    //     ->select(
-    //         DB::raw('transactions.id as id'),
-    //         DB::raw('transactions.code as code'),
-    //         DB::raw('transactions.problem as problem'),
-    //         DB::raw('transactions.status as status'),
-    //         DB::raw('transactions.set_at as set_at'),
-    //         DB::raw('users.firstname as firstname'),
-    //         DB::raw('users.lastname as lastname'),  
-    //         DB::raw('equipment.name as name_equipment'),
-    //         DB::raw('type_equipment.name as name_type_equipment'),
-    //         DB::raw('categories.name as name_categories'),
-    //     )
-    //     ->join('type_equipment', 'type_equipment.category_id', '=', 'categories.id')
-    //     ->join('equipment', 'equipment.type_equipment_id', '=', 'type_equipment.id')
-    //     ->join('transactions', 'transactions.equipment_id', '=', 'equipment.id')
-    //     ->join('users', 'users.id', '=', 'transactions.user_id')
-    //     ->where('categories.id', $id)
-    //     // ->groupBy('refNumber', 'machineId')
-    //     // ->having('statusActive', 'Active')
-    //     // ->orderBy('startDate')
-    //     ->get();
-
-    //     $count_translation = $Translation->count();
-    //     $category = Category::find($id);
-        
-    //     return view('admin.category.query', compact('category','count_status_notifyRepair', 'count_status_cancelr', 'count_status_beingRepaired', 'count_status_sussecc', 'count_translation', 'Translation'));
-
-    // }
+        $status_notifyRepair = Transaction::where('equipment_id', $id)->where('status', 'แจ้งซ่อม')->get();
+        $status_beingRepaired = Transaction::where('equipment_id', $id)->where('status', 'กำลังซ่อม')->get();
+        $status_cancelr = Transaction::where('equipment_id', $id)->where('status', 'ยกเลิก')->get();
+        $status_sussecc = Transaction::where('equipment_id', $id)->where('status', 'เรียบร้อย')->get();
+        $count_status_notifyRepair = $status_notifyRepair->count();
+        $count_status_beingRepaired = $status_beingRepaired->count();
+        $count_status_cancelr = $status_cancelr->count();
+        $count_status_sussecc = $status_sussecc->count();
+        $count_translation = $query->count();
+        return view('admin.equipment.query', compact('query', 'Equipment', 'count_translation','count_status_notifyRepair', 'count_status_beingRepaired', 'count_status_cancelr', 'count_status_sussecc'));
+    }
 }

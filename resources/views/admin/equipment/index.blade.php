@@ -104,7 +104,9 @@
                                 <td style="width: 7%; vertical-align: middle; text-align: right;">{{$row->insurance}}</td>
                                 <td style="width: 8%; vertical-align: middle; text-align: center;">{{$row->purchase_date}}</td>
                                 <td style="width: 6%; vertical-align: middle;"> <center>{{ number_format( $row->Transaction->count() )}} ครั้ง<center></td>
-                                <td style="width: 6%; vertical-align: middle;"></td>
+                                <td style="width: 6%; vertical-align: middle;">
+                                    <center><a href="{{url('/equipment/query/'.$row->id)}}" class="btn btn-success" style="width: 70px;"><i class="fas fa-eye"></i></a></center>
+                                </td>
                                 <td style="width: 6%; vertical-align: middle;">
                                     <center><a href="{{url('/equipment/edit/'.$row->id)}}" class="btn btn-warning" style="width: 70px;"><i class="fas fa-edit"></i></a></center>
                                 </td>

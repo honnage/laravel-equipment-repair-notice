@@ -72,7 +72,7 @@
                     <div class="col-md-6 d-flex flex-row-reverse bd-highlight mt-4">
                         <input type="submit" name="submit" value="{{isset($TypeEquipment)? "แก้ไข":"เพิ่มข้อมูล"}}" class="{{isset($TypeEquipment)? "btn btn-warning col-sm-2":"btn btn-success col-sm-2"}}">
                         &nbsp;&nbsp;
-                        <button class="btn btn-secondary col-sm-1" type="reset">ยกเลิก</button>      
+                        <button class="btn btn-secondary col-sm-2" type="reset">ยกเลิก</button>      
                     </div>
                 </form>
             </div>

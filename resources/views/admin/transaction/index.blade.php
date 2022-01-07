@@ -85,6 +85,7 @@
                                 <th style="text-align: center; vertical-align: middle;">ประเภท</th>
                                 <th style="text-align: center; vertical-align: middle;">หมวดหมู่</th>
                                 <th style="text-align: center; vertical-align: middle;">อาการหรือปัญหา</th>
+                                <th style="text-align: center; vertical-align: middle;">วันที่แจ้งซ่อม </th>
                                 <th style="text-align: center; vertical-align: middle;">กำหนดส่งคืน </th>
                                 <th style="text-align: center; vertical-align: middle;">สถานะ </th>
                                 {{-- <th style="text-align: center; vertical-align: middle;">รูป </th> --}}
@@ -105,6 +106,7 @@
                                 <td style="width: 10%; vertical-align: middle;">{{$row->Equipment->TypeEquipment->name}}</td>
                                 <td style="width: 8%; vertical-align: middle;">{{$row->Equipment->TypeEquipment->category->name}}</td>
                                 <td style="width: 15%; vertical-align: middle;">{{$row->problem}}</td>
+                                <td style="width: 14%; vertical-align: middle; text-align: center">{{$row->created_at}}</td>
                                 <td style="width: 8%; vertical-align: middle; text-align: center">{{$row->set_at}}</td>
                                 <td style="width: 6%; vertical-align: middle; "> 
                                         @if ( $row->status== "เรียบร้อย" )
@@ -135,7 +137,7 @@
                                         @csrf
                                         @method('DELETE')
                                         @if ($row->status != "แจ้งซ่อม")
-
+                                            <a type="#" class="btn btn-secondary " data-name="{{$row->code}}" style="width: 70px;">-</a>
                                         @else
                                             <a type="submit" class="btn btn-danger deleteform" data-name="{{$row->code}}" style="width: 70px;"><i class="fas fa-trash-alt"></i></a>
                                         @endif

@@ -236,9 +236,9 @@
 
                             <div class="row align-items-center form-group mt-4">
                                 <div class="d-flex flex-row-reverse align-items-start bd-highlight mt-4" >
-                                    <input type="submit" name="submit" value="{{isset($Transaction)? "แก้ไข":"เพิ่มข้อมูล"}}" class="{{isset($Transaction)? "btn btn-warning col-sm-3":"btn btn-success col-sm-3"}}">
+                                    <input type="submit" name="submit" value="{{isset($Transaction)? "แก้ไข":"เพิ่มข้อมูล"}}" class="{{isset($Transaction)? "btn btn-warning col-sm-5":"btn btn-success col-sm-5"}}">
                                     &nbsp;&nbsp;
-                                    <button class="btn btn-secondary col-sm-2" type="reset">ยกเลิก</button>      
+                                    <button class="btn btn-secondary col-sm-3" type="reset">ยกเลิก</button>      
                                 </div>
                             </div>
                         </div>
