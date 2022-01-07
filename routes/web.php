@@ -47,6 +47,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function(){
     Route::get('/type/edit/{id}',[TypeEquipmentController::class,'edit']);
     Route::post('/type/update/{id}',[TypeEquipmentController::class,'update']);
     Route::get('/type/destroy/{id}',[TypeEquipmentController::class,'destroy']);
+    Route::get('/type/query/{id}',[TypeEquipmentController::class,'query']);
 
     Route::get('/category/all',[CategoryController::class,'index'])->name('category');
     Route::get('/category/create',[CategoryController::class,'create'])->name('createCategory');

@@ -12,27 +12,26 @@
                     {{Session()->get('error')}}
                 </div>
             @endif
+            
             <div class="d-flex justify-content-between mt-4">
                 <div class=" flex-row-reverse  ">
-                    <h1 class="text-left">ประเภทครุภัณฑ์</h1>
+                    <h1 class="text-left">ค้นหาหมวดหมู่ {{$category->name}}</h1>
                 </div>
-              
                 <div class="d-flex flex-row-reverse  ">
                     <a href="{{ route('createType') }}" class="btn btn-outline-success" style=" display: flex; align-items: center"><i class="fas fa-plus-circle"></i>&nbsp; เพิ่มประเภท </a>
                 </div>
             </div>
-
             {{-- <ol class="breadcrumb mb-4">
                 <li class="breadcrumb-item active">จำนวนรายการทั้งหมด</li>
             </ol> --}}
-            <br> 
+            <br>
             <div class="card mb-4">
                 <div class="card-header">
                     <i class="fas fa-table me-1"></i>
                     ตาราง ประเภทครุภัณฑ์
                 </div>
                 <div class="card-body">
-                    @if($TypeEquipment->count() > 0)
+                    @if($query->count() > 0)
                     <table id="datatablesSimple">
                         <thead>
                             <tr>
@@ -46,10 +45,8 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ( $TypeEquipment as $row )
+                            @foreach ( $query as $row )
                             <tr>
-                                {{-- <th>{{$categories->firstItem()+$loop->index}}</th> --}}
-                                {{-- <td><img src="{{asset($row->categories_image)}}" width="70px" height="70px"></td> --}}
                                 <td style="width: 7%; vertical-align: middle;">{{$row->id}}</td>
                                 <td style="width: 35%; vertical-align: middle;">{{$row->name}}</td>
                                 <td style="width: 30%; vertical-align: middle;">{{$row->category->name}}</td>
@@ -74,7 +71,7 @@
                         </tbody>
                     </table>
                     @else
-                        <h3 style="color:red; text-align:center ;padding-top: 20px; padding-bottom: 20px">-- ไม่มีข้อมูล ประเภทครุภัณฑ์ --</h3>
+                        <h3 style="color:red; text-align:center ;padding-top: 20px; padding-bottom: 20px">-- ไม่มีข้อมูลค้นหา {{$category->name}} --</h3>
                     @endif
                 </div>
             </div>

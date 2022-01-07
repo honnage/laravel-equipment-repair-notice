@@ -1,13 +1,12 @@
 <?php
 
 namespace App\Models;
-
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class TypeEquipment extends Model
 {
-    // use HasFactory;
+    use HasFactory;
     protected $table = "type_equipment";
     protected $fillable = [
         'category_id',
@@ -20,9 +19,7 @@ class TypeEquipment extends Model
         return $this->belongsTo(Category::class);
     }
 
-   
     public function equipment(){
         return $this->hasMany(Equipment::class, 'type_equipment_id');      
     }
-
 }

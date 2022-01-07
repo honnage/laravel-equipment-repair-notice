@@ -46,13 +46,11 @@ class TransactionController extends Controller
         $count_status_cancelr = $status_cancelr->count();
         $count_status_beingRepaired = $status_beingRepaired->count();
         $count_status_sussecc = $status_sussecc->count();
-
         return view('admin.transaction.index', compact('Translation', 'count_status_notifyRepair', 'count_status_cancelr', 'count_status_beingRepaired', 'count_status_sussecc', 'count_translation'));
     }
 
     public function create()
     {
-        // $Equipment = Equipment::all();
         $Equipment = Equipment::orderBy('id', 'DESC')->get();
         return view('admin.transaction.form',  compact('Equipment'));
     }
@@ -143,8 +141,6 @@ class TransactionController extends Controller
                 'fileImage.mimes' => "นามสกุลไฟล์ต้องเป็น pdf png jpg jpeg pdf zip เท่านั้น",
             ]
         );
-        // dd($request->all());
-
         $transaction = Transaction::find($id);
         if($request->fileImage){
             $file = $request->file('fileImage'); 
@@ -154,7 +150,6 @@ class TransactionController extends Controller
     
             $request->fileImage->move(public_path('file'),  $newFile);
             File::delete(public_path($transaction->fileImage));
-    
             $fileImage = 'file/'.$newFile;
 
             Transaction::find($id)->update([
@@ -174,7 +169,6 @@ class TransactionController extends Controller
             ]);
         }
 
-        // Equipment::find($id)->update($request->all());
         Transaction::find($id)->update([
             'user_id'=>$request->user_id,
             'code'=>$request->code,
@@ -182,15 +176,11 @@ class TransactionController extends Controller
             'equipment_id'=>$request->equipment_id,
             'status'=>$request->status,
             'set_at'=> $request->set_at,
-
             'details'=> $request->details,
             'guaranty'=> $request->guaranty,
             'price'=> $request->price,
             'user_id_updated'=> Auth::user()->id
         ]);
-        
-        
-
         return redirect('/transaction/all')->with('success', 'อัพเดทข้อมูลเรียบร้อย');
     }
 
@@ -202,12 +192,9 @@ class TransactionController extends Controller
             Session()->flash('error','ไม่สามารถลบได้เนื่องจากมี  นี้ใช้งานอยู่');
             return redirect()->back();
         }
-       
         $transaction = Transaction::find($id);
-       
         File::delete(public_path($transaction->fileImage));
         Transaction::find($id)->delete();
-
         return redirect('/transaction/all')->with('success', 'ลบข้อมูลเรียบร้อย');
     }
 }

@@ -18,12 +18,10 @@
                 <div class=" flex-row-reverse  ">
                     <h1 class="text-left">แจ้งซ่อมครุภัณฑ์</h1>
                 </div>
-              
                 <div class="d-flex flex-row-reverse  ">
                     {{-- <a class="nav-link" href="{{ route('type') }}"> --}}
                     <a href="{{ route('createTransaction') }}" class="btn btn-outline-success" style=" display: flex; align-items: center"><i class="fas fa-plus-circle"></i>&nbsp; แจ้งซ่อม </a>
                 </div>
-              
             </div>
 
             <br>

@@ -25,13 +25,7 @@ class UserController extends Controller
 
     public function update(Request $request, $id)
     {
-        // dd($request->all());
         User::find($id)->update($request->all());
         return redirect('/user/all')->with('success','อัพเดทข้อมูลเรียบร้อย');
     }
-
-    
-
-
-    
 }

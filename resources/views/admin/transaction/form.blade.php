@@ -72,6 +72,20 @@
 
                             <div class="row align-items-center form-group mt-4">
                                 <div class="col-sm-12">
+                                    <label for="price">ราคา</label>
+                                    @error('price')
+                                        <label>
+                                            <span class="text-danger">{{$message}}</span>
+                                        </label>
+                                    @enderror
+                                </div>
+                                <div class="col-sm-12">
+                                    <input type="number" class="form-control col-sm-6"  name="price" value="{{isset($Transaction)?"$Transaction->price":''}}" >     
+                                </div>
+                            </div>
+
+                            <div class="row align-items-center form-group mt-4">
+                                <div class="col-sm-12">
                                     <label for="fileImage">ไฟล์ </label>
                                     @error('fileImage')
                                         <label>
@@ -81,20 +95,6 @@
                                 </div>
                                 <div class="col-sm-12">
                                     <input type="file" class="form-control col-sm-6"  name="fileImage" value="{{isset($Transaction)?"$Transaction->fileImage":''}}" >         
-                                </div>
-                            </div>
-
-                            <div class="row align-items-center form-group mt-4">
-                                <div class="col-sm-12">
-                                    <label for="guaranty">ประกัน</label>
-                                    @error('guaranty')
-                                        <label>
-                                            <span class="text-danger">{{$message}}</span>
-                                        </label>
-                                    @enderror
-                                </div>
-                                <div class="col-sm-12">
-                                    <input type="text" class="form-control col-sm-6"  name="guaranty" value="{{isset($Transaction)?"$Transaction->guaranty":''}}" >
                                 </div>
                             </div>
 
@@ -222,15 +222,15 @@
 
                             <div class="row align-items-center form-group mt-4">
                                 <div class="col-sm-12">
-                                    <label for="price">ราคา</label>
-                                    @error('price')
+                                    <label for="guaranty">ประกัน</label>
+                                    @error('guaranty')
                                         <label>
                                             <span class="text-danger">{{$message}}</span>
                                         </label>
                                     @enderror
                                 </div>
                                 <div class="col-sm-12">
-                                    <input type="number" class="form-control col-sm-6"  name="price" value="{{isset($Transaction)?"$Transaction->price":''}}" >     
+                                    <input type="text" class="form-control col-sm-6"  name="guaranty" value="{{isset($Transaction)?"$Transaction->guaranty":''}}" >
                                 </div>
                             </div>
 

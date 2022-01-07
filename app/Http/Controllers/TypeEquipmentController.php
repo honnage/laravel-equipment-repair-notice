@@ -8,14 +8,12 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\TypeEquipment;
 use App\Models\Category;
-
+use App\Models\Equipment;
 
 class TypeEquipmentController extends Controller
 {
     public function index()
     {
-        // $TypeEquipment = TypeEquipment::paginate(10);
-        // $TypeEquipment = TypeEquipment::all();
         $TypeEquipment = TypeEquipment::orderBy('id', 'desc')->get();
         return view('admin.type-equipment.index', compact('TypeEquipment'));
     }
@@ -38,7 +36,6 @@ class TypeEquipmentController extends Controller
             'name.unique'=>"มีข้มูลประเภทครุภัณฑ์นี้ในฐานข้อมูลแล้ว",
             'category_id.required'=>"กรุณาเลือกหมวดหมู่ครุภัณฑ์",
         ]);
-
         $TypeEquipment = new TypeEquipment;
         $TypeEquipment->name = $request->name;
         $TypeEquipment->category_id = $request->category_id;
@@ -51,7 +48,6 @@ class TypeEquipmentController extends Controller
     public function edit($id)
     {
         $TypeEquipment = TypeEquipment::find($id);
-
         $categories = Category::orderBy('name', 'DESC')->get();
         return view('admin.type-equipment.form', compact('TypeEquipment', 'categories'));
     }
@@ -66,8 +62,6 @@ class TypeEquipmentController extends Controller
             'name.max'=>"ห้ามป้อนเกิน 191 ตัวอักษร",
             'name.unique'=>"มีข้มูลประเภทครุภัณฑ์นี้ในฐานข้อมูลแล้ว"
         ]);
-
-        // dd($request->all());
         // TypeEquipment::find($id)->update($request->all());
         TypeEquipment::find($id)->update([
             'name'=>$request->name,
@@ -84,11 +78,13 @@ class TypeEquipmentController extends Controller
             Session()->flash('error','ไม่สามารถลบได้เนื่องจากมีประเภทครุภัณฑ์นี้ใช้งานอยู่');
             return redirect()->back();
         }
-
-        // DB::table('type_equipment')
-        // ->where('id','=',$id)
-        // ->delete();
         TypeEquipment::find($id)->delete();
         return redirect('/type/all')->with('success','ลบข้อมูลเรียบร้อย');
+    }
+
+    public function query($id){
+        $TypeEquipment = TypeEquipment::find($id);
+        $query = Equipment::where('type_equipment_id', $id)->get();
+        return view('admin.type-equipment.query', compact('query', 'TypeEquipment'));
     }
 }
