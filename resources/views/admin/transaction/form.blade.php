@@ -66,7 +66,7 @@
                                     @enderror
                                 </div>
                                 <div class="col-sm-12">
-                                    <input type="date" class="form-control col-sm-6"  name="set_at" value="{{isset($Transaction)?"$Transaction->set_at":''}}" >          
+                                    <input type="datetime-local" class="form-control col-sm-6"  name="set_at" value="{{isset($Transaction)?"$Transaction->set_at":''}}" >          
                                 </div>
                             </div>
 
@@ -219,7 +219,7 @@
 
                             <div class="row align-items-center form-group mt-4">
                                 <div class="col-sm-12">
-                                    <label for="details">รายละเอียด</label>
+                                    <label for="details">สาเหตุ / รายละเอียด</label>
                                     @error('details')
                                         <label>
                                             <span class="text-danger">{{$message}}</span>

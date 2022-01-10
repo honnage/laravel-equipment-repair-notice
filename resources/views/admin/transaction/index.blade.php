@@ -16,7 +16,7 @@
 
             <div class="d-flex justify-content-between mt-4">
                 <div class=" flex-row-reverse  ">
-                    <h1 class="text-left">แจ้งซ่อมครุภัณฑ์</h1>
+                    <h1 class="text-left">รายการแจ้งซ่อม</h1>
                 </div>
                 <div class="d-flex flex-row-reverse  ">
                     {{-- <a class="nav-link" href="{{ route('type') }}"> --}}
@@ -30,7 +30,8 @@
                     <div class="card bg-primary text-white mb-4">
                         <div class="card-body" style="font-size: 26px">{{ number_format( $count_status_notifyRepair ) }} </div>
                         <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" style="text-decoration: none; font-size: 20px;" href="#">แจ้งซ่อม</a>
+                            <a class="small text-white stretched-link" style="text-decoration: none; font-size: 20px;" 
+                                href="{{url('/transaction/status/แจ้งซ่อม')}}">แจ้งซ่อม</a>
                             <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                         </div>
                     </div>
@@ -39,7 +40,8 @@
                     <div class="card bg-warning  mb-4">
                         <div class="card-body" style="font-size: 26px"> {{ number_format( $count_status_beingRepaired ) }} </div>
                         <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-dark stretched-link" style="text-decoration: none; font-size: 20px;" href="#">กำลังซ่อม</a>
+                            <a class="small text-dark stretched-link" style="text-decoration: none; font-size: 20px;" 
+                                href="{{url('/transaction/status/กำลังซ่อม')}}">กำลังซ่อม</a>
                             <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                         </div>
                     </div>
@@ -48,7 +50,8 @@
                     <div class="card bg-success text-white mb-4">
                         <div class="card-body" style="font-size: 26px">{{ number_format( $count_status_sussecc ) }} </div>
                         <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" style="text-decoration: none; font-size: 20px;" href="#">เรียบร้อย</a>
+                            <a class="small text-white stretched-link" style="text-decoration: none; font-size: 20px;" 
+                                href="{{url('/transaction/status/เรียบร้อย')}}">เรียบร้อย</a>
                             <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                         </div>
                     </div>
@@ -57,7 +60,8 @@
                     <div class="card bg-secondary text-white mb-4">
                         <div class="card-body" style="font-size: 26px">{{ number_format( $count_status_cancelr ) }} </div>
                         <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" style="text-decoration: none; font-size: 20px;" href="#">ยกเลิก</a>
+                            <a class="small text-white stretched-link" style="text-decoration: none; font-size: 20px;" 
+                                href="{{url('/transaction/status/ยกเลิก')}}">ยกเลิก</a>
                             <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                         </div>
                     </div>
@@ -127,7 +131,7 @@
                                     @endif
                                 </td> --}}
                                 <td style="width: 4%; vertical-align: middle;">
-                                    <center><a href="{{url('/transaction/edit/'.$row->id)}}" class="btn btn-success" style="width: 70px;"><i class="fas fa-eye"></i></a></center>
+                                    <center><a href="{{url('/transaction/details/'.$row->id)}}" class="btn btn-success" style="width: 70px;"><i class="fas fa-eye"></i></a></center>
                                 </td>
                                 <td style="width: 4%; vertical-align: middle;">
                                     <center><a href="{{url('/transaction/edit/'.$row->id)}}" class="btn btn-warning" style="width: 70px"><i class="fas fa-edit"></i></a></center>

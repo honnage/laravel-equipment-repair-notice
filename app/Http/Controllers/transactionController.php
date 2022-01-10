@@ -40,19 +40,33 @@ class TransactionController extends Controller
             ->orderBy('id', 'DESC')
             ->get();
 
-        $Translation = Transaction::orderBy('id', 'desc')->get();
+        $Translation = Transaction::orderBy('updated_at', 'desc')->get();
         $count_translation = $Translation->count();
         $count_status_notifyRepair = $status_notifyRepair->count();
         $count_status_cancelr = $status_cancelr->count();
         $count_status_beingRepaired = $status_beingRepaired->count();
         $count_status_sussecc = $status_sussecc->count();
-        return view('admin.transaction.index', compact('Translation', 'count_status_notifyRepair', 'count_status_cancelr', 'count_status_beingRepaired', 'count_status_sussecc', 'count_translation'));
+        return view('admin.transaction.index', 
+        compact('Translation', 'count_translation',
+            'status_notifyRepair', 'count_status_notifyRepair', 
+            'status_cancelr', 'count_status_cancelr', 
+            'status_beingRepaired', 'count_status_beingRepaired', 
+            'status_sussecc', 'count_status_sussecc' ));
     }
 
     public function create()
     {
         $Equipment = Equipment::orderBy('id', 'DESC')->get();
         return view('admin.transaction.form',  compact('Equipment'));
+    }
+
+    public function details($id)
+    {
+
+        $Transaction = Transaction::find($id);
+        // $transaction = Transaction::where('code', $id)->get();
+        // dd($Transaction);
+        return view('admin.transaction.details', compact('Transaction'));
     }
 
     public function store(Request $request)
@@ -198,4 +212,45 @@ class TransactionController extends Controller
         Transaction::find($id)->delete();
         return redirect('/transaction/all')->with('success', 'ลบข้อมูลเรียบร้อย');
     }
+
+    public function status($id)
+    {
+        $status_notifyRepair = DB::table('transactions')
+            ->select('*')
+            ->where('status', 'แจ้งซ่อม')
+            ->orderBy('id', 'DESC')
+            ->get();
+
+        $status_cancelr = DB::table('transactions')
+            ->select('*')
+            ->where('status', 'ยกเลิก')
+            ->orderBy('id', 'DESC')
+            ->get();
+
+        $status_beingRepaired = DB::table('transactions')
+            ->select('*')
+            ->where('status', 'กำลังซ่อม')
+            ->orderBy('id', 'DESC')
+            ->get();
+
+        $status_sussecc = DB::table('transactions')
+            ->select('*')
+            ->where('status', 'เรียบร้อย')
+            ->orderBy('id', 'DESC')
+            ->get();
+
+        $Translation = Transaction::where('status', $id)->orderBy('id', 'desc')->get();
+        $count_translation = $Translation->count();
+        $count_status_notifyRepair = $status_notifyRepair->count();
+        $count_status_cancelr = $status_cancelr->count();
+        $count_status_beingRepaired = $status_beingRepaired->count();
+        $count_status_sussecc = $status_sussecc->count();
+        return view('admin.transaction.query', 
+        compact('Translation', 'count_translation', 'id',
+            'status_notifyRepair', 'count_status_notifyRepair', 
+            'status_cancelr', 'count_status_cancelr', 
+            'status_beingRepaired', 'count_status_beingRepaired', 
+            'status_sussecc', 'count_status_sussecc'));
+    }
+    
 }

@@ -26,7 +26,7 @@ class CreateTransactionsTable extends Migration
             $table->string('type_file')->nullable();
             $table->decimal('price', 10, 2)->nullable();
             $table->string('guaranty')->nullable(); //ประกัน
-            $table->date('set_at'); //กำหนดส่งคืน
+            $table->dateTime('set_at'); //กำหนดส่งคืน
 
             $table->integer('user_id_created');
             $table->integer('user_id_updated');

@@ -33,6 +33,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function(){
     Route::get('/transaction/edit/{id}',[TransactionController::class,'edit']);
     Route::post('/transaction/update/{id}',[TransactionController::class,'update']);
     Route::get('/transaction/destroy/{id}',[TransactionController::class,'destroy']);
+    Route::get('/transaction/status/{id}',[TransactionController::class,'status']);
+    Route::get('/transaction/details/{id}',[TransactionController::class,'details']);
 
     Route::get('/equipment/all',[EquipmentController::class,'index'])->name('equipment');
     Route::get('/equipment/create',[EquipmentController::class,'create'])->name('createEquipment');
