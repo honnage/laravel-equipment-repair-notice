@@ -35,7 +35,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function(){
     Route::get('/transaction/destroy/{id}',[TransactionController::class,'destroy']);
     Route::get('/transaction/status/{id}',[TransactionController::class,'status']);
     Route::get('/transaction/details/{id}',[TransactionController::class,'details']);
-
+    Route::get('/transaction/downloadPDF/{id}',[TransactionController::class,'downloadPDF']);
+    
     Route::get('/equipment/all',[EquipmentController::class,'index'])->name('equipment');
     Route::get('/equipment/create',[EquipmentController::class,'create'])->name('createEquipment');
     Route::post('/equipment/add',[EquipmentController::class,'store'])->name('addEquipment');

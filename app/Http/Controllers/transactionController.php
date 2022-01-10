@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
 use App\Models\Transaction;
 use App\Models\Equipment;
+use PDF;
 
 
 class TransactionController extends Controller
@@ -62,11 +63,20 @@ class TransactionController extends Controller
 
     public function details($id)
     {
+        $transaction = Transaction::find($id);
+        return view('admin.transaction.details', compact('transaction'));
+    }
 
-        $Transaction = Transaction::find($id);
-        // $transaction = Transaction::where('code', $id)->get();
-        // dd($Transaction);
-        return view('admin.transaction.details', compact('Transaction'));
+    public function downloadPDF($id){
+        $transaction = Transaction::find($id);
+        $view = \View::make('admin.transaction.pdf', compact('transaction'));
+        $html = $view->render();
+        $pdf = new PDF();
+        $pdf::SetTitle('ใบแจ้งซ่อม');
+        $pdf::AddPage();
+        $pdf::SetFont('freeserif');
+        $pdf::WriteHTML($html, true, false, true, false);
+        $pdf::Output('report.pdf');
     }
 
     public function store(Request $request)
