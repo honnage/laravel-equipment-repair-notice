@@ -59,7 +59,7 @@
 
                             <div class="row align-items-center form-group mt-4">
                                 <div class="col-sm-12">
-                                    <label for="purchase_date">วันที่ซื้อ <span style="color: red">*</span></label>
+                                    <label for="purchase_date">วันที่ซื้อ </label>
                                     @error('purchase_date')
                                         <label>
                                             <span class="text-danger">{{$message}}</span>
@@ -101,7 +101,7 @@
 
                             <div class="row align-items-center form-group mt-4">
                                 <div class="col-sm-12">
-                                    <label for="price">ราคา <span style="color: red">*</span></label>
+                                    <label for="price">ราคา </label>
                                     @error('price')
                                         <label>
                                             <span class="text-danger">{{$message}}</span>
@@ -116,7 +116,7 @@
 
                             <div class="row align-items-center form-group mt-4">
                                 <div class="col-sm-12">
-                                    <label for="insurance">อายุประกัน <span style="color: red">*</span></label>
+                                    <label for="insurance">อายุประกัน </label>
                                     @error('insurance')
                                         <label>
                                             <span class="text-danger">{{$message}}</span>

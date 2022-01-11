@@ -32,10 +32,10 @@ class EquipmentController extends Controller
         $request->validate([
             'name'=>'required|unique:equipment|max:191',
             'equipment_number'=>'required|unique:equipment|max:191',
-            'purchase_date'=>'required',
+            // 'purchase_date'=>'required',
             'type_equipment_id'=>'required',
-            'insurance'=>'required|max:191',
-            'price'=>'required|max:10',
+            // 'insurance'=>'required|max:191',
+            // 'price'=>'required|max:10',
         ],
         [
             'name.required'=>"กรุณาป้อนชื่อครุภัณฑ์",
@@ -46,14 +46,14 @@ class EquipmentController extends Controller
             'equipment_number.max'=>"ห้ามป้อนเกิน 191 ตัวอักษร",
             'equipment_number.unique'=>"มีข้มูลหมายเลขครุภัณฑ์นี้ในฐานข้อมูลแล้ว",
 
-            'purchase_date.required'=>"กรุณาเลือกวันที่ซื้อ",
+            // 'purchase_date.required'=>"กรุณาเลือกวันที่ซื้อ",
             'type_equipment_id.required'=>"กรุณาเลือกประเภทครุภัณฑ์",
 
-            'insurance.required'=>"กรุณาป้อนอายุประกัน",
-            'insurance.max'=>"ห้ามป้อนเกิน 191 ตัวอักษร",
+            // 'insurance.required'=>"กรุณาป้อนอายุประกัน",
+            // 'insurance.max'=>"ห้ามป้อนเกิน 191 ตัวอักษร",
 
-            'price.required'=>"กรุณาราคาครุภัณฑ์",
-            'price.max'=>"ห้ามป้อนเกิน 2 ตัวอักษร",
+            // 'price.required'=>"กรุณาราคาครุภัณฑ์",
+            // 'price.max'=>"ห้ามป้อนเกิน 2 ตัวอักษร",
         ]);
       
         $equipment = new Equipment;

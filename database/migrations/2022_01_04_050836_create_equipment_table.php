@@ -19,9 +19,9 @@ class CreateEquipmentTable extends Migration
             $table->integer('type_equipment_id'); //รหัสประเภท
             $table->string('name'); //ชื่อครุภัณฑ์
             $table->string('equipment_number'); //หมายเลขครุภัณฑ์
-            $table->date('purchase_date'); //วันที่ซื้อ
-            $table->string('insurance'); //อายุประกัน
-            $table->decimal('price', 10, 2); //ราคา
+            $table->date('purchase_date')->nullable(); ; //วันที่ซื้อ
+            $table->string('insurance')->nullable(); ; //อายุประกัน
+            $table->decimal('price', 10, 2)->nullable(); ; //ราคา
             $table->integer('user_id_created');
             $table->integer('user_id_updated');
             $table->timestamps();

@@ -220,26 +220,27 @@ class TransactionController extends Controller
         $request->validate(
             [
                 'user_id' => 'required',
-                'code' => 'required|max:191',
+                // 'code' => 'required|max:191',
                 'problem' => 'required|max:191',
-                'equipment_id' => 'required',
+                // 'equipment_id' => 'required',
                 // 'status' => 'required',
                 // 'set_at' => 'required',
                 'fileImage' => 'mimes:pdf,png,jpg,jpeg,pdf,zip,',
             ],
             [
                 'user_id.required' => "กรุณาป้อนรหัสผู้แจ้งซ่อม",
-                'code.required' => "กรุณาป้อนรหัสแจ้งซ่อมครุภัณฑ์",
-                'code.max' => "ห้ามป้อนเกิน 191 ตัวอักษร",
-                'code.unique' => "มีข้มูลรหัสแจ้งซ่อมครุภัณฑ์นี้ในฐานข้อมูลแล้ว",
+                // 'code.required' => "กรุณาป้อนรหัสแจ้งซ่อมครุภัณฑ์",
+                // 'code.max' => "ห้ามป้อนเกิน 191 ตัวอักษร",
+                // 'code.unique' => "มีข้มูลรหัสแจ้งซ่อมครุภัณฑ์นี้ในฐานข้อมูลแล้ว",
                 'problem.required' => "กรุณาป้อนอาการหรือปัญหา",
                 'problem.max' => "ห้ามป้อนเกิน 191 ตัวอักษร",
-                'equipment_id.required' => "กรุณาเลือรหัสครุภัณฑ์",
+                // 'equipment_id.required' => "กรุณาเลือรหัสครุภัณฑ์",
                 // 'status.required' => "กรุณาเลือกสถานะการซ่อม",
                 // 'set_at.required' => "กรุณาเลือกวันที่กำหนดส่งคืน",
                 'fileImage.mimes' => "นามสกุลไฟล์ต้องเป็น pdf png jpg jpeg pdf zip เท่านั้น",
             ]
         );
+        // dd($request->all());
         $transaction = Transaction::find($id);
         if($request->fileImage){
             $file = $request->file('fileImage'); 
