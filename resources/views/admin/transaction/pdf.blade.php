@@ -17,60 +17,60 @@
     <table class="table table-striped table-bordered" >
         <tbody>
           <tr>
-            <th style="width: 30%">ชื่อ - นามสกุล</th>
-            <td style="width: 70%">{{$transaction->user->firstname}} {{$transaction->user->lastname}}</td>
+            <th style="width: 25%">ชื่อ - นามสกุล</th>
+            <td style="width: 75%">{{$transaction->user->firstname}} {{$transaction->user->lastname}}</td>
           </tr>
           <tr>
-            <th style="width: 30%">ตำแหน่ง</th>
-            <td style="width: 70%">{{$transaction->user->department}} </td>
+            <th style="width: 25%">ตำแหน่ง</th>
+            <td style="width: 75%">{{$transaction->user->department}} </td>
           </tr>
           <tr>
-            <th style="width: 30%">เบอร์โทร</th>
-            <td style="width: 70%">{{$transaction->user->phone}}</td>
+            <th style="width: 25%">เบอร์โทร</th>
+            <td style="width: 75%">{{$transaction->user->phone}}</td>
           </tr>
           <tr>
-            <th style="width: 30%">อีเมล</th>
-            <td style="width: 70%">{{$transaction->user->email}}</td>
+            <th style="width: 25%">อีเมล</th>
+            <td style="width: 75%">{{$transaction->user->email}}</td>
           </tr>
           
         </tbody>
     </table>
     <br>
 
-    <h3>ข้อมูลปัญหา</h3>
+    <h3>ข้อมูลการแจ้งซ่อม</h3>
     <table class="table table-striped table-bordered">
         <tbody>
           <tr>
-            <th style="width: 30%">รหัสแจ้งซ่อม</th>
-            <td style="width: 70%">{{$transaction->code}}</td>
+            <th style="width: 25%">รหัสแจ้งซ่อม</th>
+            <td style="width: 75%">{{$transaction->code}}</td>
           </tr>
           <tr>
-            <th style="width: 30%">ชื่อครุภัณฑ์</th>
-            <td style="width: 70%">{{$transaction->Equipment->name}}</td>
+            <th style="width: 25%">ชื่อครุภัณฑ์</th>
+            <td style="width: 75%">{{$transaction->Equipment->name}}</td>
           </tr>
           <tr>
-            <th style="width: 30%">ประเภทครุภัณฑ์</th>
-            <td style="width: 70%">{{$transaction->Equipment->TypeEquipment->name}}</td>
+            <th style="width: 25%">ประเภทครุภัณฑ์</th>
+            <td style="width: 75%">{{$transaction->Equipment->TypeEquipment->name}}</td>
           </tr>
           <tr>
-            <th style="width: 30%">หมวดหมู่ครุภัณฑ์</th>
-            <td style="width: 70%">{{$transaction->Equipment->TypeEquipment->category->name}}</td>
+            <th style="width: 25%">หมวดหมู่ครุภัณฑ์</th>
+            <td style="width: 75%">{{$transaction->Equipment->TypeEquipment->category->name}}</td>
           </tr>
           <tr>
-            <th style="width: 30%">อาการหรือปัญหา</th>
-            <td style="width: 70%">{{$transaction->problem}} </td>
+            <th style="width: 25%">อาการหรือปัญหา</th>
+            <td style="width: 75%">{{$transaction->problem}} </td>
           </tr>
           <tr>
-            <th style="width: 30%">วันที่แจ้งซ่อม</th>
-            <td style="width: 70%">{{$transaction->created_at}} </td>
+            <th style="width: 25%">วันที่แจ้งซ่อม</th>
+            <td style="width: 75%">{{$transaction->created_at}} </td>
           </tr>
           <tr>
-            <th style="width: 30%">วันที่กำหนดส่งคืน</th>
-            <td style="width: 70%">{{$transaction->set_at}} </td>
+            <th style="width: 25%">วันที่กำหนดส่งคืน</th>
+            <td style="width: 75%">{{$transaction->set_at}} </td>
           </tr>
           <tr>
-            <th style="width: 30%">สาเหต / รายละเอียด</th>
-            <td style="width: 70%">
+            <th style="width: 25%">สาเหต / รายละเอียด</th>
+            <td style="width: 75%">
                 @if ($transaction->details == null) 
                     -
                 @else
@@ -79,22 +79,22 @@
             </td>
           </tr>
           <tr>
-            <th style="width: 30%">สถานะ</th>
-            <td style="width: 70%"> 
+            <th style="width: 25%">สถานะ</th>
+            <td style="width: 75%"> 
                 @if ( $transaction->status == "แจ้งซ่อม" )                    
-                    <span style="color:#2591f7; font-weight: 700">{{$transaction->status}} </span>                       
+                    <span style="color:#2591f7; font-weight: 750">{{$transaction->status}} </span>                       
                 @elseif ( $transaction->status == "กำลังซ่อม" )
-                    <span style="color:#d38510; font-weight: 700">{{$transaction->status}} </span>                            
+                    <span style="color:#d38510; font-weight: 750">{{$transaction->status}} </span>                            
                 @elseif ( $transaction->status == "เรียบร้อย" )
-                    <span style="color:green; font-weight: 700">{{$transaction->status}} </span>
+                    <span style="color:green; font-weight: 750">{{$transaction->status}} </span>
                 @else
-                    <span style="color:#707070; font-weight: 700">{{$transaction->status}} </span>
+                    <span style="color:#757575; font-weight: 750">{{$transaction->status}} </span>
                 @endif
             </td>
           </tr>
           <tr>
-            <th style="width: 30%">ราคา</th>
-            <td style="width: 70%">
+            <th style="width: 25%">ราคา</th>
+            <td style="width: 75%">
                 @if ($transaction->price == null) 
                     -
                 @else
@@ -104,8 +104,8 @@
             </td>
           </tr>
           <tr>
-            <th style="width: 30%">ประกัน</th>
-            <td style="width: 70%">
+            <th style="width: 25%">ประกัน</th>
+            <td style="width: 75%">
                 @if ($transaction->guaranty == null) 
                     -
                 @else

@@ -42,7 +42,7 @@
 
                 <br>
 
-                <h3>ข้อมูลปัญหา</h3>
+                <h3>ข้อมูลการแจ้งซ่อม</h3>
                 <table class="table table-striped table-bordered" style="width: 140vh;">
                     <tbody>
                       <tr>
