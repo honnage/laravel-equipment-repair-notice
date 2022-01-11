@@ -146,7 +146,7 @@ class TransactionController extends Controller
         $request->validate(
             [
                 'user_id' => 'required',
-                'code' => 'required|unique:transactions|max:191',
+                // 'code' => 'required|unique:transactions|max:191',
                 'problem' => 'required|max:191',
                 'equipment_id' => 'required',
                 // 'status' => 'required',
@@ -155,9 +155,9 @@ class TransactionController extends Controller
             ],
             [
                 'user_id.required' => "กรุณาป้อนรหัสผู้แจ้งซ่อม",
-                'code.required' => "กรุณาป้อนรหัสแจ้งซ่อมครุภัณฑ์",
-                'code.max' => "ห้ามป้อนเกิน 191 ตัวอักษร",
-                'code.unique' => "มีข้มูลรหัสแจ้งซ่อมครุภัณฑ์นี้ในฐานข้อมูลแล้ว",
+                // 'code.required' => "กรุณาป้อนรหัสแจ้งซ่อมครุภัณฑ์",
+                // 'code.max' => "ห้ามป้อนเกิน 191 ตัวอักษร",
+                // 'code.unique' => "มีข้มูลรหัสแจ้งซ่อมครุภัณฑ์นี้ในฐานข้อมูลแล้ว",
                 'problem.required' => "กรุณาป้อนอาการหรือปัญหา",
                 'problem.max' => "ห้ามป้อนเกิน 191 ตัวอักษร",
                 'equipment_id.required' => "กรุณาเลือรหัสครุภัณฑ์",
@@ -169,7 +169,7 @@ class TransactionController extends Controller
 
         $transaction = new Transaction;
         $transaction->user_id = $request->user_id;
-        $transaction->code = $request->code;
+        // $transaction->code = $request->code;
         $transaction->problem = $request->problem;
         $transaction->equipment_id = $request->equipment_id;
         $transaction->details = $request->details;

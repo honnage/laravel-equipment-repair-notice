@@ -17,7 +17,7 @@ class VerifyIsUser
     public function handle(Request $request, Closure $next)
     {
         // return $next($request);
-        if(Auth::user()->checkIsStatus() && Auth::check() && (Auth::user()->checkIsAdmin() == 0 )){
+        if(Auth::user()->checkIsStatus() && Auth::check() && (Auth::user()->checkIsStatus() == 0 )){
             return $next($request);
         }
         return redirect("/login");

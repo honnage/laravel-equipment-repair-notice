@@ -11,7 +11,7 @@
 
          <!-- Styles -->
          <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+         {{-- <link rel="stylesheet" href="{{ mix('css/app.css') }}"> --}}
          
          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
          <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -42,7 +42,6 @@
          <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
          <script src="{{ asset('js/datatables-simple-demo.js') }}"></script>
  
- 
          <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
          <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
@@ -70,70 +69,126 @@
             <div class="container h-16">
                 <ul class="nav ">
                     <li class="nav-item">
-                        <a href="#" style="text-decoration: none; font-size: 20px; color: #fff; font-weight: bold">
+                        <a href="{{ url('/') }}" style="text-decoration: none; font-size: 20px; color: #fff; font-weight: bold">
                             แจ้งซ่อมครุภัณฑ์
                         </a>
-                
                     </li>
-                   
                 </ul>
                 <ul class="nav justify-content-end">
                     @if (Route::has('login'))
                         @auth
                             <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline" style="color: #fff; font-size: 16px; text-decoration: none">Dashboard</a>
                         @else
-                            {{-- <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline" style="color: #fff; font-size: 16px; text-decoration: none">Log in</a> --}}
-
-                            @if (Route::has('register'))
+                            <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline" style="color: #fff; font-size: 16px; text-decoration: none">Log in</a>
+                            {{-- @if (Route::has('register'))
                                 <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline" style="color: #fff; font-size: 16px; text-decoration: none">Register</a>
-                            @endif
+                            @endif --}}
                         @endauth
                     @endif
                 </ul>
             </div>
         </div>
+   
+        <div class="center-registe">
+            <h1>Register</h1>
 
-        <div class="relative flex items-top justify-center "  style="margin: 10%">
-           
+            <form method="POST" action="{{ route('register') }}">
+                @csrf
+    
+                <div class="txt_field">
+                    <input type="text" id="firstname" name="firstname" :value="old('firstname')" required >
+                    <span></span>
+                    <label>Firstname</label>
+                </div>
 
-            <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
-               
+                <div class="txt_field">
+                    <input type="text" id="lastname" name="lastname" :value="old('lastname')" required >
+                    <span></span>
+                    <label>Lastname</label>
+                </div>
+
+                <div class="" style="color: #adadad;">
+                    <label>Gender</label> &emsp; &emsp; &emsp; &emsp;
+                    <label >
+                        <input type="radio" id="gender" name="gender" value="ชาย"> &nbsp;&nbsp;
+                        <label for="male">male </label>
+                    </label> 
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <label>
+                        <input type="radio" id="gender" name="gender" value="หญิง"> &nbsp;&nbsp;
+                        <label for="female">female </label>
+                    </label>
+                </div>
+
+                <div class="txt_field">
+                    <input type="text" id="phone" name="phone" :value="old('phone')" required >
+                    <span></span>
+                    <label>Phone</label>
+                </div>
+
+                <div class="txt_field">
+                    <input type="text" id="address" name="address" :value="old('address')" required >
+                    <span></span>
+                    <label>Address</label>
+                </div>
+
                 
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
-            
-                        <div>
-                            <x-jet-label for="email" value="{{ __('Email') }}" />
-                            <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
-                        </div>
-            
-                        <div class="mt-4">
-                            <x-jet-label for="password" value="{{ __('Password') }}" />
-                            <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
-                        </div>
-            
-                        <div class="block mt-4">
-                            <label for="remember_me" class="flex items-center">
-                                <x-jet-checkbox id="remember_me" name="remember" />
-                                <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                            </label>
-                        </div>
-            
-                        <div class="flex items-center justify-end mt-4">
-                            @if (Route::has('password.request'))
-                                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-                                    {{ __('Forgot your password?') }}
-                                </a>
-                            @endif
-            
-                            <x-jet-button class="ml-4">
-                                {{ __('Log in') }}
-                            </x-jet-button>
-                        </div>
-                    </form>
-  
+                <div class="txt_field">
+                    <input type="text" id="department" name="department" :value="old('department')" required >
+                    <span></span>
+                    <label>Department</label>
+                </div>
+    
+    
 
-            </div>
+                <div class="txt_field">
+                    <input type="email" id="email" name="email" :value="old('email')" required >
+                    <span></span>
+                    <label>Email</label>
+                </div>
+
+                
+                {{-- <div class="mt-4">
+                    <x-jet-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
+                    <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
+                </div> --}}
+
+
+                <div class="txt_field">
+                    <input type="password" id="password"  name="password" required >
+                    <span></span>
+                    <label>Password</label>
+                </div>
+
+                <div class="txt_field">
+                    <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />                    <span></span>
+                    <label>Confirm Password</label>
+                </div>
+
+                <div class="block mt-4">
+                    <label for="remember_me" class="flex items-center">
+                        <x-jet-checkbox id="remember_me" name="remember" />
+                        <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+                    </label>
+                </div>
+
+               
+                <input type="submit" value="Register" class="mt-4">
+
+                <br>
+                <div class="pass mt-4" style="text-align: center"> 
+                    @if (Route::has('password.request'))
+                        <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
+                            {{ __('Forgot your password?') }}
+                        </a>
+                    @endif
+                </div>
+            </form>
         </div>
     </body>
 </html>
+
+
+
+
+

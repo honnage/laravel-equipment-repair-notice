@@ -59,38 +59,6 @@
                                 @endif 
                             </div>
 
-                            <div class="row align-items-center form-group mt-4">
-                                <div class="col-sm-12">
-                                    <label for="equipment_id">รหัสครุภัณฑ์  <span style="color: red">*</span></label>
-                                    @error('equipment_id')
-                                        <label>
-                                            <span class="text-danger">{{$message}}</span>
-                                        </label>
-                                    @enderror
-                                </div>
-                                <div class="col-sm-12">
-                                    @if (isset($transaction))
-                                        <input type="text" class="form-control col-sm-6"  name="" value="{{$transaction->equipment_id}} | {{$transaction->Equipment->name}} / {{$transaction->Equipment->TypeEquipment->name}} / {{$transaction->Equipment->TypeEquipment->category->name}}" readonly>
-                                        <input type="hidden" class="form-control col-sm-6"  name="" value="{{$transaction->equipment_id}} ">
-                                    @else
-                                        <select class="form-control" name="equipment_id">
-                                            @if (!isset($transaction))
-                                                <option value="" style="color:red;">--- กรุณาเลือกครุภัณฑ์ ---  </option>
-                                            @endif
-                                            @foreach($equipment as $row)
-                                                <option value="{{$row->id}}"
-                                                    @if(isset($transaction))
-                                                        @if($transaction->equipment_id == $row->id)
-                                                            selected
-                                                        @endif
-                                                    @endif
-                                                > {{$row->equipment_number}} | {{$row->name}} | {{$row->TypeEquipment->name}} / {{$row->TypeEquipment->category->name}} </option>
-                                            @endforeach
-                                        </select>
-                                    @endif
-                                </div>
-                            </div>
-
                             @if ( isset($transaction) )
                             <div class="row align-items-center form-group mt-4">
                                 <div class="col-sm-12">
@@ -170,21 +138,36 @@
                         <div class="col-md-4">
                             <div class="row align-items-center form-group ">
                                 <div class="col-sm-12">
-                                    <label for="code">รหัสการแจ้งซ่อม <span style="color: red">*</span></label>
-                                    @error('code')
+                                    <label for="equipment_id">รหัสครุภัณฑ์  <span style="color: red">*</span></label>
+                                    @error('equipment_id')
                                         <label>
                                             <span class="text-danger">{{$message}}</span>
                                         </label>
                                     @enderror
                                 </div>
                                 <div class="col-sm-12">
-                                    @if(isset($transaction))
-                                        <input type="text" class="form-control col-sm-6"  name="code" value="{{isset($transaction)?"$transaction->code":''}}" readonly>
+                                    @if (isset($transaction))
+                                        <input type="text" class="form-control col-sm-6"  name="" value="{{$transaction->equipment_id}} | {{$transaction->Equipment->name}} / {{$transaction->Equipment->TypeEquipment->name}} / {{$transaction->Equipment->TypeEquipment->category->name}}" readonly>
+                                        <input type="hidden" class="form-control col-sm-6"  name="" value="{{$transaction->equipment_id}} ">
                                     @else
-                                        <input type="text" class="form-control col-sm-6"  name="code" value="{{isset($transaction)?"$transaction->code":''}}" >
+                                        <select class="form-control" name="equipment_id">
+                                            @if (!isset($transaction))
+                                                <option value="" style="color:red;">--- กรุณาเลือกครุภัณฑ์ ---  </option>
+                                            @endif
+                                            @foreach($equipment as $row)
+                                                <option value="{{$row->id}}"
+                                                    @if(isset($transaction))
+                                                        @if($transaction->equipment_id == $row->id)
+                                                            selected
+                                                        @endif
+                                                    @endif
+                                                > {{$row->equipment_number}} | {{$row->name}} | {{$row->TypeEquipment->name}} / {{$row->TypeEquipment->category->name}} </option>
+                                            @endforeach
+                                        </select>
                                     @endif
                                 </div>
                             </div>
+
 
                             <div class="row align-items-center form-group mt-4">
                                 <div class="col-sm-12">
@@ -196,7 +179,7 @@
                                     @enderror
                                 </div>
                                 <div class="col-sm-12">
-                                    <input type="text" class="form-control col-sm-6"  name="problem" value="{{isset($transaction)?"$transaction->problem":''}}" readonly>
+                                    <input type="text" class="form-control col-sm-6"  name="problem" value="{{isset($transaction)?"$transaction->problem":''}}" >
                                 </div>
                             </div>
 
