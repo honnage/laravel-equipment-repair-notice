@@ -32,9 +32,9 @@ Route::middleware(['auth:sanctum', 'admin'])->group(function(){
     // transactions
     // Route::get('/dashboard',[TransactionController::class,'index'])->name('dashboard');
     Route::get('/transaction/all',[TransactionController::class,'index'])->name('transaction');
-    Route::get('/transaction/create',[TransactionController::class,'create'])->name('createTransaction');
+    Route::get('/transaction/createByAdmin',[TransactionController::class,'createByAdmin'])->name('createTransactionByAdmin');
     Route::post('/transaction/add',[TransactionController::class,'store'])->name('addTransaction');
-    Route::get('/transaction/edit/{id}',[TransactionController::class,'edit']);
+    Route::get('/transaction/editByAdmin/{id}',[TransactionController::class,'editByAdmin']);
     Route::post('/transaction/update/{id}',[TransactionController::class,'update']);
     Route::get('/transaction/destroy/{id}',[TransactionController::class,'destroy']);
     Route::get('/transaction/status/{id}',[TransactionController::class,'status']);
@@ -103,6 +103,14 @@ Route::middleware(['auth:sanctum', 'admin'])->group(function(){
 Route::middleware(['auth:sanctum'])->group(function(){
 
     Route::get('/dashboard',[TransactionController::class,'user'])->name('dashboard');
+    Route::get('/transaction/details/user/{id}',[TransactionController::class,'userDetail']);
+    Route::get('/transaction/downloadPDF/{id}',[TransactionController::class,'downloadPDF']);
 
-   
+    Route::get('/transaction/create',[TransactionController::class,'create'])->name('createTransaction');
+    Route::post('/transaction/add',[TransactionController::class,'store'])->name('addTransaction');
+    Route::get('/transaction/edit/{id}',[TransactionController::class,'edit']);
+    Route::post('/transaction/update/{id}',[TransactionController::class,'update']);
+    Route::get('/transaction/destroy/{id}',[TransactionController::class,'destroy']);
+    Route::get('/transaction/status/{id}',[TransactionController::class,'status']);
+    Route::get('/transaction/details/{id}',[TransactionController::class,'details']);
 });

@@ -23,6 +23,8 @@
                     <div class="row">
                         
                         <div class="col-md-4"> {{-- left  --}}
+
+                            
                             <div class="row align-items-center form-group ">
                                 <div class="col-sm-12">
                                     <label for="user_id">รหัสผู้แจ้งซ่อม <span style="color: red">*</span></label>
@@ -32,30 +34,62 @@
                                         </label>
                                     @enderror
                                 </div>
+
+                                @if(isset($transaction))
                                 <div class="col-sm-12">
-                                    @if(isset($transaction))
-                                        <input type="text" class="form-control col-sm-6"  name="" value="{{$transaction->user_id}} | {{$transaction->User->firstname}} {{$transaction->User->lastname}}" readonly>
-                                        <input type="hidden" class="form-control col-sm-6"  name="user_id"  value="{{isset($transaction)?"$transaction->user_id":''}}" >
-                                    @else
-                                        <input type="text" class="form-control col-sm-6"  name="user_id" value="{{isset($transaction)?"$transaction->user_id":''}}" >
-                                    @endif
+                                    <input type="text" class="form-control col-sm-6"  name="" value="{{$transaction->User->id}} | {{$transaction->User->firstname}} {{$transaction->User->lastname}}" readonly>
+                                    <input type="hidden" class="form-control col-sm-6"  name="user_id"  value="{{isset($transaction)?"$transaction->user_id":''}}" >
                                 </div>
+                                @else
+                                <div class="col-sm-12">
+                                    <select class="form-control" name="user_id">
+                                        @if (!isset($transaction))
+                                            <option value="" style="color:red;">--- กรุณาเลือกผู้แจ้งซ่อม ---  </option>
+                                        @endif
+
+                                        @foreach($user as $row)
+                                            <option value="{{$row->id}}"
+                                                @if(isset($transaction))
+                                                    @if($transaction->user_id == $row->id)
+                                                        selected
+                                                    @endif
+                                                @endif
+                                            > {{$row->id}} | {{$row->firstname}}  {{$row->lastname}}  </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                @endif 
                             </div>
 
                             <div class="row align-items-center form-group mt-4">
                                 <div class="col-sm-12">
-                                    <label for="problem">อาการหรือปัญหา <span style="color: red">*</span></label>
-                                    @error('problem')
+                                    <label for="equipment_id">รหัสครุภัณฑ์  <span style="color: red">*</span></label>
+                                    @error('equipment_id')
                                         <label>
                                             <span class="text-danger">{{$message}}</span>
                                         </label>
                                     @enderror
                                 </div>
                                 <div class="col-sm-12">
-                                    <input type="text" class="form-control col-sm-6"  name="problem" value="{{isset($transaction)?"$transaction->problem":''}}" >
+                                    <select class="form-control" name="equipment_id">
+                                        @if (!isset($transaction))
+                                            <option value="" style="color:red;">--- กรุณาเลือกครุภัณฑ์ ---  </option>
+                                        @endif
+
+                                        @foreach($equipment as $row)
+                                            <option value="{{$row->id}}"
+                                                @if(isset($transaction))
+                                                    @if($transaction->equipment_id == $row->id)
+                                                        selected
+                                                    @endif
+                                                @endif
+                                            > {{$row->equipment_number}} | {{$row->name}} | {{$row->TypeEquipment->name}} / {{$row->TypeEquipment->category->name}} </option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
 
+                            @if ( isset($transaction) )
                             <div class="row align-items-center form-group mt-4">
                                 <div class="col-sm-12">
                                     <label for="set_at">วันที่กำหนดส่งคืน <span style="color: red">*</span></label>
@@ -67,10 +101,16 @@
                                 </div>
                           
                                 <div class="col-sm-12">
-                                    <input type="datetime" class="form-control col-sm-6"  name="set_at" value="{{isset($transaction)?"$transaction->set_at":''}}" >          
+                                    @if(isset($transaction))
+                                        <input type="datetime" class="form-control col-sm-6"  name="set_at" value="{{$transaction->set_at}}" >
+                                    @else
+                                        <input type="datetime-local" class="form-control col-sm-6"  name="set_at" value="" >
+                                    @endif       
                                 </div>
                             </div>
+                            @endif
 
+                            @if ( isset($transaction) )
                             <div class="row align-items-center form-group mt-4">
                                 <div class="col-sm-12">
                                     <label for="price">ราคา</label>
@@ -84,6 +124,7 @@
                                     <input type="number" class="form-control col-sm-6"  name="price" value="{{isset($transaction)?"$transaction->price":''}}" >     
                                 </div>
                             </div>
+                            @endif
 
                             <div class="row align-items-center form-group mt-4">
                                 <div class="col-sm-12">
@@ -150,33 +191,21 @@
 
                             <div class="row align-items-center form-group mt-4">
                                 <div class="col-sm-12">
-                                    <label for="equipment_id">รหัสครุภัณฑ์  <span style="color: red">*</span></label>
-                                    @error('equipment_id')
+                                    <label for="problem">อาการหรือปัญหา <span style="color: red">*</span></label>
+                                    @error('problem')
                                         <label>
                                             <span class="text-danger">{{$message}}</span>
                                         </label>
                                     @enderror
                                 </div>
                                 <div class="col-sm-12">
-                                    <select class="form-control" name="equipment_id">
-                                        @if (!isset($transaction))
-                                            <option value="" style="color:red;">--- กรุณาเลือกครุภัณฑ์ ---  </option>
-                                        @endif
-
-                                        @foreach($equipment as $row)
-                                            <option value="{{$row->id}}"
-                                                @if(isset($transaction))
-                                                    @if($transaction->equipment_id == $row->id)
-                                                        selected
-                                                    @endif
-                                                @endif
-                                            > {{$row->equipment_number}} | {{$row->name}} | {{$row->TypeEquipment->name}} / {{$row->TypeEquipment->category->name}} </option>
-                                        @endforeach
-                                    </select>
-                                    {{-- <input type="text" class="form-control col-sm-6"  name="equipment_id" value="{{isset($Transaction)?"$Transaction->equipment_id":''}}" > --}}
+                                    <input type="text" class="form-control col-sm-6"  name="problem" value="{{isset($transaction)?"$transaction->problem":''}}" >
                                 </div>
                             </div>
 
+                         
+
+                            @if ( isset($transaction) )
                             <div class="row align-items-center form-group mt-4">
                                 <div class="col-sm-12">
                                     <label for="status">สถานะ <span style="color: red">*</span></label>
@@ -217,7 +246,9 @@
                                     {{-- <input type="text" class="form-control col-sm-6"  name="status" value="{{isset($Category)?"$Category->status":''}}" > --}}
                                 </div>
                             </div>
+                            @endif
 
+                            @if ( isset($transaction) )
                             <div class="row align-items-center form-group mt-4">
                                 <div class="col-sm-12">
                                     <label for="details">สาเหตุ / รายละเอียด</label>
@@ -231,7 +262,9 @@
                                     <input type="text" class="form-control col-sm-6"  name="details" value="{{isset($transaction)?"$transaction->details":''}}" >
                                 </div>
                             </div>
+                            @endif
 
+                            @if ( isset($transaction) )
                             <div class="row align-items-center form-group mt-4">
                                 <div class="col-sm-12">
                                     <label for="guaranty">ประกัน</label>
@@ -245,6 +278,7 @@
                                     <input type="text" class="form-control col-sm-6"  name="guaranty" value="{{isset($transaction)?"$transaction->guaranty":''}}" >
                                 </div>
                             </div>
+                            @endif
 
                             <div class="row align-items-center form-group mt-4">
                                 <div class="d-flex flex-row-reverse align-items-start bd-highlight mt-4" >

@@ -20,7 +20,7 @@
                 </div>
                 <div class="d-flex flex-row-reverse  ">
                     {{-- <a class="nav-link" href="{{ route('type') }}"> --}}
-                    <a href="{{ route('createTransaction') }}" class="btn btn-outline-success" style=" display: flex; align-items: center"><i class="fas fa-plus-circle"></i>&nbsp; แจ้งซ่อม </a>
+                    <a href="{{ route('createTransactionByAdmin') }}" class="btn btn-outline-success" style=" display: flex; align-items: center"><i class="fas fa-plus-circle"></i>&nbsp; แจ้งซ่อม </a>
                 </div>
             </div>
 
@@ -110,8 +110,8 @@
                                 <td style="width: 10%; vertical-align: middle;">{{$row->Equipment->TypeEquipment->name}}</td>
                                 <td style="width: 8%; vertical-align: middle;">{{$row->Equipment->TypeEquipment->category->name}}</td>
                                 <td style="width: 15%; vertical-align: middle;">{{$row->problem}}</td>
-                                <td style="width: 14%; vertical-align: middle; text-align: center">{{$row->created_at}}</td>
-                                <td style="width: 8%; vertical-align: middle; text-align: center">{{$row->set_at}}</td>
+                                <td style="width: 10%; vertical-align: middle; text-align: center">{{$row->created_at}}</td>
+                                <td style="width: 10%; vertical-align: middle; text-align: center">{{$row->set_at}}</td>
                                 <td style="width: 6%; vertical-align: middle; "> 
                                         @if ( $row->status== "เรียบร้อย" )
                                             <nav style="height: 30px; border-radius: 10px; background-color: green; vertical-align: middle; text-align: center; padding: 5px; color: #fff">  {{$row->status}} </nav>
@@ -134,7 +134,7 @@
                                     <center><a href="{{url('/transaction/details/'.$row->id)}}" class="btn btn-success" style="width: 70px;"><i class="fas fa-eye"></i></a></center>
                                 </td>
                                 <td style="width: 4%; vertical-align: middle;">
-                                    <center><a href="{{url('/transaction/edit/'.$row->id)}}" class="btn btn-warning" style="width: 70px"><i class="fas fa-edit"></i></a></center>
+                                    <center><a href="{{url('/transaction/editByAdmin/'.$row->id)}}" class="btn btn-warning" style="width: 70px"><i class="fas fa-edit"></i></a></center>
                                 </td>
                                 <td style="width: 4%; vertical-align: middle; text-align: center">
                                     @if ($row->status != "แจ้งซ่อม")
@@ -155,7 +155,7 @@
                         </tbody>
                     </table>
                     @else
-                        <h3 style="color:red; text-align:center ;padding-top: 20px; padding-bottom: 20px">-- ไม่มีข้อมูล หมวดหมู่ครุภัณฑ์ --</h3>
+                        <h3 style="color:red; text-align:center ;padding-top: 20px; padding-bottom: 20px">-- ไม่มีข้อมูล แจ้งซ่อมครุภัณฑ์ --</h3>
                     @endif
                 </div>
             </div>

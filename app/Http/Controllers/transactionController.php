@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
 use App\Models\Transaction;
 use App\Models\Equipment;
+use App\Models\User;
 use PDF;
 
 
@@ -55,15 +56,69 @@ class TransactionController extends Controller
             'status_sussecc', 'count_status_sussecc' ));
     }
 
+    public function createByAdmin()
+    {
+        $equipment = Equipment::orderBy('id', 'DESC')->get();
+        $user = User::orderBy('id', 'DESC')->get();
+        return view('admin.transaction.form',  compact('equipment','user'));
+    }
+
     public function create()
     {
         $equipment = Equipment::orderBy('id', 'DESC')->get();
-        return view('admin.transaction.form',  compact('equipment'));
+        return view('transaction.form',  compact('equipment'));
     }
 
     public function user(){
-        $transaction = Transaction::where('id', Auth::user()->id)->orderBy('updated_at', 'desc')->get();
-        return view('transaction.user', compact('transaction'));
+        $status_notifyRepair = DB::table('transactions')
+            ->select('*')
+            ->where('user_id',  Auth::user()->id)
+            ->where('status', 'แจ้งซ่อม')
+            ->orderBy('id', 'DESC')
+            ->get();
+
+        $status_cancelr = DB::table('transactions')
+            ->select('*')
+            ->where('user_id',  Auth::user()->id)
+            ->where('status', 'ยกเลิก')
+            ->orderBy('id', 'DESC')
+            ->get();
+
+        $status_beingRepaired = DB::table('transactions')
+            ->select('*')
+            ->where('user_id',  Auth::user()->id)
+            ->where('status', 'กำลังซ่อม')
+            ->orderBy('id', 'DESC')
+            ->get();
+
+        $status_sussecc = DB::table('transactions')
+            ->select('*')
+            ->where('user_id',  Auth::user()->id)
+            ->where('status', 'เรียบร้อย')
+            ->orderBy('id', 'DESC')
+            ->get();
+
+        $transaction = Transaction::where('user_id', Auth::user()->id)->orderBy('updated_at', 'desc')->get();
+        $count_translation = $transaction->count();
+        $count_status_notifyRepair = $status_notifyRepair->count();
+        $count_status_cancelr = $status_cancelr->count();
+        $count_status_beingRepaired = $status_beingRepaired->count();
+        $count_status_sussecc = $status_sussecc->count();
+        
+      
+        return view('transaction.user',
+        compact('transaction', 'count_translation',
+            'status_notifyRepair', 'count_status_notifyRepair', 
+            'status_cancelr', 'count_status_cancelr', 
+            'status_beingRepaired', 'count_status_beingRepaired', 
+            'status_sussecc', 'count_status_sussecc' ));
+    }
+
+    
+    public function userDetail($id)
+    {
+        $transaction = Transaction::find($id);
+        return view('transaction.details', compact('transaction'));
     }
 
     public function details($id)
@@ -84,6 +139,8 @@ class TransactionController extends Controller
         $pdf::Output('report.pdf');
     }
 
+    
+
     public function store(Request $request)
     {
         $request->validate(
@@ -92,8 +149,8 @@ class TransactionController extends Controller
                 'code' => 'required|unique:transactions|max:191',
                 'problem' => 'required|max:191',
                 'equipment_id' => 'required',
-                'status' => 'required',
-                'set_at' => 'required',
+                // 'status' => 'required',
+                // 'set_at' => 'required',
                 'fileImage' => 'mimes:pdf,png,jpg,jpeg,pdf',
             ],
             [
@@ -104,8 +161,8 @@ class TransactionController extends Controller
                 'problem.required' => "กรุณาป้อนอาการหรือปัญหา",
                 'problem.max' => "ห้ามป้อนเกิน 191 ตัวอักษร",
                 'equipment_id.required' => "กรุณาเลือรหัสครุภัณฑ์",
-                'status.required' => "กรุณาเลือกสถานะการซ่อม",
-                'set_at.required' => "กรุณาเลือกวันที่กำหนดส่งคืน",
+                // 'status.required' => "กรุณาเลือกสถานะการซ่อม",
+                // 'set_at.required' => "กรุณาเลือกวันที่กำหนดส่งคืน",
                 'fileImage.mimes' => "นามสกุลไฟล์ต้องเป็น pdf png jpg jpeg pdf เท่านั้น",
             ]
         );
@@ -116,10 +173,11 @@ class TransactionController extends Controller
         $transaction->problem = $request->problem;
         $transaction->equipment_id = $request->equipment_id;
         $transaction->details = $request->details;
-        $transaction->status = $request->status;
+        $transaction->status = "แจ้งซ่อม";
         $transaction->price = $request->price;
         $transaction->guaranty = $request->guaranty;
-        $transaction->set_at = $request->set_at;
+        // $transaction->set_at = Carbon::now()->subDays(7);
+        $transaction->set_at = Carbon::now()->addDays(7);
         $transaction->user_id_created = Auth::user()->id;
         $transaction->user_id_updated = Auth::user()->id;
       
@@ -130,22 +188,45 @@ class TransactionController extends Controller
             $newFile = time().'-'.$file_gen.".".$file_ext;
 
             $request->fileImage->move(public_path('file'),  $newFile);
-            // $path = $file->storeAs('public/', $newFile);
             $transaction->fileImage = 'file/'.$newFile;
             $transaction->type_file = $file_ext;
         }
-
+        // dd( $transaction);
         $transaction->save();
-        return redirect('/transaction/all')->with('success', 'บันทึกข้อมูลเรียบร้อย');
+        // DB::table('transactions')->insert([
+        //     'user_id' =>  $request->user_id,
+        //     'code' => $request->code,
+        //     'problem' => $request->problem,
+        //     'equipment_id' => $request->equipment_id,
+        //     'details' => $request->details,
+        //     'status' => $request->status,
+        //     'price' => $request->price,
+        //     'guaranty' => $request->guaranty,
+        //     'set_at' =>  Carbon::now()->subDays(7),
+        //     'user_id_created' =>  Auth::user()->id,
+        //     'user_id_updated' =>  Auth::user()->id,
+        // ]);
+       
+         if( Auth::user()->id == 1 || Auth::user()->status != 0 ){
+            return redirect('/transaction/all')->with('success', 'บันทึกข้อมูลเรียบร้อย');
+         }else{
+            return redirect('/dashboard')->with('success', 'บันทึกข้อมูลเรียบร้อย');
+         }
+    }
+
+    public function editByAdmin($id)
+    {
+        $transaction = Transaction::find($id);
+        $user = User::orderBy('id', 'DESC')->get();
+        $equipment = Equipment::orderBy('id', 'DESC')->get();
+        return view('admin.transaction.form', compact('transaction', 'equipment', 'user'));
     }
 
     public function edit($id)
     {
         $transaction = Transaction::find($id);
         $equipment = Equipment::orderBy('id', 'DESC')->get();
-
-       
-        return view('admin.transaction.form', compact('transaction', 'equipment'));
+        return view('transaction.form', compact('transaction', 'equipment'));
     }
 
     public function update(Request $request, $id)
