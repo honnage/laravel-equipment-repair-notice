@@ -16,12 +16,12 @@ $(document).ready(function(){
         });
     });
 
-    $('.deletecancel').click(function(evt){
+    $('.deleteCancel').click(function(evt){
         var name=$(this).data("name");
         var form=$(this).closest("form");
         evt.preventDefault();
         swal({
-            title:`ไม่สามารถลบข้อมูล `,
+            title:`ไม่สามารถลบข้อมูลได้ `,
             text:"นอกเหนือจากสถานะ แจ้งซ่อมได้ ",
             icon:"warning",
             // buttons:true,ฟ
@@ -32,4 +32,22 @@ $(document).ready(function(){
             }
         });
     });
+
+    $('.editCancel').click(function(evt){
+        var name=$(this).data("name");
+        var form=$(this).closest("form");
+        evt.preventDefault();
+        swal({
+            title:`ไม่สามารถแก้ไขได้ `,
+            text:"นอกเหนือจากสถานะ แจ้งซ่อมได้ ",
+            icon:"warning",
+            // buttons:true,ฟ
+            // dangerMode:true
+        }).then((wilDelete)=>{
+            if(wilDelete){
+                form.submit();
+            }
+        });
+    });
+
 });

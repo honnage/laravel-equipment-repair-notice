@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="container">
-        <div class="card">
+        <div class="card mt-2">
         <main>
             <div class="container-fluid px-4">
                 <div class="d-flex justify-content-between mt-4">
@@ -150,6 +150,7 @@
                                     <div class="col-sm-12">
                                         @if(isset($transaction))
                                             <input type="text" class="form-control col-sm-6"  name="code" value="{{isset($transaction)?"$transaction->code":''}}" readonly>
+                                           
                                         @else
                                             <input type="text" class="form-control col-sm-6"  name="code" value="{{isset($transaction)?"$transaction->code":''}}" >
                                         @endif
@@ -182,13 +183,12 @@
                                         @enderror
                                     </div>
                                     <div class="col-sm-12">
-                                        <input type="text" class="form-control col-sm-6"  name="code" value="{{isset($transaction)?"$transaction->status":''}}" readonly>
+                                        <input type="text" class="form-control col-sm-6"  name="status" value="{{isset($transaction)?"$transaction->status":''}}" readonly>
+                                        <input type="hidden" class="form-control col-sm-6"  name="set_at"  value="{{isset($transaction)?"$transaction->set_at":''}}" >
                                     </div>
                                 </div>
                                 @endif
                      
-                                {{-- <input type="hidden" class="form-control col-sm-6"  name="status"  value="แจ้งซ่อม" > --}}
-    
                                 <div class="row align-items-center form-group mt-4">
                                     <div class="d-flex flex-row-reverse align-items-start bd-highlight mt-4" >
                                         <input type="submit" name="submit" value="{{isset($transaction)? "แก้ไข":"เพิ่มข้อมูล"}}" class="{{isset($transaction)? "btn btn-warning col-sm-5":"btn btn-success col-sm-5"}}">

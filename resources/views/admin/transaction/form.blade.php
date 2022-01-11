@@ -22,9 +22,7 @@
                     {{csrf_field()}}
                     <div class="row">
                         
-                        <div class="col-md-4"> {{-- left  --}}
-
-                            
+                        <div class="col-md-4"> {{-- left  --}}                            
                             <div class="row align-items-center form-group ">
                                 <div class="col-sm-12">
                                     <label for="user_id">รหัสผู้แจ้งซ่อม <span style="color: red">*</span></label>
@@ -71,28 +69,32 @@
                                     @enderror
                                 </div>
                                 <div class="col-sm-12">
-                                    <select class="form-control" name="equipment_id">
-                                        @if (!isset($transaction))
-                                            <option value="" style="color:red;">--- กรุณาเลือกครุภัณฑ์ ---  </option>
-                                        @endif
-
-                                        @foreach($equipment as $row)
-                                            <option value="{{$row->id}}"
-                                                @if(isset($transaction))
-                                                    @if($transaction->equipment_id == $row->id)
-                                                        selected
+                                    @if (isset($transaction))
+                                        <input type="text" class="form-control col-sm-6"  name="" value="{{$transaction->equipment_id}} | {{$transaction->Equipment->name}} / {{$transaction->Equipment->TypeEquipment->name}} / {{$transaction->Equipment->TypeEquipment->category->name}}" readonly>
+                                        <input type="hidden" class="form-control col-sm-6"  name="" value="{{$transaction->equipment_id}} ">
+                                    @else
+                                        <select class="form-control" name="equipment_id">
+                                            @if (!isset($transaction))
+                                                <option value="" style="color:red;">--- กรุณาเลือกครุภัณฑ์ ---  </option>
+                                            @endif
+                                            @foreach($equipment as $row)
+                                                <option value="{{$row->id}}"
+                                                    @if(isset($transaction))
+                                                        @if($transaction->equipment_id == $row->id)
+                                                            selected
+                                                        @endif
                                                     @endif
-                                                @endif
-                                            > {{$row->equipment_number}} | {{$row->name}} | {{$row->TypeEquipment->name}} / {{$row->TypeEquipment->category->name}} </option>
-                                        @endforeach
-                                    </select>
+                                                > {{$row->equipment_number}} | {{$row->name}} | {{$row->TypeEquipment->name}} / {{$row->TypeEquipment->category->name}} </option>
+                                            @endforeach
+                                        </select>
+                                    @endif
                                 </div>
                             </div>
 
                             @if ( isset($transaction) )
                             <div class="row align-items-center form-group mt-4">
                                 <div class="col-sm-12">
-                                    <label for="set_at">วันที่กำหนดส่งคืน <span style="color: red">*</span></label>
+                                    <label for="set_at">วันที่กำหนดส่งคืน  </label>
                                     @error('set_at')
                                         <label>
                                             <span class="text-danger">{{$message}}</span>
@@ -100,12 +102,10 @@
                                     @enderror
                                 </div>
                           
-                                <div class="col-sm-12">
-                                    @if(isset($transaction))
-                                        <input type="datetime" class="form-control col-sm-6"  name="set_at" value="{{$transaction->set_at}}" >
-                                    @else
-                                        <input type="datetime-local" class="form-control col-sm-6"  name="set_at" value="" >
-                                    @endif       
+                                <div class="col-sm-6 d-flex">
+                                    {{-- <label> <input type="datetime" class="form-control col-sm-3"  name="set_at" value="" ></label> --}}
+                                    <input type="datetime" class="form-control col-sm-12"  name="" value="{{$transaction->set_at}}" readonly> &nbsp;&nbsp;&nbsp;
+                                    <input type="datetime-local" class="form-control col-sm-12"  name="set_at" value="" >
                                 </div>
                             </div>
                             @endif
@@ -136,7 +136,6 @@
                                     @enderror
                                 </div>
                                 <div class="col-sm-12">
-                                    {{-- {{$Transaction->fileImage}} --}}
                                     <input type="file" class="form-control col-sm-6"  name="fileImage" value="{{isset($transaction)?"$transaction->fileImage":''}}" >         
                                 </div>
                             </div>
@@ -163,8 +162,6 @@
                                         <a href="{{ asset($transaction->fileImage) }}"  class="btn btn-outline-primary mt-4">Open file PDF</a>
                                     </div>
                                 </div>
-                                
-                                
                                 @endif
                             @endif
                            
@@ -199,7 +196,7 @@
                                     @enderror
                                 </div>
                                 <div class="col-sm-12">
-                                    <input type="text" class="form-control col-sm-6"  name="problem" value="{{isset($transaction)?"$transaction->problem":''}}" >
+                                    <input type="text" class="form-control col-sm-6"  name="problem" value="{{isset($transaction)?"$transaction->problem":''}}" readonly>
                                 </div>
                             </div>
 

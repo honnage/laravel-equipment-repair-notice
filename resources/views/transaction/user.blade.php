@@ -138,12 +138,16 @@
                                             <center><a href="{{url('/transaction/details/user/'.$row->id)}}" class="btn btn-success" style="width: 70px;"><i class="fas fa-eye"></i></a></center>
                                         </td>
                                         <td style="width: 4%; vertical-align: middle;">
-                                            <center><a href="{{url('/transaction/edit/'.$row->id)}}" class="btn btn-warning" style="width: 70px"><i class="fas fa-edit"></i></a></center>
+                                            @if ($row->status != "แจ้งซ่อม")
+                                                <a type="#" class="btn btn-secondary editCancel" data-name="{{$row->code}}" style="width: 70px;">-</a>
+                                            @else
+                                                <center><a href="{{url('/transaction/edit/'.$row->id)}}" class="btn btn-warning" style="width: 70px"><i class="fas fa-edit"></i></a></center>
+                                            @endif
                                         </td>
                                         <td style="width: 4%; vertical-align: middle; text-align: center">
                                             @if ($row->status != "แจ้งซ่อม")
                                                 <form action="" method="get">
-                                                    <a type="#" class="btn btn-secondary deletecancel" data-name="{{$row->code}}" style="width: 70px;">-</a>
+                                                    <a type="#" class="btn btn-secondary deleteCancel" data-name="{{$row->code}}" style="width: 70px;">-</a>
                                                 </form>
                                             @else
                                                 <form action="{{url('/transaction/destroy/'.$row->id)}}" method="get">

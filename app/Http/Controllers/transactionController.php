@@ -176,7 +176,6 @@ class TransactionController extends Controller
         $transaction->status = "แจ้งซ่อม";
         $transaction->price = $request->price;
         $transaction->guaranty = $request->guaranty;
-        // $transaction->set_at = Carbon::now()->subDays(7);
         $transaction->set_at = Carbon::now()->addDays(7);
         $transaction->user_id_created = Auth::user()->id;
         $transaction->user_id_updated = Auth::user()->id;
@@ -193,20 +192,7 @@ class TransactionController extends Controller
         }
         // dd( $transaction);
         $transaction->save();
-        // DB::table('transactions')->insert([
-        //     'user_id' =>  $request->user_id,
-        //     'code' => $request->code,
-        //     'problem' => $request->problem,
-        //     'equipment_id' => $request->equipment_id,
-        //     'details' => $request->details,
-        //     'status' => $request->status,
-        //     'price' => $request->price,
-        //     'guaranty' => $request->guaranty,
-        //     'set_at' =>  Carbon::now()->subDays(7),
-        //     'user_id_created' =>  Auth::user()->id,
-        //     'user_id_updated' =>  Auth::user()->id,
-        // ]);
-       
+
          if( Auth::user()->id == 1 || Auth::user()->status != 0 ){
             return redirect('/transaction/all')->with('success', 'บันทึกข้อมูลเรียบร้อย');
          }else{
@@ -237,8 +223,8 @@ class TransactionController extends Controller
                 'code' => 'required|max:191',
                 'problem' => 'required|max:191',
                 'equipment_id' => 'required',
-                'status' => 'required',
-                'set_at' => 'required',
+                // 'status' => 'required',
+                // 'set_at' => 'required',
                 'fileImage' => 'mimes:pdf,png,jpg,jpeg,pdf,zip,',
             ],
             [
@@ -249,8 +235,8 @@ class TransactionController extends Controller
                 'problem.required' => "กรุณาป้อนอาการหรือปัญหา",
                 'problem.max' => "ห้ามป้อนเกิน 191 ตัวอักษร",
                 'equipment_id.required' => "กรุณาเลือรหัสครุภัณฑ์",
-                'status.required' => "กรุณาเลือกสถานะการซ่อม",
-                'set_at.required' => "กรุณาเลือกวันที่กำหนดส่งคืน",
+                // 'status.required' => "กรุณาเลือกสถานะการซ่อม",
+                // 'set_at.required' => "กรุณาเลือกวันที่กำหนดส่งคืน",
                 'fileImage.mimes' => "นามสกุลไฟล์ต้องเป็น pdf png jpg jpeg pdf zip เท่านั้น",
             ]
         );
