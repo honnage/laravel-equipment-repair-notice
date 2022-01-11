@@ -38,7 +38,7 @@
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark" style="height: 60px">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="index.html" style="font-size:30px">แจ้งซ่อมครุภัณฑ์</a> &nbsp;&nbsp;
+            <a class="navbar-brand ps-3" href="{{ route('dashboard') }}" style="font-size:30px">แจ้งซ่อมครุภัณฑ์</a> &nbsp;&nbsp;
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
@@ -78,75 +78,37 @@
             <div id="layoutSidenav_nav">
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
-                        <div class="nav">
-                            {{-- <div class="sb-sidenav-menu-heading">Core</div> --}}
-                             <div class="sb-sidenav-menu-heading"></div>
-                            <a class="nav-link" href="{{ route('transaction') }}" >
-                                <div class="sb-nav-link-icon"><i class="fas fa-chart-pie"></i></i></div>
-                                ข้อมูลการแจ้งซ่อม
-                            </a>
-                            <a class="nav-link" href="{{ route('equipment') }}">
-                                <div class="sb-nav-link-icon"><i class="fas fa-th"></i></i></div>
-                                จัดการครุภัณฑ์
-                            </a>
-                            <a class="nav-link" href="{{ route('type') }}">
-                                <div class="sb-nav-link-icon"><i class="far fa-copy"></i></i></div>
-                                จัดการประเภทครุภัณฑ์
-                            </a>
-                            <a class="nav-link" href="{{ route('category') }}">
-                                <div class="sb-nav-link-icon"><i class="far fa-copy"></i></i></div>
-                                จัดการหมวดหมู่ครุภัณฑ์
-                            </a>
-                            <a class="nav-link" href="{{ route('user') }}">
-                                <div class="sb-nav-link-icon"><i class="fas fa-chalkboard-teacher"></i></i></div>
-                                ข้อมูลพนักงาน
-                            </a>
-
-                            {{-- <div class="sb-sidenav-menu-heading">Interface</div>
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                                Layouts
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="layout-static.html">Static Navigation</a>
-                                    <a class="nav-link" href="layout-sidenav-light.html">Light Sidenav</a>
-                                </nav>
-                            </div>
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                                Pages
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
-                                        Authentication
-                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        {{-- @if(Auth::check() != null ) --}}
+                            @if(Auth::user()->checkIsStatus() && Auth::check() && (Auth::user()->checkIsStatus() != 0 ) || (Auth::user()->id == 1 ))
+                                <div class="nav">
+                                    {{-- <div class="sb-sidenav-menu-heading">Core</div> --}}
+                                    <div class="sb-sidenav-menu-heading"></div>
+                                    <a class="nav-link" href="{{ route('transaction') }}" >
+                                        <div class="sb-nav-link-icon"><i class="fas fa-chart-pie"></i></i></div>
+                                        ข้อมูลการแจ้งซ่อม
+                                    </a> 
+                                    <a class="nav-link" href="{{ route('equipment') }}">
+                                        <div class="sb-nav-link-icon"><i class="fas fa-th"></i></i></div>
+                                        จัดการครุภัณฑ์
                                     </a>
-                                    <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
-                                        <nav class="sb-sidenav-menu-nested nav">
-                                            <a class="nav-link" href="login.html">Login</a>
-                                            <a class="nav-link" href="register.html">Register</a>
-                                            <a class="nav-link" href="password.html">Forgot Password</a>
-                                        </nav>
-                                    </div>
-                                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
-                                        Error
-                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                    <a class="nav-link" href="{{ route('type') }}">
+                                        <div class="sb-nav-link-icon"><i class="far fa-copy"></i></i></div>
+                                        จัดการประเภทครุภัณฑ์
                                     </a>
-                                    <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
-                                        <nav class="sb-sidenav-menu-nested nav">
-                                            <a class="nav-link" href="401.html">401 Page</a>
-                                            <a class="nav-link" href="404.html">404 Page</a>
-                                            <a class="nav-link" href="500.html">500 Page</a>
-                                        </nav>
-                                    </div>
-                                </nav>
-                            </div> --}}
-
-                        </div>
+                                    <a class="nav-link" href="{{ route('category') }}">
+                                        <div class="sb-nav-link-icon"><i class="far fa-copy"></i></i></div>
+                                        จัดการหมวดหมู่ครุภัณฑ์
+                                    </a>
+                                    <a class="nav-link" href="{{ route('user') }}">
+                                        <div class="sb-nav-link-icon"><i class="fas fa-chalkboard-teacher"></i></i></div>
+                                        ข้อมูลพนักงาน
+                                    </a>
+                                </div>
+                            @else
+                                ffff                                
+                            @endif
+                    
+                        {{-- @endif --}}
                     </div>
                     <div class="sb-sidenav-footer">
                         <div class="small">Logged in as:</div>

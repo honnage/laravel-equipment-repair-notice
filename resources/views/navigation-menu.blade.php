@@ -1,12 +1,12 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
+<nav x-data="{ open: false }" class=" border-b border-gray-100" style="background-color:royalblue">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}" style="text-decoration: none; font-size: 20px; color: #000; font-weight: bold">
-                        ระบบแจ้งซ่อมครุภัณฑ์
+                    <a href="{{ route('dashboard') }}" style="text-decoration: none; font-size: 20px; color: #fff; font-weight: bold">
+                        แจ้งซ่อมครุภัณฑ์
                         {{-- <x-jet-application-mark class="block h-9 w-auto" /> --}}
                     </a>
                 </div>
@@ -25,15 +25,13 @@
                 </div>
             </div>
 
-            <div class="hidden sm:flex sm:items-center sm:ml-6">
-
-                <x-jet-nav-link style="text-decoration: none; margin-right: 20px" href="{{ route('customer') }}" >
-                    ลูกค้า
-                </x-jet-nav-link>
-        
-                <x-jet-nav-link style="text-decoration: none; margin-right: 20px" href="{{ route('category') }}" >
-                    หมวดหมู่
-                </x-jet-nav-link>
+            <div class="hidden sm:flex sm:items-center sm:ml-6" style="color:#fff;">
+                @if(Auth::user()->checkIsStatus() && Auth::check() && (Auth::user()->checkIsStatus() != 0 ) || (Auth::user()->id == 1 ))
+                    <a href="{{ route('transaction') }}" style="color:rgb(228, 227, 227); text-decoration: none; ">
+                        จัดการข้อมูลทั้งหมด
+                    </a>
+                    
+                @endif
 
                 <!-- Teams Dropdown -->
                 @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
@@ -112,7 +110,7 @@
                                 {{ __('Manage Account') }}
                             </div>
 
-                            <x-jet-dropdown-link href="{{ route('profile.show') }}">
+                            <x-jet-dropdown-link href="{{ route('profile.show') }}" style="text-decoration: none;">
                                 {{ __('Profile') }}
                             </x-jet-dropdown-link>
 
@@ -128,9 +126,9 @@
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
 
-                                <x-jet-dropdown-link href="{{ route('logout') }}"
+                                <x-jet-dropdown-link href="{{ route('logout') }}" 
                                          onclick="event.preventDefault();
-                                                this.closest('form').submit();">
+                                                this.closest('form').submit();" style="text-decoration: none; ">
                                     {{ __('Log Out') }}
                                 </x-jet-dropdown-link>
                             </form>

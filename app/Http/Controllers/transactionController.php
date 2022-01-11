@@ -61,6 +61,10 @@ class TransactionController extends Controller
         return view('admin.transaction.form',  compact('Equipment'));
     }
 
+    public function user(){
+        return view('transaction.user');
+    }
+
     public function details($id)
     {
         $transaction = Transaction::find($id);

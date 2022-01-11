@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 // use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\ServiceController;
@@ -12,6 +13,8 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TypeEquipmentController;
 use App\Http\Controllers\EquipmentController;
 use App\Http\Controllers\UserController;
+use App\Http\Middleware\VerifyIsStatus;
+
 
 
 Route::get('/', function () {
@@ -24,9 +27,10 @@ Route::get('/', function () {
 //     return view('dashboard', compact('users'));
 // })->name('dashboard');
 
-Route::middleware(['auth:sanctum', 'verified'])->group(function(){
+
+Route::middleware(['auth:sanctum', 'admin'])->group(function(){
     // transactions
-    Route::get('/dashboard',[TransactionController::class,'index'])->name('dashboard');
+    // Route::get('/dashboard',[TransactionController::class,'index'])->name('dashboard');
     Route::get('/transaction/all',[TransactionController::class,'index'])->name('transaction');
     Route::get('/transaction/create',[TransactionController::class,'create'])->name('createTransaction');
     Route::post('/transaction/add',[TransactionController::class,'store'])->name('addTransaction');
@@ -71,11 +75,11 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function(){
 
 
     // Customer
-    Route::get('/customer/all',[CustomerController::class,'index'])->name('customer');
-    Route::post('/customer/add',[CustomerController::class,'store'])->name('addCustomer');
-    Route::get('/customer/edit/{id}',[CustomerController::class,'edit']);
-    Route::get('/customer/detail/{id}',[CustomerController::class,'detail']);
-    Route::post('/customer/update/{id}',[CustomerController::class,'update']);
+    // Route::get('/customer/all',[CustomerController::class,'index'])->name('customer');
+    // Route::post('/customer/add',[CustomerController::class,'store'])->name('addCustomer');
+    // Route::get('/customer/edit/{id}',[CustomerController::class,'edit']);
+    // Route::get('/customer/detail/{id}',[CustomerController::class,'detail']);
+    // Route::post('/customer/update/{id}',[CustomerController::class,'update']);
 
     // // Department
     // Route::get('/department/all',[DepartmentController::class,'index'])->name('department');
@@ -93,5 +97,12 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function(){
     // Route::get('/service/edit/{id}',[ServiceController::class,'edit']);
     // Route::post('/service/update/{id}',[ServiceController::class,'update']);
     // Route::get('/service/delete/{id}',[ServiceController::class,'delete']);
+});
 
+
+Route::middleware(['auth:sanctum'])->group(function(){
+
+    Route::get('/dashboard',[TransactionController::class,'user'])->name('dashboard');
+
+   
 });
