@@ -4,7 +4,7 @@
         <div class="container-fluid px-4">
             <div class="d-flex justify-content-between mt-4">
                 <div class=" flex-row-reverse  ">
-                    @if(isset($Equipment))
+                    @if(isset($equipment))
                         <h1 class="text-left">แก้ไขข้อมูล ครุภัณฑ์ </h1>
                     @else
                         <h1 class="text-left">เพิ่มข้อมูล ครุภัณฑ์</h1>
@@ -20,7 +20,7 @@
             <br>
      
             <div class=" mb-4">
-                <form action="{{isset($Equipment)?"/equipment/update/$Equipment->id":route('addEquipment') }}" method="post">
+                <form action="{{isset($equipment)?"/equipment/update/$equipment->id":route('addEquipment') }}" method="post">
                     {{csrf_field()}}
                     <div class="row">
                         
@@ -35,10 +35,10 @@
                                     @enderror
                                 </div>
                                 <div class="col-sm-12">
-                                    @if(isset($Equipment))
-                                        <input type="text" class="form-control col-sm-6"  name="equipment_number" value="{{isset($Equipment)?"$Equipment->equipment_number":''}}"  readonly>
+                                    @if(isset($equipment))
+                                        <input type="text" class="form-control col-sm-6"  name="equipment_number" value="{{isset($equipment)?"$equipment->equipment_number":''}}"  readonly>
                                     @else
-                                        <input type="text" class="form-control col-sm-6"  name="equipment_number" value="{{isset($Equipment)?"$Equipment->equipment_number":''}}" >
+                                        <input type="text" class="form-control col-sm-6"  name="equipment_number" value="{{isset($equipment)?"$equipment->equipment_number":''}}" >
                                     @endif
                                 </div>
                             </div>
@@ -53,7 +53,7 @@
                                     @enderror
                                 </div>
                                 <div class="col-sm-12">
-                                    <input type="text" class="form-control col-sm-6"  name="name" value="{{isset($Equipment)?"$Equipment->name":''}}" >
+                                    <input type="text" class="form-control col-sm-6"  name="name" value="{{isset($equipment)?"$equipment->name":''}}" >
                                 </div>
                             </div>
 
@@ -67,7 +67,7 @@
                                     @enderror
                                 </div>
                                 <div class="col-sm-12">
-                                    <input type="date" class="form-control col-sm-6"  name="purchase_date" value="{{isset($Equipment)?"$Equipment->purchase_date":''}}" >
+                                    <input type="date" class="form-control col-sm-6"  name="purchase_date" value="{{isset($equipment)?"$equipment->purchase_date":''}}" >
                                 </div>
                             </div>
                         </div>
@@ -83,14 +83,14 @@
                                     @enderror
                                 </div>
                                 <select class="form-control" name="type_equipment_id">
-                                    @if (!isset($Equipment))
+                                    @if (!isset($equipment))
                                         <option value="" style="color:red;">--- กรุณาเลือกประเภทครุภัณฑ์ --- </option>
                                     @endif
 
                                     @foreach($typeEquipment as $row)
                                         <option value="{{$row->id}}"
-                                            @if(isset($Equipment))
-                                                @if($Equipment->type_equipment_id == $row->id)
+                                            @if(isset($equipment))
+                                                @if($equipment->type_equipment_id == $row->id)
                                                     selected
                                                 @endif
                                             @endif
@@ -109,7 +109,7 @@
                                     @enderror
                                 </div>
                                 <div class="col-sm-12">
-                                    <input type="number" class="form-control col-sm-6" required name="price" min="0" value="{{isset($Equipment)?"$Equipment->price":''}}" step="0.01" title="Currency" 
+                                    <input type="number" class="form-control col-sm-6" required name="price" min="0" value="{{isset($equipment)?"$equipment->price":''}}" step="0.01" title="Currency" 
                                         pattern="^\d+(?:\.\d{1,2})?$" onblur="this.parentNode.parentNode.style.backgroundColor=/^\d+(?:\.\d{1,2})?$/.test(this.value)?'inherit':''">
                                 </div>
                             </div>
@@ -124,7 +124,7 @@
                                     @enderror
                                 </div>
                                 <div class="col-sm-12">
-                                    <input type="text" class="form-control col-sm-6"  name="insurance" value="{{isset($Equipment)?"$Equipment->insurance":''}}" >
+                                    <input type="text" class="form-control col-sm-6"  name="insurance" value="{{isset($equipment)?"$equipment->insurance":''}}" >
                                 </div>
                             </div>
 
@@ -136,7 +136,7 @@
 
                     </div>
                     <div class="col-md-8 d-flex flex-row-reverse bd-highlight mt-4">
-                        <input type="submit" name="submit" value="{{isset($Equipment)? "แก้ไข":"เพิ่มข้อมูล"}}" class="{{isset($Equipment)? "btn btn-warning col-sm-2":"btn btn-success col-sm-2"}}">
+                        <input type="submit" name="submit" value="{{isset($equipment)? "แก้ไข":"เพิ่มข้อมูล"}}" class="{{isset($equipment)? "btn btn-warning col-sm-2":"btn btn-success col-sm-2"}}">
                         &nbsp;&nbsp;
                         <button class="btn btn-secondary col-sm-2" type="reset">ยกเลิก</button>      
                     </div>

@@ -41,14 +41,14 @@ class TransactionController extends Controller
             ->orderBy('id', 'DESC')
             ->get();
 
-        $Translation = Transaction::orderBy('updated_at', 'desc')->get();
-        $count_translation = $Translation->count();
+        $transaction = Transaction::orderBy('updated_at', 'desc')->get();
+        $count_translation = $transaction->count();
         $count_status_notifyRepair = $status_notifyRepair->count();
         $count_status_cancelr = $status_cancelr->count();
         $count_status_beingRepaired = $status_beingRepaired->count();
         $count_status_sussecc = $status_sussecc->count();
         return view('admin.transaction.index', 
-        compact('Translation', 'count_translation',
+        compact('transaction', 'count_translation',
             'status_notifyRepair', 'count_status_notifyRepair', 
             'status_cancelr', 'count_status_cancelr', 
             'status_beingRepaired', 'count_status_beingRepaired', 
@@ -57,12 +57,13 @@ class TransactionController extends Controller
 
     public function create()
     {
-        $Equipment = Equipment::orderBy('id', 'DESC')->get();
-        return view('admin.transaction.form',  compact('Equipment'));
+        $equipment = Equipment::orderBy('id', 'DESC')->get();
+        return view('admin.transaction.form',  compact('equipment'));
     }
 
     public function user(){
-        return view('transaction.user');
+        $transaction = Transaction::where('id', Auth::user()->id)->orderBy('updated_at', 'desc')->get();
+        return view('transaction.user', compact('transaction'));
     }
 
     public function details($id)
@@ -109,18 +110,18 @@ class TransactionController extends Controller
             ]
         );
 
-        $Transaction = new Transaction;
-        $Transaction->user_id = $request->user_id;
-        $Transaction->code = $request->code;
-        $Transaction->problem = $request->problem;
-        $Transaction->equipment_id = $request->equipment_id;
-        $Transaction->details = $request->details;
-        $Transaction->status = $request->status;
-        $Transaction->price = $request->price;
-        $Transaction->guaranty = $request->guaranty;
-        $Transaction->set_at = $request->set_at;
-        $Transaction->user_id_created = Auth::user()->id;
-        $Transaction->user_id_updated = Auth::user()->id;
+        $transaction = new Transaction;
+        $transaction->user_id = $request->user_id;
+        $transaction->code = $request->code;
+        $transaction->problem = $request->problem;
+        $transaction->equipment_id = $request->equipment_id;
+        $transaction->details = $request->details;
+        $transaction->status = $request->status;
+        $transaction->price = $request->price;
+        $transaction->guaranty = $request->guaranty;
+        $transaction->set_at = $request->set_at;
+        $transaction->user_id_created = Auth::user()->id;
+        $transaction->user_id_updated = Auth::user()->id;
       
         if($request->fileImage){
             $file = $request->file('fileImage'); 
@@ -130,21 +131,21 @@ class TransactionController extends Controller
 
             $request->fileImage->move(public_path('file'),  $newFile);
             // $path = $file->storeAs('public/', $newFile);
-            $Transaction->fileImage = 'file/'.$newFile;
-            $Transaction->type_file = $file_ext;
+            $transaction->fileImage = 'file/'.$newFile;
+            $transaction->type_file = $file_ext;
         }
 
-        $Transaction->save();
+        $transaction->save();
         return redirect('/transaction/all')->with('success', 'บันทึกข้อมูลเรียบร้อย');
     }
 
     public function edit($id)
     {
-        $Transaction = Transaction::find($id);
-        $Equipment = Equipment::orderBy('id', 'DESC')->get();
+        $transaction = Transaction::find($id);
+        $equipment = Equipment::orderBy('id', 'DESC')->get();
 
        
-        return view('admin.transaction.form', compact('Transaction', 'Equipment'));
+        return view('admin.transaction.form', compact('transaction', 'equipment'));
     }
 
     public function update(Request $request, $id)
@@ -253,14 +254,14 @@ class TransactionController extends Controller
             ->orderBy('id', 'DESC')
             ->get();
 
-        $Translation = Transaction::where('status', $id)->orderBy('id', 'desc')->get();
-        $count_translation = $Translation->count();
+        $transaction = Transaction::where('status', $id)->orderBy('id', 'desc')->get();
+        $count_translation = $transaction->count();
         $count_status_notifyRepair = $status_notifyRepair->count();
         $count_status_cancelr = $status_cancelr->count();
         $count_status_beingRepaired = $status_beingRepaired->count();
         $count_status_sussecc = $status_sussecc->count();
         return view('admin.transaction.query', 
-        compact('Translation', 'count_translation', 'id',
+        compact('transaction', 'count_translation', 'id',
             'status_notifyRepair', 'count_status_notifyRepair', 
             'status_cancelr', 'count_status_cancelr', 
             'status_beingRepaired', 'count_status_beingRepaired', 

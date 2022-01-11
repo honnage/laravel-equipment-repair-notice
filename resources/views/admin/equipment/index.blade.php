@@ -74,7 +74,7 @@
                     ตาราง ครุภัณฑ์
                 </div>
                 <div class="card-body">
-                    @if($Equipment->count() > 0)
+                    @if($equipment->count() > 0)
                     <table id="datatablesSimple">
                         <thead>
                             <tr>
@@ -93,7 +93,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ( $Equipment as $row )
+                            @foreach ( $equipment as $row )
                             <tr>
                                 {{-- <td style="width: 4%; vertical-align: middle;">{{$row->id}}</td> --}}
                                 <td style="width: 10%; vertical-align: middle;">{{$row->equipment_number}}</td>

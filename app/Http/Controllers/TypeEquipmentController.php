@@ -14,8 +14,8 @@ class TypeEquipmentController extends Controller
 {
     public function index()
     {
-        $TypeEquipment = TypeEquipment::orderBy('id', 'desc')->get();
-        return view('admin.type-equipment.index', compact('TypeEquipment'));
+        $typeEquipment = TypeEquipment::orderBy('id', 'desc')->get();
+        return view('admin.type-equipment.index', compact('typeEquipment'));
     }
 
     public function create()
@@ -36,20 +36,20 @@ class TypeEquipmentController extends Controller
             'name.unique'=>"มีข้มูลประเภทครุภัณฑ์นี้ในฐานข้อมูลแล้ว",
             'category_id.required'=>"กรุณาเลือกหมวดหมู่ครุภัณฑ์",
         ]);
-        $TypeEquipment = new TypeEquipment;
-        $TypeEquipment->name = $request->name;
-        $TypeEquipment->category_id = $request->category_id;
-        $TypeEquipment->user_id_created = Auth::user()->id;
-        $TypeEquipment->user_id_updated = Auth::user()->id;
-        $TypeEquipment->save();
+        $typeEquipment = new TypeEquipment;
+        $typeEquipment->name = $request->name;
+        $typeEquipment->category_id = $request->category_id;
+        $typeEquipment->user_id_created = Auth::user()->id;
+        $typeEquipment->user_id_updated = Auth::user()->id;
+        $typeEquipment->save();
         return redirect('/type/all')->with('success','บันทึกข้อมูลเรียบร้อย');
     }
 
     public function edit($id)
     {
-        $TypeEquipment = TypeEquipment::find($id);
+        $typeEquipment = TypeEquipment::find($id);
         $categories = Category::orderBy('name', 'DESC')->get();
-        return view('admin.type-equipment.form', compact('TypeEquipment', 'categories'));
+        return view('admin.type-equipment.form', compact('typeEquipment', 'categories'));
     }
 
     public function update(Request $request, $id)
@@ -73,8 +73,8 @@ class TypeEquipmentController extends Controller
 
     public function destroy($id)
     {
-        $TypeEquipment = TypeEquipment::find($id);
-        if($TypeEquipment->equipment->count() > 0){
+        $typeEquipment = TypeEquipment::find($id);
+        if($typeEquipment->equipment->count() > 0){
             Session()->flash('error','ไม่สามารถลบได้เนื่องจากมีประเภทครุภัณฑ์นี้ใช้งานอยู่');
             return redirect()->back();
         }
@@ -83,8 +83,8 @@ class TypeEquipmentController extends Controller
     }
 
     public function query($id){
-        $TypeEquipment = TypeEquipment::find($id);
+        $typeEquipment = TypeEquipment::find($id);
         $query = Equipment::where('type_equipment_id', $id)->get();
-        return view('admin.type-equipment.query', compact('query', 'TypeEquipment'));
+        return view('admin.type-equipment.query', compact('query', 'typeEquipment'));
     }
 }

@@ -16,7 +16,7 @@
 
             <div class="d-flex justify-content-between mt-4">
                 <div class=" flex-row-reverse  ">
-                    <h1 class="text-left">ค้นหาแจ้งซ่อมครุภัณฑ์ {{$Equipment->name}}</h1>
+                    <h1 class="text-left">ค้นหาแจ้งซ่อมครุภัณฑ์ {{$equipment->name}}</h1>
                 </div>
                 <div class="d-flex flex-row-reverse  ">
                     <a href="{{ route('createTransaction') }}" class="btn btn-outline-success" style=" display: flex; align-items: center"><i class="fas fa-plus-circle"></i>&nbsp; แจ้งซ่อม </a>
@@ -152,7 +152,7 @@
                         </tbody>
                     </table>
                     @else
-                        <h3 style="color:red; text-align:center ;padding-top: 20px; padding-bottom: 20px">-- ไม่มีข้อมูลค้นหาแจ้งซ่อมครุภัณฑ์ {{$Equipment->name}} --</h3>
+                        <h3 style="color:red; text-align:center ;padding-top: 20px; padding-bottom: 20px">-- ไม่มีข้อมูลค้นหาแจ้งซ่อมครุภัณฑ์ {{$equipment->name}} --</h3>
                     @endif
                 </div>
             </div>

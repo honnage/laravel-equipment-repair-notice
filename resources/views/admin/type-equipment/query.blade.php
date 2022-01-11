@@ -15,7 +15,7 @@
 
             <div class="d-flex justify-content-between mt-4">
                 <div class=" flex-row-reverse  ">
-                    <h1 class="text-left">ค้นหาประเภท {{ $TypeEquipment->name}}</h1>
+                    <h1 class="text-left">ค้นหาประเภท {{ $typeEquipment->name}}</h1>
                 </div>
                 <div class="d-flex flex-row-reverse  ">
                     <a href="{{ route('createEquipment') }}" class="btn btn-outline-success" style=" display: flex; align-items: center"><i class="fas fa-plus-circle"></i>&nbsp; เพิ่มครุภัณฑ์ </a>
@@ -79,7 +79,7 @@
                         </tbody>
                     </table>
                     @else
-                        <h3 style="color:red; text-align:center ;padding-top: 20px; padding-bottom: 20px">-- ไม่มีข้อมูลค้นหา ประเภท{{ $TypeEquipment->name}} --</h3>
+                        <h3 style="color:red; text-align:center ;padding-top: 20px; padding-bottom: 20px">-- ไม่มีข้อมูลค้นหา ประเภท{{ $typeEquipment->name}} --</h3>
                     @endif
                 </div>
             </div>

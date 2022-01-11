@@ -15,8 +15,8 @@ class EquipmentController extends Controller
 {
     public function index()
     {
-        $Equipment = Equipment::orderBy('id', 'desc')->get();
-        return view('admin.equipment.index', compact('Equipment'));
+        $equipment = Equipment::orderBy('id', 'desc')->get();
+        return view('admin.equipment.index', compact('equipment'));
     }
 
     public function create()
@@ -56,25 +56,25 @@ class EquipmentController extends Controller
             'price.max'=>"ห้ามป้อนเกิน 2 ตัวอักษร",
         ]);
       
-        $Equipment = new Equipment;
-        $Equipment->name = $request->name;
-        $Equipment->equipment_number = $request->equipment_number;
-        $Equipment->purchase_date = $request->purchase_date;
-        $Equipment->type_equipment_id = $request->type_equipment_id;
-        $Equipment->insurance = $request->insurance;
-        $Equipment->price = $request->price;
-        $Equipment->user_id_created = Auth::user()->id;
-        $Equipment->user_id_updated = Auth::user()->id;
-        $Equipment->save();
+        $equipment = new Equipment;
+        $equipment->name = $request->name;
+        $equipment->equipment_number = $request->equipment_number;
+        $equipment->purchase_date = $request->purchase_date;
+        $equipment->type_equipment_id = $request->type_equipment_id;
+        $equipment->insurance = $request->insurance;
+        $equipment->price = $request->price;
+        $equipment->user_id_created = Auth::user()->id;
+        $equipment->user_id_updated = Auth::user()->id;
+        $equipment->save();
         return redirect('/equipment/all')->with('success','บันทึกข้อมูลเรียบร้อย');
     }
 
     public function edit($id)
     {
-        $Equipment = Equipment::find($id);
+        $equipment = Equipment::find($id);
         $categories = Category::all();
         $typeEquipment = TypeEquipment::orderBy('category_id', 'DESC')->get();
-        return view('admin.equipment.form', compact('Equipment', 'categories', 'typeEquipment'));
+        return view('admin.equipment.form', compact('equipment', 'categories', 'typeEquipment'));
     }
 
     public function update(Request $request, $id)
@@ -119,17 +119,17 @@ class EquipmentController extends Controller
 
     public function destroy($id)
     {
-        $Equipment = Equipment::find($id);
-        if($Equipment->Transaction->count() > 0){
+        $equipment = Equipment::find($id);
+        if($equipment->Transaction->count() > 0){
             Session()->flash('error','ไม่สามารถลบได้เนื่องจากมีครุภัณฑ์นี้ใช้งานอยู่');
             return redirect()->back();
         }
-        TypeEquipment::find($id)->delete();
-        return redirect('/type/all')->with('success','ลบข้อมูลเรียบร้อย');
+        Equipment::find($id)->delete();
+        return redirect('/equipment/all')->with('success','ลบข้อมูลเรียบร้อย');
     }
 
     public function query($id){
-        $Equipment = Equipment::find($id);
+        $equipment = Equipment::find($id);
         $query = Transaction::where('equipment_id', $id)->orderBy('id', 'DESC')->get();
 
         $status_notifyRepair = Transaction::where('equipment_id', $id)->where('status', 'แจ้งซ่อม')->get();
@@ -141,6 +141,6 @@ class EquipmentController extends Controller
         $count_status_cancelr = $status_cancelr->count();
         $count_status_sussecc = $status_sussecc->count();
         $count_translation = $query->count();
-        return view('admin.equipment.query', compact('query', 'Equipment', 'count_translation','count_status_notifyRepair', 'count_status_beingRepaired', 'count_status_cancelr', 'count_status_sussecc'));
+        return view('admin.equipment.query', compact('query', 'equipment', 'count_translation','count_status_notifyRepair', 'count_status_beingRepaired', 'count_status_cancelr', 'count_status_sussecc'));
     }
 }

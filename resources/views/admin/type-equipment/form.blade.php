@@ -5,7 +5,7 @@
            
             <div class="d-flex justify-content-between mt-4">
                 <div class=" flex-row-reverse">
-                    @if(isset($TypeEquipment))
+                    @if(isset($typeEquipment))
                         <h1 class="text-left">แก้ไขข้อมูล ประเภทครุภัณฑ์ </h1>
                     @else
                         <h1 class="text-left">เพิ่มข้อมูล ประเภทครุภัณฑ์</h1>
@@ -20,7 +20,7 @@
             <br>
        
             <div class=" mb-4">
-                <form action="{{isset($TypeEquipment)?"/type/update/$TypeEquipment->id":route('addType') }}" method="post">
+                <form action="{{isset($typeEquipment)?"/type/update/$typeEquipment->id":route('addType') }}" method="post">
                     {{csrf_field()}}
                     <div class="row">
                         
@@ -35,7 +35,7 @@
                                     @enderror
                                 </div>
                                 <div class="col-sm-12">
-                                    <input type="text" class="form-control col-sm-6"  name="name" value="{{isset($TypeEquipment)?"$TypeEquipment->name":''}}" >
+                                    <input type="text" class="form-control col-sm-6"  name="name" value="{{isset($typeEquipment)?"$typeEquipment->name":''}}" >
                                 </div>
                             </div>
 
@@ -49,14 +49,14 @@
                                     @enderror
                                 </div>
                                 <select class="form-control" name="category_id">
-                                    @if (!isset($TypeEquipment))
+                                    @if (!isset($typeEquipment))
                                         <option value="" style="color:red;">--- กรุณาเลือกหมวดหมู่ --- </option>
                                     @endif
 
                                     @foreach($categories as $row)
                                         <option value="{{$row->id}}"
-                                            @if(isset($TypeEquipment))
-                                                @if($TypeEquipment->category_id == $row->id)
+                                            @if(isset($typeEquipment))
+                                                @if($typeEquipment->category_id == $row->id)
                                                     selected
                                                 @endif
                                             @endif
@@ -70,7 +70,7 @@
                         </div>
                     </div>
                     <div class="col-md-6 d-flex flex-row-reverse bd-highlight mt-4">
-                        <input type="submit" name="submit" value="{{isset($TypeEquipment)? "แก้ไข":"เพิ่มข้อมูล"}}" class="{{isset($TypeEquipment)? "btn btn-warning col-sm-2":"btn btn-success col-sm-2"}}">
+                        <input type="submit" name="submit" value="{{isset($typeEquipment)? "แก้ไข":"เพิ่มข้อมูล"}}" class="{{isset($typeEquipment)? "btn btn-warning col-sm-2":"btn btn-success col-sm-2"}}">
                         &nbsp;&nbsp;
                         <button class="btn btn-secondary col-sm-2" type="reset">ยกเลิก</button>      
                     </div>

@@ -32,7 +32,7 @@
                     ตาราง ประเภทครุภัณฑ์
                 </div>
                 <div class="card-body">
-                    @if($TypeEquipment->count() > 0)
+                    @if($typeEquipment->count() > 0)
                     <table id="datatablesSimple">
                         <thead>
                             <tr>
@@ -46,7 +46,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ( $TypeEquipment as $row )
+                            @foreach ( $typeEquipment as $row )
                             <tr>
                                 {{-- <th>{{$categories->firstItem()+$loop->index}}</th> --}}
                                 {{-- <td><img src="{{asset($row->categories_image)}}" width="70px" height="70px"></td> --}}

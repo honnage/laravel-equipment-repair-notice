@@ -78,7 +78,7 @@
                     ตาราง แจ้งซ่อมครุภัณฑ์
                 </div>
                 <div class="card-body">
-                    @if($Translation->count() > 0)
+                    @if($transaction->count() > 0)
                     <table id="datatablesSimple">
                         <thead>
                             <tr>
@@ -100,7 +100,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ( $Translation as $row )
+                            @foreach ( $transaction as $row )
                             <tr>
                                
                                 {{-- <td style="width: 4%; vertical-align: middle;">{{$row->id}}</td> --}}
@@ -155,7 +155,7 @@
                         </tbody>
                     </table>
                     @else
-                        <h3 style="color:red; text-align:center ;padding-top: 20px; padding-bottom: 20px">-- ไม่มีข้อมูล หมวดหมู่ครุภัณฑ์ --</h3>
+                        <h3 style="color:red; text-align:center ;padding-top: 20px; padding-bottom: 20px">-- ไม่มีข้อมูลแจ้งซ่อมครุภัณฑ์ สถานะ{{$id}}--</h3>
                     @endif
                 </div>
             </div>
