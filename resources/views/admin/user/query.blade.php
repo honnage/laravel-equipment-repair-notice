@@ -77,7 +77,6 @@
                     <table id="datatablesSimple">
                         <thead>
                             <tr>
-                                {{-- <th style="vertical-align: middle;">รหัส</th> --}}
                                 <th style="vertical-align: middle;">รหัสแจ้งซ่อม</th>
                                 <th style="text-align: center; vertical-align: middle;">ผู้แจ้งซ่อม</th>
                                 <th style="text-align: center; vertical-align: middle;">ชื่อครุภัณฑ์</th>
@@ -87,8 +86,6 @@
                                 <th style="text-align: center; vertical-align: middle;">วันที่แจ้งซ่อม </th>
                                 <th style="text-align: center; vertical-align: middle;">กำหนดส่งคืน </th>
                                 <th style="text-align: center; vertical-align: middle;">สถานะ </th>
-                                {{-- <th style="text-align: center; vertical-align: middle;">รูป </th> --}}
-                                
                                 <th style="text-align: center; vertical-align: middle;">เพิ่มเติม</th>
                                 <th style="text-align: center; vertical-align: middle;">แก้ไข</th>
                                 <th style="text-align: center; vertical-align: middle;">ลบ</th>
@@ -97,9 +94,7 @@
                         <tbody>
                             @foreach ( $query as $row )
                             <tr>
-                               
-                                {{-- <td style="width: 4%; vertical-align: middle;">{{$row->id}}</td> --}}
-                                <td style="width: 7%; vertical-align: middle;">{{$row->code}}</td>
+                                <td style="width: 7%; vertical-align: middle;">{{$row->id}}</td>
                                 <td style="width: 10%; vertical-align: middle;">{{$row->User->firstname}} {{$row->User->lastname}}</td>
                                 <td style="width: 15%; vertical-align: middle;">{{$row->Equipment->name}}</td>
                                 <td style="width: 10%; vertical-align: middle;">{{$row->Equipment->TypeEquipment->name}}</td>
@@ -120,11 +115,6 @@
                                             
                                     </nav>                  
                                 </td>
-                                {{-- <td> 
-                                    @if($row->fileImage != null)
-                                        <img src="{{ asset($row->fileImage) }}"  width="80px" height="80px">
-                                    @endif
-                                </td> --}}
                                 <td style="width: 4%; vertical-align: middle;">
                                     <center><a href="{{url('/transaction/edit/'.$row->id)}}" class="btn btn-success" style="width: 70px;"><i class="fas fa-eye"></i></a></center>
                                 </td>

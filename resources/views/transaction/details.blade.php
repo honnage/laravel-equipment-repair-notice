@@ -106,7 +106,7 @@
                                   @if ($transaction->price == null) 
                                       -
                                   @else
-                                      {{$transaction->price}} 
+                                      {{$transaction->price}} บาท
                                   @endif
                                 </td>
                               </tr>
@@ -116,7 +116,7 @@
                                   @if ($transaction->guaranty == null) 
                                       -
                                   @else
-                                      {{$transaction->price}} 
+                                      {{$transaction->guaranty}} 
                                   @endif
                                 </td>
                               </tr>
