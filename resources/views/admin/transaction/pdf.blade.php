@@ -42,7 +42,7 @@
         <tbody>
           <tr>
             <th style="width: 25%">รหัสแจ้งซ่อม</th>
-            <td style="width: 75%">{{$transaction->code}}</td>
+            <td style="width: 75%">{{$transaction->id}}</td>
           </tr>
           <tr>
             <th style="width: 25%">ชื่อครุภัณฑ์</th>

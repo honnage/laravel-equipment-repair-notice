@@ -105,7 +105,6 @@ class TransactionController extends Controller
         $count_status_beingRepaired = $status_beingRepaired->count();
         $count_status_sussecc = $status_sussecc->count();
         
-      
         return view('transaction.user',
         compact('transaction', 'count_translation',
             'status_notifyRepair', 'count_status_notifyRepair', 
@@ -113,7 +112,6 @@ class TransactionController extends Controller
             'status_beingRepaired', 'count_status_beingRepaired', 
             'status_sussecc', 'count_status_sussecc' ));
     }
-
     
     public function userDetail($id)
     {
@@ -139,37 +137,26 @@ class TransactionController extends Controller
         $pdf::Output('report.pdf');
     }
 
-    
-
     public function store(Request $request)
     {
         $request->validate(
             [
                 'user_id' => 'required',
-                // 'code' => 'required|unique:transactions|max:191',
                 'problem' => 'required|max:191',
                 'equipment_id' => 'required',
-                // 'status' => 'required',
-                // 'set_at' => 'required',
                 'fileImage' => 'mimes:pdf,png,jpg,jpeg,pdf',
             ],
             [
                 'user_id.required' => "กรุณาป้อนรหัสผู้แจ้งซ่อม",
-                // 'code.required' => "กรุณาป้อนรหัสแจ้งซ่อมครุภัณฑ์",
-                // 'code.max' => "ห้ามป้อนเกิน 191 ตัวอักษร",
-                // 'code.unique' => "มีข้มูลรหัสแจ้งซ่อมครุภัณฑ์นี้ในฐานข้อมูลแล้ว",
                 'problem.required' => "กรุณาป้อนอาการหรือปัญหา",
                 'problem.max' => "ห้ามป้อนเกิน 191 ตัวอักษร",
                 'equipment_id.required' => "กรุณาเลือรหัสครุภัณฑ์",
-                // 'status.required' => "กรุณาเลือกสถานะการซ่อม",
-                // 'set_at.required' => "กรุณาเลือกวันที่กำหนดส่งคืน",
                 'fileImage.mimes' => "นามสกุลไฟล์ต้องเป็น pdf png jpg jpeg pdf เท่านั้น",
             ]
         );
 
         $transaction = new Transaction;
         $transaction->user_id = $request->user_id;
-        // $transaction->code = $request->code;
         $transaction->problem = $request->problem;
         $transaction->equipment_id = $request->equipment_id;
         $transaction->details = $request->details;
@@ -220,23 +207,13 @@ class TransactionController extends Controller
         $request->validate(
             [
                 'user_id' => 'required',
-                // 'code' => 'required|max:191',
                 'problem' => 'required|max:191',
-                // 'equipment_id' => 'required',
-                // 'status' => 'required',
-                // 'set_at' => 'required',
                 'fileImage' => 'mimes:pdf,png,jpg,jpeg,pdf,zip,',
             ],
             [
                 'user_id.required' => "กรุณาป้อนรหัสผู้แจ้งซ่อม",
-                // 'code.required' => "กรุณาป้อนรหัสแจ้งซ่อมครุภัณฑ์",
-                // 'code.max' => "ห้ามป้อนเกิน 191 ตัวอักษร",
-                // 'code.unique' => "มีข้มูลรหัสแจ้งซ่อมครุภัณฑ์นี้ในฐานข้อมูลแล้ว",
                 'problem.required' => "กรุณาป้อนอาการหรือปัญหา",
                 'problem.max' => "ห้ามป้อนเกิน 191 ตัวอักษร",
-                // 'equipment_id.required' => "กรุณาเลือรหัสครุภัณฑ์",
-                // 'status.required' => "กรุณาเลือกสถานะการซ่อม",
-                // 'set_at.required' => "กรุณาเลือกวันที่กำหนดส่งคืน",
                 'fileImage.mimes' => "นามสกุลไฟล์ต้องเป็น pdf png jpg jpeg pdf zip เท่านั้น",
             ]
         );
@@ -254,7 +231,6 @@ class TransactionController extends Controller
 
             Transaction::find($id)->update([
                 'user_id'=>$request->user_id,
-                'code'=>$request->code,
                 'problem'=>$request->problem,
                 'equipment_id'=>$request->equipment_id,
                 'status'=>$request->status,
@@ -272,7 +248,6 @@ class TransactionController extends Controller
 
         Transaction::find($id)->update([
             'user_id'=>$request->user_id,
-            'code'=>$request->code,
             'problem'=>$request->problem,
             'equipment_id'=>$request->equipment_id,
             'status'=>$request->status,

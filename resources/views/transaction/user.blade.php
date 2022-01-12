@@ -93,7 +93,6 @@
                             <table id="datatablesSimple">
                                 <thead>
                                     <tr>
-                                        {{-- <th style="vertical-align: middle;">รหัส</th> --}}
                                         <th style="vertical-align: middle;">รหัสแจ้งซ่อม</th>
                                         <th style="text-align: center; vertical-align: middle;">ผู้แจ้งซ่อม</th>
                                         <th style="text-align: center; vertical-align: middle;">ชื่อครุภัณฑ์</th>
@@ -111,9 +110,7 @@
                                 <tbody>
                                     @foreach ( $transaction as $row )
                                     <tr>
-                                        
-                                        {{-- <td style="width: 4%; vertical-align: middle;">{{$row->id}}</td> --}}
-                                        <td style="vertical-align: middle;">{{$row->code}}</td>
+                                        <td style="vertical-align: middle;">{{$row->id}}</td>
                                         <td style="vertical-align: middle;">{{$row->User->firstname}} {{$row->User->lastname}}</td>
                                         <td style="vertical-align: middle;">{{$row->Equipment->name}}</td>
                                         <td style="vertical-align: middle;">{{$row->Equipment->TypeEquipment->name}}</td>

@@ -43,8 +43,66 @@
                                         @endif
                                     </div>
                                 </div>
-
+    
                                 <div class="row align-items-center form-group mt-4">
+                                    <div class="col-sm-12">
+                                        <label for="fileImage">ไฟล์ </label>
+                                        @error('fileImage')
+                                            <label>
+                                                <span class="text-danger">{{$message}}</span>
+                                            </label>
+                                        @enderror
+                                    </div>
+                                    <div class="col-sm-12">
+                                        {{-- {{$Transaction->fileImage}} --}}
+                                        <input type="file" class="form-control col-sm-6"  name="fileImage" value="{{isset($transaction)?"$transaction->fileImage":''}}" >         
+                                    </div>
+                                </div>
+
+                                @if ( isset($transaction) )
+                                <div class="row align-items-center form-group mt-4">
+                                    <div class="col-sm-12">
+                                        <label for="status">สถานะ <span style="color: red">*</span></label>
+                                        @error('status')
+                                            <label>
+                                                <span class="text-danger">{{$message}}</span>
+                                            </label>
+                                        @enderror
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <input type="text" class="form-control col-sm-6"  name="status" value="{{isset($transaction)?"$transaction->status":''}}" readonly>
+                                        <input type="hidden" class="form-control col-sm-6"  name="set_at"  value="{{isset($transaction)?"$transaction->set_at":''}}" >
+                                    </div>
+                                </div>
+                                @endif
+    
+                                @if ( isset($transaction) )
+                                    @if ($transaction->type_file != "pdf")
+                                        @if ($transaction->fileImage != NULL)
+                                            <div class="row align-items-center form-group mt-4">
+                                                <div class="col-sm-12">
+                                                    <label for="guaranty">รูป</label>
+                                                    @error('fileImage')
+                                                        <label>
+                                                            <span class="text-danger">{{$message}}</span>
+                                                        </label>
+                                                    @enderror
+                                                </div>
+                                                <img src="{{ asset($transaction->fileImage) }}" >
+                                            </div>
+                                        @endif
+                                    @else
+                                    <div class="row align-items-center form-group ">
+                                        <div class=" align-items-start bd-highlight mt-4" >
+                                            <a href="{{ asset($transaction->fileImage) }}"  class="btn btn-outline-primary mt-4">Open file PDF</a>
+                                        </div>
+                                    </div>
+                                    @endif
+                                @endif
+                            </div>
+    
+                            <div class="col-md-6">
+                                <div class="row align-items-center form-group">
                                     <div class="col-sm-12">
                                         <label for="equipment_id">รหัสครุภัณฑ์  <span style="color: red">*</span></label>
                                         @error('equipment_id')
@@ -71,91 +129,6 @@
                                         </select>
                                     </div>
                                 </div>
-    
-                                {{-- <div class="row align-items-center form-group mt-4">
-                                    <div class="col-sm-12">
-                                        <label for="set_at">วันที่กำหนดส่งคืน <span style="color: red">*</span></label>
-                                        @error('set_at')
-                                            <label>
-                                                <span class="text-danger">{{$message}}</span>
-                                            </label>
-                                        @enderror
-                                    </div>
-                                
-                                    <div class="col-sm-12">
-                                        @if(isset($transaction))
-                                        <input type="datetime" class="form-control col-sm-6"  name="set_at" value="{{$transaction->set_at}}" >
-                                    @else
-                                        <input type="datetime-local" class="form-control col-sm-6"  name="set_at" value="" >
-                                    @endif              
-                                    </div>
-                                </div> --}}
-                     
-
-    
-                                <div class="row align-items-center form-group mt-4">
-                                    <div class="col-sm-12">
-                                        <label for="fileImage">ไฟล์ </label>
-                                        @error('fileImage')
-                                            <label>
-                                                <span class="text-danger">{{$message}}</span>
-                                            </label>
-                                        @enderror
-                                    </div>
-                                    <div class="col-sm-12">
-                                        {{-- {{$Transaction->fileImage}} --}}
-                                        <input type="file" class="form-control col-sm-6"  name="fileImage" value="{{isset($transaction)?"$transaction->fileImage":''}}" >         
-                                    </div>
-                                </div>
-    
-                                @if ( isset($transaction) )
-                                    @if ($transaction->type_file != "pdf")
-                                        @if ($transaction->fileImage != NULL)
-                                            <div class="row align-items-center form-group mt-4">
-                                                <div class="col-sm-12">
-                                                    <label for="guaranty">รูป</label>
-                                                    @error('fileImage')
-                                                        <label>
-                                                            <span class="text-danger">{{$message}}</span>
-                                                        </label>
-                                                    @enderror
-                                                </div>
-                                            
-                                                <img src="{{ asset($transaction->fileImage) }}" >
-                                            </div>
-                                        @endif
-                                    @else
-                                    <div class="row align-items-center form-group ">
-                                        <div class=" align-items-start bd-highlight mt-4" >
-                                            <a href="{{ asset($transaction->fileImage) }}"  class="btn btn-outline-primary mt-4">Open file PDF</a>
-                                        </div>
-                                    </div>
-                                    
-                                    
-                                    @endif
-                                @endif
-                                
-                            </div>
-    
-                            <div class="col-md-6">
-                                <div class="row align-items-center form-group ">
-                                    <div class="col-sm-12">
-                                        <label for="code">รหัสการแจ้งซ่อม <span style="color: red">*</span></label>
-                                        @error('code')
-                                            <label>
-                                                <span class="text-danger">{{$message}}</span>
-                                            </label>
-                                        @enderror
-                                    </div>
-                                    <div class="col-sm-12">
-                                        @if(isset($transaction))
-                                            <input type="text" class="form-control col-sm-6"  name="code" value="{{isset($transaction)?"$transaction->code":''}}" readonly>
-                                           
-                                        @else
-                                            <input type="text" class="form-control col-sm-6"  name="code" value="{{isset($transaction)?"$transaction->code":''}}" >
-                                        @endif
-                                    </div>
-                                </div>
 
                                 <div class="row align-items-center form-group mt-4">
                                     <div class="col-sm-12">
@@ -171,24 +144,6 @@
                                     </div>
                                 </div>
     
-                            
-                                @if ( isset($transaction) )
-                                <div class="row align-items-center form-group mt-4">
-                                    <div class="col-sm-12">
-                                        <label for="status">สถานะ <span style="color: red">*</span></label>
-                                        @error('status')
-                                            <label>
-                                                <span class="text-danger">{{$message}}</span>
-                                            </label>
-                                        @enderror
-                                    </div>
-                                    <div class="col-sm-12">
-                                        <input type="text" class="form-control col-sm-6"  name="status" value="{{isset($transaction)?"$transaction->status":''}}" readonly>
-                                        <input type="hidden" class="form-control col-sm-6"  name="set_at"  value="{{isset($transaction)?"$transaction->set_at":''}}" >
-                                    </div>
-                                </div>
-                                @endif
-                     
                                 <div class="row align-items-center form-group mt-4">
                                     <div class="d-flex flex-row-reverse align-items-start bd-highlight mt-4" >
                                         <input type="submit" name="submit" value="{{isset($transaction)? "แก้ไข":"เพิ่มข้อมูล"}}" class="{{isset($transaction)? "btn btn-warning col-sm-5":"btn btn-success col-sm-5"}}">
@@ -207,19 +162,4 @@
         </div>
     </div>
 </x-app-layout>
-<script>
-    // var date = new Date();
-    // var newDate = date.getTime() + 6000 ;
-    // console.log(date);
-    // console.log(newDate);
 
-    // var day = date.getDate();
-    // var month = date.getMonth() ;
-    // var year = date.getFullYear();
-
-    // if (month < 10) month = "0" + month;
-    // if (day < 10) day = "0" + day;
-
-    // var today = year + "-" + month + "-" + day +"T00:00";       
-    // $("#theDate").attr("value", today);
-</script>
