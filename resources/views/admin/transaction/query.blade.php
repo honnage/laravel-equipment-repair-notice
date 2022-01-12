@@ -20,7 +20,7 @@
                 </div>
                 <div class="d-flex flex-row-reverse  ">
                     {{-- <a class="nav-link" href="{{ route('type') }}"> --}}
-                    <a href="{{ route('createTransaction') }}" class="btn btn-outline-success" style=" display: flex; align-items: center"><i class="fas fa-plus-circle"></i>&nbsp; แจ้งซ่อม </a>
+                    <a href="{{ route('createTransactionByAdmin') }}" class="btn btn-outline-success" style=" display: flex; align-items: center"><i class="fas fa-plus-circle"></i>&nbsp; แจ้งซ่อม </a>
                 </div>
             </div>
 
@@ -119,10 +119,10 @@
                                     @endif
                                 </td>
                                 <td style="width: 4%; vertical-align: middle;">
-                                    <center><a href="{{url('/transaction/edit/'.$row->id)}}" class="btn btn-success" style="width: 70px;"><i class="fas fa-eye"></i></a></center>
+                                    <center><a href="{{url('/transaction/details/'.$row->id)}}" class="btn btn-success" style="width: 70px;"><i class="fas fa-eye"></i></a></center>
                                 </td>
                                 <td style="width: 4%; vertical-align: middle;">
-                                    <center><a href="{{url('/transaction/edit/'.$row->id)}}" class="btn btn-warning" style="width: 70px"><i class="fas fa-edit"></i></a></center>
+                                    <center><a href="{{url('/transaction/editByAdmin/'.$row->id)}}" class="btn btn-warning" style="width: 70px"><i class="fas fa-edit"></i></a></center>
                                 </td>
                                 <td style="width: 4%; vertical-align: middle; text-align: center">
                                     @if ($row->status != "แจ้งซ่อม")

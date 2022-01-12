@@ -78,9 +78,10 @@ class CategoryController extends Controller
     }
 
     public function query($id){
-        $category = Category::find($id);
-        $query = TypeEquipment::where('category_id', $id)->get();
-        return view('admin.category.query', compact('query', 'category'));
+        //$category = Category::find($id);
+        $typeEquipment = TypeEquipment::orderBy('id', 'desc')->get();
+        //$query = TypeEquipment::where('category_id', $id)->get();
+        return view('admin.category.query', compact('typeEquipment'));
     }
 
     

@@ -19,7 +19,7 @@
                     <h1 class="text-left">ค้นหาประวัติการแจ้งซ่อมของคุณ  {{$User->firstname}} {{$User->lastname}} </h1>
                 </div>
                 <div class="d-flex flex-row-reverse  ">
-                    <a href="{{ route('createTransaction') }}" class="btn btn-outline-success" style=" display: flex; align-items: center"><i class="fas fa-plus-circle"></i>&nbsp; แจ้งซ่อม </a>
+                    <a href="{{ route('createTransactionByAdmin') }}" class="btn btn-outline-success" style=" display: flex; align-items: center"><i class="fas fa-plus-circle"></i>&nbsp; แจ้งซ่อม </a>
                 </div>
             </div>
 

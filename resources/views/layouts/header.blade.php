@@ -56,7 +56,7 @@
                         <li>
                             <a class="dropdown-item" href="{{ route('profile.show') }}">
                               
-                                {{ __('โปรไฟล์') }}
+                                {{ __('โปรไฟล์') }} 
                             </a>
                         </li>
                         <li><hr class="dropdown-divider" /></li>

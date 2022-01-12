@@ -70,31 +70,6 @@ Route::middleware(['auth:sanctum', 'admin'])->group(function(){
     Route::get('/user/query/{id}',[UserController::class,'query']);
     Route::get('/user/query/{id}/status/{status}',[UserController::class,'queryStatus']);
 
-
-
-    // Customer
-    // Route::get('/customer/all',[CustomerController::class,'index'])->name('customer');
-    // Route::post('/customer/add',[CustomerController::class,'store'])->name('addCustomer');
-    // Route::get('/customer/edit/{id}',[CustomerController::class,'edit']);
-    // Route::get('/customer/detail/{id}',[CustomerController::class,'detail']);
-    // Route::post('/customer/update/{id}',[CustomerController::class,'update']);
-
-    // // Department
-    // Route::get('/department/all',[DepartmentController::class,'index'])->name('department');
-    // Route::post('/department/add',[DepartmentController::class,'store'])->name('addDepartment');
-    // Route::get('/department/edit/{id}',[DepartmentController::class,'edit']);
-    // Route::post('/department/update/{id}',[DepartmentController::class,'update']);
-
-    // Route::get('/department/softdelete/{id}',[DepartmentController::class,'softdelete']);
-    // Route::get('/department/restore/{id}',[DepartmentController::class,'restore']);
-    // Route::get('/department/delete/{id}',[DepartmentController::class,'delete']);
-
-    // // Service
-    // Route::get('/service/all',[ServiceController::class,'index'])->name('service');
-    // Route::post('/service/add',[ServiceController::class,'store'])->name('addService');
-    // Route::get('/service/edit/{id}',[ServiceController::class,'edit']);
-    // Route::post('/service/update/{id}',[ServiceController::class,'update']);
-    // Route::get('/service/delete/{id}',[ServiceController::class,'delete']);
 });
 
 
