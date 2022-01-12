@@ -54,29 +54,29 @@
 
         <!-- Firstname -->
         <div class="col-span-6 sm:col-span-4">
-            <x-jet-label for="firstname" value="{{ __('Firstname') }}" />
+            <x-jet-label for="firstname" value="{{ __('ชื่อจริง') }}" />
             <x-jet-input id="firstname" type="text" class="mt-1 block w-full" wire:model.defer="state.firstname" autocomplete="firstname" />
             <x-jet-input-error for="firstname" class="mt-2" />
         </div>
 
         <!-- Lastname -->
         <div class="col-span-6 sm:col-span-4">
-            <x-jet-label for="lastname" value="{{ __('Lastname') }}" />
+            <x-jet-label for="lastname" value="{{ __('นามสกุล') }}" />
             <x-jet-input id="lastname" type="text" class="mt-1 block w-full" wire:model.defer="state.lastname" autocomplete="lastname" />
             <x-jet-input-error for="lastname" class="mt-2" />
         </div>
 
         <!-- Gender -->
         <div class="col-span-6 sm:col-span-4">
-            <x-jet-label for="gender" value="{{ __('Gender') }}" />
+            <x-jet-label for="gender" value="{{ __('เพศ') }}" />
             <label >
                 <input type="radio" id="gender" name="gender" value="ชาย" autocomplete="gender" wire:model.defer="state.gender" autocomplete="gender"> &nbsp;&nbsp;
-                <label for="male">male </label>
+                <label for="male">ชาย </label>
             </label> 
             &nbsp;&nbsp;&nbsp;&nbsp;
             <label>
                 <input type="radio" id="gender" name="gender" value="หญิง" autocomplete="gender" wire:model.defer="state.gender" autocomplete="gender"> &nbsp;&nbsp;
-                <label for="female">female </label>
+                <label for="female">หญิง </label>
             </label>
 
             {{-- <x-jet-input id="gender" type="text" class="mt-1 block w-full" wire:model.defer="state.gender" autocomplete="gender" /> --}}
@@ -85,28 +85,28 @@
 
         <!-- Department -->
         <div class="col-span-6 sm:col-span-4">
-            <x-jet-label for="department" value="{{ __('Department') }}" />
+            <x-jet-label for="department" value="{{ __('ตำแหน่ง') }}" />
             <x-jet-input id="department" type="text" class="mt-1 block w-full" wire:model.defer="state.department" autocomplete="department" />
             <x-jet-input-error for="department" class="mt-2" />
         </div>
 
         <!-- Phone -->
         <div class="col-span-6 sm:col-span-4">
-            <x-jet-label for="phone" value="{{ __('Phone') }}" />
+            <x-jet-label for="phone" value="{{ __('เบอร์โทร') }}" />
             <x-jet-input id="phone" type="text" class="mt-1 block w-full" wire:model.defer="state.phone" autocomplete="phone" />
             <x-jet-input-error for="phone" class="mt-2" />
         </div>
 
         <!-- Address -->
         <div class="col-span-6 sm:col-span-4">
-            <x-jet-label for="address" value="{{ __('Address') }}" />
+            <x-jet-label for="address" value="{{ __('ที่อยู่') }}" />
             <x-jet-input id="address" type="text" class="mt-1 block w-full" wire:model.defer="state.address" autocomplete="address" />
             <x-jet-input-error for="address" class="mt-2" />
         </div>
 
         <!-- Email -->
         <div class="col-span-6 sm:col-span-4">
-            <x-jet-label for="email" value="{{ __('Email') }}" />
+            <x-jet-label for="email" value="{{ __('อีเมล') }}" />
             <x-jet-input id="email" type="email" class="mt-1 block w-full" wire:model.defer="state.email" />
             <x-jet-input-error for="email" class="mt-2" />
         </div>
@@ -114,11 +114,11 @@
 
     <x-slot name="actions">
         <x-jet-action-message class="mr-3" on="saved">
-            {{ __('Saved.') }}
+            {{ __('อัพเดทข้อมูลเรียบร้อย.') }}
         </x-jet-action-message>
 
         <x-jet-button wire:loading.attr="disabled" wire:target="photo">
-            {{ __('Save') }}
+            {{ __('บันทึก') }}
         </x-jet-button>
     </x-slot>
 </x-jet-form-section>
