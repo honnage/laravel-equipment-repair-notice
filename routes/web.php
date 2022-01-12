@@ -37,7 +37,7 @@ Route::middleware(['auth:sanctum', 'admin'])->group(function(){
     Route::get('/transaction/editByAdmin/{id}',[TransactionController::class,'editByAdmin']);
     Route::post('/transaction/update/{id}',[TransactionController::class,'update']);
     Route::get('/transaction/destroy/{id}',[TransactionController::class,'destroy']);
-    Route::get('/transaction/status/{id}',[TransactionController::class,'status']);
+    Route::get('/transaction/admin/query/{id}',[TransactionController::class,'queryByAdmin']);
     Route::get('/transaction/details/{id}',[TransactionController::class,'details']);
     Route::get('/transaction/downloadPDF/{id}',[TransactionController::class,'downloadPDF']);
     
@@ -111,6 +111,6 @@ Route::middleware(['auth:sanctum'])->group(function(){
     Route::get('/transaction/edit/{id}',[TransactionController::class,'edit']);
     Route::post('/transaction/update/{id}',[TransactionController::class,'update']);
     Route::get('/transaction/destroy/{id}',[TransactionController::class,'destroy']);
-    Route::get('/transaction/status/{id}',[TransactionController::class,'status']);
+    Route::get('/transaction/user/query/{id}',[TransactionController::class,'queryByuser']);
     Route::get('/transaction/details/{id}',[TransactionController::class,'details']);
 });

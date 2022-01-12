@@ -271,7 +271,7 @@ class TransactionController extends Controller
         return redirect('/transaction/all')->with('success', 'ลบข้อมูลเรียบร้อย');
     }
 
-    public function status($id)
+    public function queryByAdmin($id)
     {
         $status_notifyRepair = DB::table('transactions')
             ->select('*')

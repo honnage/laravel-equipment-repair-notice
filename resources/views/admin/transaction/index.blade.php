@@ -30,7 +30,7 @@
                         <div class="card-body" style="font-size: 26px">{{ number_format( $count_status_notifyRepair ) }} </div>
                         <div class="card-footer d-flex align-items-center justify-content-between">
                             <a class="small text-white stretched-link" style="text-decoration: none; font-size: 20px;" 
-                                href="{{url('/transaction/status/แจ้งซ่อม')}}">แจ้งซ่อม</a>
+                                href="{{url('/transaction/admin/query/แจ้งซ่อม')}}">แจ้งซ่อม</a>
                             <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                         </div>
                     </div>
@@ -40,7 +40,7 @@
                         <div class="card-body" style="font-size: 26px"> {{ number_format( $count_status_beingRepaired ) }} </div>
                         <div class="card-footer d-flex align-items-center justify-content-between">
                             <a class="small text-dark stretched-link" style="text-decoration: none; font-size: 20px;" 
-                                href="{{url('/transaction/status/กำลังซ่อม')}}">กำลังซ่อม</a>
+                                href="{{url('/transaction/admin/query/กำลังซ่อม')}}">กำลังซ่อม</a>
                             <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                         </div>
                     </div>
@@ -50,7 +50,7 @@
                         <div class="card-body" style="font-size: 26px">{{ number_format( $count_status_sussecc ) }} </div>
                         <div class="card-footer d-flex align-items-center justify-content-between">
                             <a class="small text-white stretched-link" style="text-decoration: none; font-size: 20px;" 
-                                href="{{url('/transaction/status/เรียบร้อย')}}">เรียบร้อย</a>
+                                href="{{url('/transaction/admin/query/เรียบร้อย')}}">เรียบร้อย</a>
                             <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                         </div>
                     </div>
@@ -60,7 +60,7 @@
                         <div class="card-body" style="font-size: 26px">{{ number_format( $count_status_cancelr ) }} </div>
                         <div class="card-footer d-flex align-items-center justify-content-between">
                             <a class="small text-white stretched-link" style="text-decoration: none; font-size: 20px;" 
-                                href="{{url('/transaction/status/ยกเลิก')}}">ยกเลิก</a>
+                                href="{{url('/transaction/admin/query/ยกเลิก')}}">ยกเลิก</a>
                             <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                         </div>
                     </div>
