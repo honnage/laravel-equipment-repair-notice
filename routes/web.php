@@ -27,7 +27,6 @@ Route::get('/', function () {
 //     return view('dashboard', compact('users'));
 // })->name('dashboard');
 
-
 Route::middleware(['auth:sanctum', 'admin'])->group(function(){
     // transactions
     // Route::get('/dashboard',[TransactionController::class,'index'])->name('dashboard');
