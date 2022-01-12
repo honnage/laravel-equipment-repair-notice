@@ -1,17 +1,6 @@
-{{-- {{Auth::user()->firstname }} {{Auth::user()->lastname }} --}}
-
 <x-app-layout>
-    {{-- <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-
-            สวัสดีคุณ, {{Auth::user()->firstname }} {{Auth::user()->lastname }}
-        </h2>
-    </x-slot> --}}
-
-
     <div class="container">
-        <div class="row">
-
+        <div class="card mt-2">
             <main>
                 <div class="container-fluid px-4">
                     @if(Session()->has('success'))
@@ -27,10 +16,10 @@
         
                     <div class="d-flex justify-content-between mt-4">
                         <div class=" flex-row-reverse  ">
-                            <h1 class="text-left">รายการแจ้งซ่อมของคุณ 
-                                {{-- {{Auth::user()->firstname }} {{Auth::user()->lastname }}</h1> --}}
+                            <h1 class="text-left">รายการแจ้งซ่อมสถานะ {{$id}}</h1>
                         </div>
                         <div class="d-flex flex-row-reverse  ">
+                            {{-- <a class="nav-link" href="{{ route('type') }}"> --}}
                             <a href="{{ route('createTransaction') }}" class="btn btn-outline-success" style=" display: flex; align-items: center"><i class="fas fa-plus-circle"></i>&nbsp; แจ้งซ่อม </a>
                         </div>
                     </div>
@@ -82,7 +71,7 @@
                     <ol class="breadcrumb mt-2">
                         <li class="breadcrumb-item active">จำนวนแจ้งซ่อมครุภัณฑ์ทั้งหมด {{ number_format( $count_translation ) }} รายการ</li>
                     </ol>
-                    
+                  
                     <div class="card mb-4">
                         <div class="card-header">
                             <i class="fas fa-table me-1"></i>
@@ -99,9 +88,9 @@
                                         <th style="text-align: center; vertical-align: middle;">ประเภท</th>
                                         <th style="text-align: center; vertical-align: middle;">หมวดหมู่</th>
                                         <th style="text-align: center; vertical-align: middle;">อาการหรือปัญหา</th>
-                                        <th style="text-align: center; vertical-align: middle;">วันที่แจ้ง </th>
-                                        <th style="text-align: center; vertical-align: middle;">กำหนดคืน </th>
-                                        <th style="text-align: center; vertical-align: middle;">สถานะ </th>                                         
+                                        <th style="text-align: center; vertical-align: middle;">วันที่แจ้งซ่อม </th>
+                                        <th style="text-align: center; vertical-align: middle;">กำหนดส่งคืน </th>
+                                        <th style="text-align: center; vertical-align: middle;">สถานะ </th>
                                         <th style="text-align: center; vertical-align: middle;">เพิ่มเติม</th>
                                         <th style="text-align: center; vertical-align: middle;">แก้ไข</th>
                                         <th style="text-align: center; vertical-align: middle;">ลบ</th>
@@ -110,15 +99,15 @@
                                 <tbody>
                                     @foreach ( $transaction as $row )
                                     <tr>
-                                        <td style="vertical-align: middle;">{{$row->id}}</td>
-                                        <td style="vertical-align: middle;">{{$row->User->firstname}} {{$row->User->lastname}}</td>
-                                        <td style="vertical-align: middle;">{{$row->Equipment->name}}</td>
-                                        <td style="vertical-align: middle;">{{$row->Equipment->TypeEquipment->name}}</td>
-                                        <td style="vertical-align: middle;">{{$row->Equipment->TypeEquipment->category->name}}</td>
-                                        <td style="vertical-align: middle;">{{$row->problem}}</td>
-                                        <td style="vertical-align: middle; text-align: center;  width: 8%;">{{$row->created_at}}</td>
-                                        <td style="vertical-align: middle; text-align: center; width: 8%;  ">{{$row->set_at}}</td>
-                                        <td style="vertical-align: middle;  width: 8%;"> 
+                                        <td style="width: 7%; vertical-align: middle;">{{$row->id}}</td>
+                                        <td style="width: 10%; vertical-align: middle;">{{$row->User->firstname}} {{$row->User->lastname}}</td>
+                                        <td style="width: 15%; vertical-align: middle;">{{$row->Equipment->name}}</td>
+                                        <td style="width: 10%; vertical-align: middle;">{{$row->Equipment->TypeEquipment->name}}</td>
+                                        <td style="width: 8%; vertical-align: middle;">{{$row->Equipment->TypeEquipment->category->name}}</td>
+                                        <td style="width: 15%; vertical-align: middle;">{{$row->problem}}</td>
+                                        <td style="width: 14%; vertical-align: middle; text-align: center">{{$row->created_at}}</td>
+                                        <td style="width: 8%; vertical-align: middle; text-align: center">{{$row->set_at}}</td>
+                                        <td style="width: 6%; vertical-align: middle; "> 
                                                 @if ( $row->status== "เรียบร้อย" )
                                                     <nav style="height: 30px; border-radius: 10px; background-color: green; vertical-align: middle; text-align: center; padding: 5px; color: #fff">  {{$row->status}} </nav>
                                                 @elseif ( $row->status== "กำลังซ่อม")
@@ -131,20 +120,16 @@
                                                     
                                             </nav>                  
                                         </td>
-                                        <td style="vertical-align: middle;">
-                                            <center><a href="{{url('/transaction/details/user/'.$row->id)}}" class="btn btn-success" style="width: 70px;"><i class="fas fa-eye"></i></a></center>
+                                        <td style="width: 4%; vertical-align: middle;">
+                                            <center><a href="{{url('/transaction/edit/'.$row->id)}}" class="btn btn-success" style="width: 70px;"><i class="fas fa-eye"></i></a></center>
                                         </td>
                                         <td style="width: 4%; vertical-align: middle;">
-                                            @if ($row->status != "แจ้งซ่อม")
-                                                <a type="#" class="btn btn-secondary editCancel" data-name="{{$row->code}}" style="width: 70px;">-</a>
-                                            @else
-                                                <center><a href="{{url('/transaction/edit/'.$row->id)}}" class="btn btn-warning" style="width: 70px"><i class="fas fa-edit"></i></a></center>
-                                            @endif
+                                            <center><a href="{{url('/transaction/edit/'.$row->id)}}" class="btn btn-warning" style="width: 70px"><i class="fas fa-edit"></i></a></center>
                                         </td>
                                         <td style="width: 4%; vertical-align: middle; text-align: center">
                                             @if ($row->status != "แจ้งซ่อม")
                                                 <form action="" method="get">
-                                                    <a type="#" class="btn btn-secondary deleteCancel" data-name="{{$row->code}}" style="width: 70px;">-</a>
+                                                    <a type="#" class="btn btn-secondary deletecancel" data-name="{{$row->code}}" style="width: 70px;">-</a>
                                                 </form>
                                             @else
                                                 <form action="{{url('/transaction/destroy/'.$row->id)}}" method="get">
@@ -154,18 +139,20 @@
                                                 </form>
                                             @endif
                                         </td>
+                                       
                                     </tr>
                                     @endforeach
                                 </tbody>
                             </table>
                             @else
-                                <h3 style="color:red; text-align:center ;padding-top: 20px; padding-bottom: 20px">-- ไม่มีข้อมูล แจ้งซ่อมครุภัณฑ์ของคุณ --</h3>
+                                <h3 style="color:red; text-align:center ;padding-top: 20px; padding-bottom: 20px">-- ไม่มีข้อมูลแจ้งซ่อมครุภัณฑ์ สถานะ{{$id}}--</h3>
                             @endif
                         </div>
                     </div>
-                    
+                  
                 </div>
-            </main>                
+            </main>
         </div>
     </div>
 </x-app-layout>
+

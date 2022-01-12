@@ -311,4 +311,48 @@ class TransactionController extends Controller
             'status_sussecc', 'count_status_sussecc'));
     }
     
+    
+    public function queryByUser($id)
+    {
+        $status_notifyRepair = DB::table('transactions')
+            ->select('*')
+            ->where('user_id',  Auth::user()->id)
+            ->where('status', 'แจ้งซ่อม')
+            ->orderBy('id', 'DESC')
+            ->get();
+
+        $status_cancelr = DB::table('transactions')
+            ->select('*')
+            ->where('user_id',  Auth::user()->id)
+            ->where('status', 'ยกเลิก')
+            ->orderBy('id', 'DESC')
+            ->get();
+
+        $status_beingRepaired = DB::table('transactions')
+            ->select('*')
+            ->where('user_id',  Auth::user()->id)
+            ->where('status', 'กำลังซ่อม')
+            ->orderBy('id', 'DESC')
+            ->get();
+
+        $status_sussecc = DB::table('transactions')
+            ->select('*')
+            ->where('user_id',  Auth::user()->id)
+            ->where('status', 'เรียบร้อย')
+            ->orderBy('id', 'DESC')
+            ->get();
+
+        $transaction = Transaction::where('status', $id)->where('user_id',  Auth::user()->id)->orderBy('id', 'desc')->get();
+        $count_translation = $transaction->count();
+        $count_status_notifyRepair = $status_notifyRepair->count();
+        $count_status_cancelr = $status_cancelr->count();
+        $count_status_beingRepaired = $status_beingRepaired->count();
+        $count_status_sussecc = $status_sussecc->count();
+        return view('transaction.query', 
+        compact('transaction', 'count_translation', 'id',
+            'status_notifyRepair', 'count_status_notifyRepair', 
+            'status_cancelr', 'count_status_cancelr', 
+            'status_beingRepaired', 'count_status_beingRepaired', 
+            'status_sussecc', 'count_status_sussecc'));
+    }
 }
