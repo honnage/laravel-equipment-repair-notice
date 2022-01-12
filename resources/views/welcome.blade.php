@@ -11,7 +11,7 @@
 
          <!-- Styles -->
          <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+         {{-- <link rel="stylesheet" href="{{ mix('css/app.css') }}"> --}}
          
          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
          <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -42,7 +42,6 @@
          <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
          <script src="{{ asset('js/datatables-simple-demo.js') }}"></script>
  
- 
          <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
          <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
@@ -65,17 +64,15 @@
             }
         </style>
     </head>
-    <body class="antialiased">
+    <body class="antialiased" style="background-color:#e8e8e8;">
         <div class="navbar" style="background-color:royalblue;" >
             <div class="container h-16">
                 <ul class="nav ">
                     <li class="nav-item">
-                        <a href="#" style="text-decoration: none; font-size: 20px; color: #fff; font-weight: bold">
+                        <a href="{{ url('/') }}" style="text-decoration: none; font-size: 20px; color: #fff; font-weight: bold">
                             แจ้งซ่อมครุภัณฑ์
                         </a>
-                
                     </li>
-                   
                 </ul>
                 <ul class="nav justify-content-end">
                     @if (Route::has('login'))
@@ -83,57 +80,51 @@
                             <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline" style="color: #fff; font-size: 16px; text-decoration: none">Dashboard</a>
                         @else
                             {{-- <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline" style="color: #fff; font-size: 16px; text-decoration: none">Log in</a> --}}
-
                             @if (Route::has('register'))
-                                <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline" style="color: #fff; font-size: 16px; text-decoration: none">Register</a>
+                                <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline" style="color: #fff; font-size: 16px; text-decoration: none">ลงทะเบียน</a>
                             @endif
                         @endauth
                     @endif
                 </ul>
             </div>
         </div>
+   
+        <div class="center">
+            <h1>เข้าสู่ระบบ</h1>
+            <form method="POST" action="{{ route('login') }}">
+                @csrf
 
-        <div class="relative flex items-top justify-center "  style="margin: 10%">
-           
+                <div class="txt_field">
+                    <input type="email" id="email" name="email" :value="old('email')" required >
+                    <span></span>
+                    <label>อีเมล</label>
+                </div>
+                <div class="txt_field">
+                    <input type="password" id="password"  name="password" required >
+                    <span></span>
+                    <label>รหัสผ่าน</label>
+                </div>
 
-            <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
-               
-                
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
-            
-                        <div>
-                            <x-jet-label for="email" value="{{ __('Email') }}" />
-                            <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
-                        </div>
-            
-                        <div class="mt-4">
-                            <x-jet-label for="password" value="{{ __('Password') }}" />
-                            <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
-                        </div>
-            
-                        <div class="block mt-4">
-                            <label for="remember_me" class="flex items-center">
-                                <x-jet-checkbox id="remember_me" name="remember" />
-                                <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                            </label>
-                        </div>
-            
-                        <div class="flex items-center justify-end mt-4">
-                            @if (Route::has('password.request'))
-                                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-                                    {{ __('Forgot your password?') }}
-                                </a>
-                            @endif
-            
-                            <x-jet-button class="ml-4">
-                                {{ __('Log in') }}
-                            </x-jet-button>
-                        </div>
-                    </form>
-  
+                <div class="block mt-4">
+                    <label for="remember_me" class="flex items-center">
+                        <x-jet-checkbox id="remember_me" name="remember" />
+                        <span class="ml-2 text-sm text-gray-600">{{ __('จดจำฉัน') }}</span>
+                    </label>
+                </div>
 
-            </div>
+                <input type="submit" value="เข้าสู่ระบบ" class="mt-4" style="width: 100%; height: 50px; border: 1px solid; background: #2691d9; border-radius: 25px;
+                    font-size: 18px; color: #e9f4fb; font-weight: 700; cursor: pointer; outline: none; ">
+                <br>
+                <div class="pass mt-4" style="text-align: center"> 
+                    @if (Route::has('password.request'))
+                        <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
+                            {{ __('ลืมรหัสผ่านหรือไม่?') }}
+                        </a>
+                    @endif
+                </div>
+            </form>
         </div>
     </body>
 </html>
+
+

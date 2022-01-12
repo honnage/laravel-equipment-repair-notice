@@ -41,14 +41,14 @@ body{
 
 .center-registe h1{
   text-align: center;
-  padding: 20px 0;
-  border-bottom: 1px solid silver;
+  padding: 10px 0;
+  /* border-bottom: 1px solid silver; */
 }
 
 .center h1{
   text-align: center;
-  padding: 20px 0;
-  border-bottom: 1px solid silver;
+  padding: 10px 0;
+  /* border-bottom: 1px solid silver; */
 }
 
 
@@ -84,7 +84,7 @@ form .txt_field{
   left: 5px;
   color: #adadad;
   transform: translateY(-50%);
-  font-size: 16px;
+  font-size: 14px;
   pointer-events: none;
   transition: .5s;
 }

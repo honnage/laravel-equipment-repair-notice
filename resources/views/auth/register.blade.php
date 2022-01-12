@@ -79,7 +79,7 @@
                         @auth
                             <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline" style="color: #fff; font-size: 16px; text-decoration: none">Dashboard</a>
                         @else
-                            <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline" style="color: #fff; font-size: 16px; text-decoration: none">Log in</a>
+                            <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline" style="color: #fff; font-size: 16px; text-decoration: none">เข้าสู่ระบบ</a>
                             {{-- @if (Route::has('register'))
                                 <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline" style="color: #fff; font-size: 16px; text-decoration: none">Register</a>
                             @endif --}}
@@ -90,7 +90,7 @@
         </div>
    
         <div class="center-registe">
-            <h1>Register</h1>
+            <h1>ลงทะเบียน</h1>
 
             <form method="POST" action="{{ route('register') }}">
                 @csrf
@@ -98,88 +98,102 @@
                 <div class="txt_field">
                     <input type="text" id="firstname" name="firstname" :value="old('firstname')" required >
                     <span></span>
-                    <label>Firstname</label>
+                    <label>ชื่อจริง</label>
                 </div>
 
                 <div class="txt_field">
                     <input type="text" id="lastname" name="lastname" :value="old('lastname')" required >
                     <span></span>
-                    <label>Lastname</label>
+                    <label>นามสกุล</label>
                 </div>
 
-                <div class="" style="color: #adadad;">
-                    <label>Gender</label> &emsp; &emsp; &emsp; &emsp;
+                @error('gender')
+                    <strong>
+                        <span class="text-danger">{{$message}}</span>
+                    </strong>
+                @enderror
+                <div class="" style="color: #adadad; font-size: 14px;">
+                    &nbsp; <label>เพศ</label> &emsp; &emsp; 
                     <label >
                         <input type="radio" id="gender" name="gender" value="ชาย"> &nbsp;&nbsp;
-                        <label for="male">male </label>
+                        <label for="male">ชาย </label>
                     </label> 
                     &nbsp;&nbsp;&nbsp;&nbsp;
                     <label>
                         <input type="radio" id="gender" name="gender" value="หญิง"> &nbsp;&nbsp;
-                        <label for="female">female </label>
+                        <label for="female">หญิง </label>
                     </label>
                 </div>
 
+                @error('phone')
+                    <strong>
+                        <span class="text-danger">{{$message}}</span>
+                    </strong>
+                @enderror
                 <div class="txt_field">
                     <input type="text" id="phone" name="phone" :value="old('phone')" required >
                     <span></span>
-                    <label>Phone</label>
+                    <label>เบอร์โทร</label>
                 </div>
 
                 <div class="txt_field">
                     <input type="text" id="address" name="address" :value="old('address')" required >
                     <span></span>
-                    <label>Address</label>
+                    <label>ที่อยู่</label>
                 </div>
 
-                
                 <div class="txt_field">
                     <input type="text" id="department" name="department" :value="old('department')" required >
                     <span></span>
-                    <label>Department</label>
+                    <label>ตำแหน่ง</label>
                 </div>
-    
-    
 
+                @error('email')
+                    <strong>
+                        <span class="text-danger">{{$message}}</span>
+                    </strong>
+                @enderror
                 <div class="txt_field">
                     <input type="email" id="email" name="email" :value="old('email')" required >
                     <span></span>
-                    <label>Email</label>
+                    <label>อีเมล</label>
                 </div>
 
-                
-                {{-- <div class="mt-4">
-                    <x-jet-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
-                    <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
-                </div> --}}
-
-
+                @error('password')
+                    <strong>
+                        <span class="text-danger">{{$message}}</span>
+                    </strong>
+                @enderror
                 <div class="txt_field">
                     <input type="password" id="password"  name="password" required >
                     <span></span>
-                    <label>Password</label>
+                    <label>รหัสผ่าน</label>
                 </div>
 
+                @error('password_confirmation')
+                    <strong>
+                        <span class="text-danger">{{$message}}</span>
+                    </strong>
+                @enderror
                 <div class="txt_field">
-                    <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />                    <span></span>
-                    <label>Confirm Password</label>
+                    <x-jet-input id="password_confirmation"  type="password" name="password_confirmation" required autocomplete="new-password" />                    <span></span>
+                    <label>ยืนยันรหัสผ่าน</label>
                 </div>
 
                 <div class="block mt-4">
                     <label for="remember_me" class="flex items-center">
                         <x-jet-checkbox id="remember_me" name="remember" />
-                        <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+                        <span class="ml-2 text-sm text-gray-600">{{ __('จดจำฉัน') }}</span>
                     </label>
                 </div>
-
                
-                <input type="submit" value="Register" class="mt-4" style="width: 100%; height: 50px; border: 1px solid; background: #2691d9; border-radius: 25px;
+                <input type="submit" value="ลงทะเบียน" class="mt-4" style="width: 100%; height: 50px; border: 1px solid; background: #2691d9; border-radius: 25px;
                     font-size: 18px; color: #e9f4fb; font-weight: 700; cursor: pointer; outline: none; ">
                 <br>
                 <div class="pass mt-4" style="text-align: center"> 
                     @if (Route::has('password.request'))
                         <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-                            {{ __('Forgot your password?') }}
+                            {{ __('ลืมรหัสผ่านหรือไม่?') }}
                         </a>
                     @endif
                 </div>

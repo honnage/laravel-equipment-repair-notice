@@ -64,7 +64,7 @@
             }
         </style>
     </head>
-    <body class="antialiased">
+    <body class="antialiased" style="background-color:#e8e8e8;">
         <div class="navbar" style="background-color:royalblue;" >
             <div class="container h-16">
                 <ul class="nav ">
@@ -81,7 +81,7 @@
                         @else
                             {{-- <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline" style="color: #fff; font-size: 16px; text-decoration: none">Log in</a> --}}
                             @if (Route::has('register'))
-                                <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline" style="color: #fff; font-size: 16px; text-decoration: none">Register</a>
+                                <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline" style="color: #fff; font-size: 16px; text-decoration: none">ลงทะเบียน</a>
                             @endif
                         @endauth
                     @endif
@@ -90,36 +90,35 @@
         </div>
    
         <div class="center">
-            <h1>Login</h1>
+            <h1>เข้าสู่ระบบ</h1>
             <form method="POST" action="{{ route('login') }}">
                 @csrf
 
                 <div class="txt_field">
                     <input type="email" id="email" name="email" :value="old('email')" required >
                     <span></span>
-                    <label>Email</label>
+                    <label>อีเมล</label>
                 </div>
                 <div class="txt_field">
                     <input type="password" id="password"  name="password" required >
                     <span></span>
-                    <label>Password</label>
+                    <label>รหัสผ่าน</label>
                 </div>
 
                 <div class="block mt-4">
                     <label for="remember_me" class="flex items-center">
                         <x-jet-checkbox id="remember_me" name="remember" />
-                        <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+                        <span class="ml-2 text-sm text-gray-600">{{ __('จดจำฉัน') }}</span>
                     </label>
                 </div>
 
-               
-                <input type="submit" value="Login" class="mt-4">
-
+                <input type="submit" value="เข้าสู่ระบบ" class="mt-4" style="width: 100%; height: 50px; border: 1px solid; background: #2691d9; border-radius: 25px;
+                    font-size: 18px; color: #e9f4fb; font-weight: 700; cursor: pointer; outline: none; ">
                 <br>
                 <div class="pass mt-4" style="text-align: center"> 
                     @if (Route::has('password.request'))
                         <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-                            {{ __('Forgot your password?') }}
+                            {{ __('ลืมรหัสผ่านหรือไม่?') }}
                         </a>
                     @endif
                 </div>
