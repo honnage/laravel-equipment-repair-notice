@@ -77,6 +77,10 @@
                                 <td style="width: 80%">{{$transaction->set_at}} </td>
                               </tr>
                               <tr>
+                                <th style="width: 20%">อัพเดทล่าสุดวันที่</th>
+                                <td style="width: 80%">{{$transaction->updated_at}} </td>
+                              </tr>
+                              <tr>
                                 <th style="width: 20%">สาเหต / รายละเอียด</th>
                                 <td style="width: 70%">
                                   @if ($transaction->details == null) 

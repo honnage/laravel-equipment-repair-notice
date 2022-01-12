@@ -16,7 +16,7 @@
 
             <div class="d-flex justify-content-between mt-4">
                 <div class=" flex-row-reverse  ">
-                    <h1 class="text-left">รายการแจ้งซ่อมสถานะ {{$id}}</h1>
+                    <h1 class="text-left">รายการแจ้งซ่อมสถานะ {{$status}}</h1>
                 </div>
                 <div class="d-flex flex-row-reverse  ">
                     {{-- <a class="nav-link" href="{{ route('type') }}"> --}}
@@ -145,7 +145,7 @@
                         </tbody>
                     </table>
                     @else
-                        <h3 style="color:red; text-align:center ;padding-top: 20px; padding-bottom: 20px">-- ไม่มีข้อมูลแจ้งซ่อมครุภัณฑ์ สถานะ{{$id}}--</h3>
+                        <h3 style="color:red; text-align:center ;padding-top: 20px; padding-bottom: 20px">-- ไม่มีข้อมูลแจ้งซ่อมครุภัณฑ์ สถานะ{{$status}}--</h3>
                     @endif
                 </div>
             </div>

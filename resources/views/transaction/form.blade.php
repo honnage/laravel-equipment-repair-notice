@@ -35,8 +35,8 @@
                                     </div>
                                     <div class="col-sm-12">
                                         @if(isset($transaction))
-                                            <input type="text" class="form-control col-sm-6"  name="" value="{{$transaction->user_id}} | {{$transaction->User->firstname}} {{$transaction->User->lastname}}" readonly>
                                             <input type="hidden" class="form-control col-sm-6"  name="user_id"  value="{{isset($transaction)?"$transaction->user_id":''}}" >
+                                            <input type="text" class="form-control col-sm-6"  name="" value="{{Auth::user()->id }} | {{Auth::user()->firstname }} {{Auth::user()->lastname }}" readonly>
                                         @else
                                             <input type="text" class="form-control col-sm-6"  name="" value="{{Auth::user()->id }} | {{Auth::user()->firstname }} {{Auth::user()->lastname }}" readonly>
                                             <input type="hidden" class="form-control col-sm-6"  name="user_id"  value="{{Auth::user()->id }}" >
@@ -112,21 +112,57 @@
                                         @enderror
                                     </div>
                                     <div class="col-sm-12">
-                                        <select class="form-control" name="equipment_id">
-                                            @if (!isset($transaction))
-                                                <option value="" style="color:red;">--- กรุณาเลือกครุภัณฑ์ ---  </option>
-                                            @endif
-    
-                                            @foreach($equipment as $row)
-                                                <option value="{{$row->id}}"
-                                                    @if(isset($transaction))
-                                                        @if($transaction->equipment_id == $row->id)
-                                                            selected
-                                                        @endif
+                                        @if(isset($transaction) && $transaction->user_id == Auth::user()->id)
+                                            <select class="form-control" name="equipment_id">
+                                                @if (!isset($transaction))
+                                                    <option value="" style="color:red;">--- กรุณาเลือกครุภัณฑ์ ---  </option>
+                                                @endif
+
+                                                @if(isset($transaction) && $transaction->user_id == Auth::user()->id)
+                                                    @foreach($equipment as $row)
+                                                        <option value="{{$row->id}}"
+                                                            @if(isset($transaction))
+                                                                @if($transaction->equipment_id == $row->id)
+                                                                    selected
+                                                                @endif
+                                                            @endif
+                                                        > {{$row->equipment_number}} | {{$row->name}} | {{$row->TypeEquipment->name}} / {{$row->TypeEquipment->category->name}} </option>
+                                                    @endforeach
+                                                @endif
+                                            </select>
+                                        @else
+                                            @if(isset($transaction) )
+                                                <input type="text" class="form-control col-sm-6"  name="" value="{{$transaction->Equipment->id}} | {{$transaction->Equipment->name}} / {{$transaction->Equipment->TypeEquipment->name}} / {{$transaction->Equipment->TypeEquipment->category->name}}" readonly>
+                                            @else
+                                                <select class="form-control" name="equipment_id">
+                                                    @if (!isset($transaction))
+                                                        <option value="" style="color:red;">--- กรุณาเลือกครุภัณฑ์ ---  </option>
+                                                            @foreach($equipment as $row)
+                                                            <option value="{{$row->id}}"
+                                                                @if(isset($transaction))
+                                                                    @if($transaction->equipment_id == $row->id)
+                                                                        selected
+                                                                    @endif
+                                                                @endif
+                                                            > {{$row->equipment_number}} | {{$row->name}} | {{$row->TypeEquipment->name}} / {{$row->TypeEquipment->category->name}} </option>
+                                                        @endforeach
                                                     @endif
-                                                > {{$row->equipment_number}} | {{$row->name}} | {{$row->TypeEquipment->name}} / {{$row->TypeEquipment->category->name}} </option>
-                                            @endforeach
-                                        </select>
+
+                                                    @if(isset($transaction) && $transaction->user_id == Auth::user()->id)
+                                                    @foreach($equipment as $row)
+                                                        <option value="{{$row->id}}"
+                                                            @if(isset($transaction))
+                                                                @if($transaction->equipment_id == $row->id)
+                                                                    selected
+                                                                @endif
+                                                            @endif
+                                                        > {{$row->equipment_number}} | {{$row->name}} | {{$row->TypeEquipment->name}} / {{$row->TypeEquipment->category->name}} </option>
+                                                    @endforeach
+                                                    @endif
+                                                </select>
+                                            @endif
+                                        @endif
+                                            
                                     </div>
                                 </div>
 
@@ -140,17 +176,36 @@
                                         @enderror
                                     </div>
                                     <div class="col-sm-12">
-                                        <input type="text" class="form-control col-sm-6"  name="problem" value="{{isset($transaction)?"$transaction->problem":''}}" >
+                                        @if(isset($transaction))
+                                            @if ( $transaction->user_id == Auth::user()->id)
+                                                <input type="text" class="form-control col-sm-6"  name="problem" value="{{isset($transaction)?"$transaction->problem":''}}" >
+                                            @else
+                                                <input type="text" class="form-control col-sm-6"  name="problem" value="{{isset($transaction)?"$transaction->problem":''}}" readonly>
+                                            @endif
+                                        @else
+                                            <input type="text" class="form-control col-sm-6"  name="problem" value="{{isset($transaction)?"$transaction->problem":''}}" >
+                                        @endif
                                     </div>
                                 </div>
     
+
                                 <div class="row align-items-center form-group mt-4">
                                     <div class="d-flex flex-row-reverse align-items-start bd-highlight mt-4" >
-                                        <input type="submit" name="submit" value="{{isset($transaction)? "แก้ไข":"เพิ่มข้อมูล"}}" class="{{isset($transaction)? "btn btn-warning col-sm-5":"btn btn-success col-sm-5"}}">
-                                        &nbsp;&nbsp;
-                                        <button class="btn btn-secondary col-sm-3" type="reset">ยกเลิก</button>      
+                                        @if(isset($transaction))
+                                            @if ( $transaction->user_id == Auth::user()->id)
+                                                <input type="submit" name="submit" value="{{isset($transaction)? "แก้ไข":"เพิ่มข้อมูล"}}" class="{{isset($transaction)? "btn btn-warning col-sm-5":"btn btn-success col-sm-5"}}">    
+                                            @else
+                                            <a href="{{url('/user/all')}} " class="btn btn-primary">ย้อนกลับ</a>
+                                             
+                                            @endif
+                                        @else
+                                            <input type="submit" name="submit" value="{{isset($transaction)? "แก้ไข":"เพิ่มข้อมูล"}}" class="{{isset($transaction)? "btn btn-warning col-sm-5":"btn btn-success col-sm-5"}}">
+                                            &nbsp;&nbsp;
+                                            <button class="btn btn-secondary col-sm-3" type="reset">ยกเลิก</button> 
+                                        @endif
                                     </div>
                                 </div>
+
                             </div>
                         </div>
                         

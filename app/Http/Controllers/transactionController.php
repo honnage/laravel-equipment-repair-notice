@@ -271,7 +271,7 @@ class TransactionController extends Controller
         return redirect('/transaction/all')->with('success', 'ลบข้อมูลเรียบร้อย');
     }
 
-    public function queryByAdmin($id)
+    public function queryByAdmin($status)
     {
         $status_notifyRepair = DB::table('transactions')
             ->select('*')
@@ -297,14 +297,14 @@ class TransactionController extends Controller
             ->orderBy('id', 'DESC')
             ->get();
 
-        $transaction = Transaction::where('status', $id)->orderBy('id', 'desc')->get();
+        $transaction = Transaction::where('status', $status)->orderBy('id', 'desc')->get();
         $count_translation = $transaction->count();
         $count_status_notifyRepair = $status_notifyRepair->count();
         $count_status_cancelr = $status_cancelr->count();
         $count_status_beingRepaired = $status_beingRepaired->count();
         $count_status_sussecc = $status_sussecc->count();
         return view('admin.transaction.query', 
-        compact('transaction', 'count_translation', 'id',
+        compact('transaction', 'count_translation', 'status',
             'status_notifyRepair', 'count_status_notifyRepair', 
             'status_cancelr', 'count_status_cancelr', 
             'status_beingRepaired', 'count_status_beingRepaired', 
