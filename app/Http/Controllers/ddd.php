@@ -13,6 +13,7 @@ use App\Models\Equipment;
 use App\Models\User;
 use PDF;
 
+
 class TransactionController extends Controller
 {
     public function index()
