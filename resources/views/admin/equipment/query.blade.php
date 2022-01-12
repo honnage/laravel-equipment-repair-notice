@@ -98,26 +98,24 @@
                         <tbody>
                             @foreach ( $query as $row )
                             <tr>                               
-                                <td style="width: 7%; vertical-align: middle;">{{$row->id}}</td>
-                                <td style="width: 10%; vertical-align: middle;">{{$row->User->firstname}} {{$row->User->lastname}}</td>
-                                <td style="width: 15%; vertical-align: middle;">{{$row->Equipment->name}}</td>
-                                <td style="width: 10%; vertical-align: middle;">{{$row->Equipment->TypeEquipment->name}}</td>
-                                <td style="width: 8%; vertical-align: middle;">{{$row->Equipment->TypeEquipment->category->name}}</td>
-                                <td style="width: 15%; vertical-align: middle;">{{$row->problem}}</td>
-                                <td style="width: 14%; vertical-align: middle; text-align: center">{{$row->created_at}}</td>
-                                <td style="width: 8%; vertical-align: middle; text-align: center">{{$row->set_at}}</td>
+                                <td style="vertical-align: middle;">{{$row->id}}</td>
+                                <td style="vertical-align: middle;"><a href="{{route('user')}}" style="text-decoration: none"> {{$row->User->firstname}} {{$row->User->lastname}}</a></td>
+                                <td style="vertical-align: middle;"><a href="{{route('equipment')}}" style="text-decoration: none">{{$row->Equipment->name}}</a></td>
+                                <td style="vertical-align: middle;"><a href="{{route('type')}}" style="text-decoration: none">{{$row->Equipment->TypeEquipment->name}}</a></td>
+                                <td style="vertical-align: middle;"><a href="{{route('category')}}" style="text-decoration: none">{{$row->Equipment->TypeEquipment->category->name}}</a></td>
+                                <td style="vertical-align: middle;">{{$row->problem}}</td>
+                                <td style="vertical-align: middle; text-align: center">{{$row->created_at}}</td>
+                                <td style="vertical-align: middle; text-align: center">{{$row->set_at}}</td>
                                 <td style="width: 6%; vertical-align: middle; "> 
-                                        @if ( $row->status== "เรียบร้อย" )
-                                            <nav style="height: 30px; border-radius: 10px; background-color: green; vertical-align: middle; text-align: center; padding: 5px; color: #fff">  {{$row->status}} </nav>
-                                        @elseif ( $row->status== "กำลังซ่อม")
-                                            <nav style="height: 30px; border-radius: 10px; background-color: #eb9d29; vertical-align: middle; text-align: center; padding: 5px; color: #fff">  {{$row->status}} </nav>
-                                        @elseif ( $row->status== "ยกเลิก")
-                                            <nav style="height: 30px; border-radius: 10px; background-color: #808080; vertical-align: middle; text-align: center; padding: 5px; color: #fff">  {{$row->status}} </nav>
-                                        @else
-                                            <nav style="height: 30px; border-radius: 10px; background-color: #2591f7; vertical-align: middle; text-align: center; padding: 5px; color: #fff">  {{$row->status}} </nav>
-                                        @endif
-                                            
-                                    </nav>                  
+                                    @if ( $row->status== "เรียบร้อย" )
+                                        <nav style="height: 30px; border-radius: 10px; background-color: green; vertical-align: middle; text-align: center; padding: 5px; color: #fff"><a href="{{url('/transaction/admin/query/'.$row->status)}}" style="text-decoration: none"> {{$row->status}}</a></nav>
+                                    @elseif ( $row->status== "กำลังซ่อม")
+                                        <nav style="height: 30px; border-radius: 10px; background-color: #eb9d29; vertical-align: middle; text-align: center; padding: 5px; color: #fff"><a href="{{url('/transaction/admin/query/'.$row->status)}}" style="text-decoration: none"> {{$row->status}}</a></nav>
+                                    @elseif ( $row->status== "ยกเลิก")
+                                        <nav style="height: 30px; border-radius: 10px; background-color: #808080; vertical-align: middle; text-align: center; padding: 5px; color: #fff"><a href="{{url('/transaction/admin/query/'.$row->status)}}" style="text-decoration: none"> {{$row->status}}</a></nav>
+                                    @else
+                                        <nav style="height: 30px; border-radius: 10px; background-color: #2591f7; vertical-align: middle; text-align: center; padding: 5px; color: #fff"><a href="{{url('/transaction/admin/query/'.$row->status)}}" style="text-decoration: none"> {{$row->status}}</a></nav>
+                                    @endif
                                 </td>
                                 <td style="width: 4%; vertical-align: middle;">
                                     <center><a href="{{url('/transaction/edit/'.$row->id)}}" class="btn btn-success" style="width: 70px;"><i class="fas fa-eye"></i></a></center>

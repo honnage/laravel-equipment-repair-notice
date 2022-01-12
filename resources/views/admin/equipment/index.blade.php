@@ -96,14 +96,14 @@
                             @foreach ( $equipment as $row )
                             <tr>
                                 {{-- <td style="width: 4%; vertical-align: middle;">{{$row->id}}</td> --}}
-                                <td style="width: 10%; vertical-align: middle;">{{$row->equipment_number}}</td>
-                                <td style="width: 30%; vertical-align: middle;">{{$row->name}}</td>
-                                <td style="width: 10%; vertical-align: middle;">{{$row->TypeEquipment->name}} </td>
-                                <td style="width: 10%; vertical-align: middle;">{{$row->TypeEquipment->category->name}} </td>
-                                <td style="width: 7%; vertical-align: middle; text-align: right;">{{ number_format( $row->price, 2, '.', ',')}} </td>
-                                <td style="width: 7%; vertical-align: middle; text-align: right;">{{$row->insurance}}</td>
-                                <td style="width: 8%; vertical-align: middle; text-align: center;">{{$row->purchase_date}}</td>
-                                <td style="width: 6%; vertical-align: middle;"> <center>{{ number_format( $row->Transaction->count() )}} ครั้ง<center></td>
+                                <td style="vertical-align: middle;">{{$row->equipment_number}}</td>
+                                <td style="vertical-align: middle;">{{$row->name}}</td>
+                                <td style="vertical-align: middle;"><a href="{{route('type')}}" style="text-decoration: none">{{$row->TypeEquipment->name}}</a></td>
+                                <td style="vertical-align: middle;"><a href="{{route('category')}}" style="text-decoration: none">{{$row->TypeEquipment->category->name}}</a></td>
+                                <td style="vertical-align: middle; text-align: right;">{{ number_format( $row->price, 2, '.', ',')}} </td>
+                                <td style="vertical-align: middle; text-align: right;">{{$row->insurance}}</td>
+                                <td style="vertical-align: middle; text-align: center;">{{$row->purchase_date}}</td>
+                                <td style="vertical-align: middle;"> <center>{{ number_format( $row->Transaction->count() )}} ครั้ง<center></td>
                                 <td style="width: 6%; vertical-align: middle;">
                                     <center><a href="{{url('/equipment/query/'.$row->id)}}" class="btn btn-success" style="width: 70px;"><i class="fas fa-eye"></i></a></center>
                                 </td>

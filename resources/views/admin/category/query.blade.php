@@ -46,11 +46,11 @@
                         </thead>
                         <tbody>
                             @foreach ( $query as $row )
-                            <tr>
-                                <td style="width: 7%; vertical-align: middle;">{{$row->id}}</td>
-                                <td style="width: 35%; vertical-align: middle;">{{$row->name}}</td>
-                                <td style="width: 30%; vertical-align: middle;">{{$row->category->name}}</td>
-                                <td style="width: 10%; vertical-align: middle;">
+                            <tr>  
+                                <td style="vertical-align: middle;">{{$row->id}}</td>
+                                <td style="vertical-align: middle;">{{$row->name}}</td>
+                                <td style="vertical-align: middle;"><a href="{{route('category')}}" style="text-decoration: none">{{$row->category->name}}</a></td>
+                                <td style="vertical-align: middle;">
                                     <center>{{ number_format( $row->equipment->count() )}}<center>
                                 </td>
                                 <td style="width: 6%; vertical-align: middle;">

@@ -72,14 +72,14 @@
                                         Employee
                                     @endif
                                 </td>
-                                <td style="width: 10%; vertical-align: middle;">{{$row->firstname}}</td>
-                                <td style="width: 10%; vertical-align: middle;">{{$row->lastname}}</td>
-                                <td style="width: 3%; vertical-align: middle;">{{$row->gender}} </td>
-                                <td style="width: 10%; vertical-align: middle;">{{$row->department}}</td>
-                                <td style="width: 15%; vertical-align: middle;">{{$row->email}}</td>
-                                <td style="width: 3%; vertical-align: middle;">{{$row->phone}}</td>
-                                <td style="width: 20%; vertical-align: middle;">{{$row->address}}</td>
-                                <td style="width: 6%; vertical-align: middle;">
+                                <td style="vertical-align: middle;">{{$row->firstname}}</td>
+                                <td style="vertical-align: middle;">{{$row->lastname}}</td>
+                                <td style="vertical-align: middle;">{{$row->gender}} </td>
+                                <td style="vertical-align: middle;">{{$row->department}}</td>
+                                <td style="vertical-align: middle;">{{$row->email}}</td>
+                                <td style="vertical-align: middle;">{{$row->phone}}</td>
+                                <td style="vertical-align: middle;">{{$row->address}}</td>
+                                <td style="vertical-align: middle;">
                                     <center>{{ number_format( $row->Transaction->count() )}} ครั้ง<center>
                                 </td>
                                 <td style="width: 6%; vertical-align: middle;">
