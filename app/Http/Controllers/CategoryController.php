@@ -77,10 +77,9 @@ class CategoryController extends Controller
         return redirect('/category/all')->with('success','ลบข้อมูลเรียบร้อย');
     }
 
+
     public function query($id){
-        //$category = Category::find($id);
-        $typeEquipment = TypeEquipment::orderBy('id', 'desc')->get();
-        //$query = TypeEquipment::where('category_id', $id)->get();
+        $typeEquipment = TypeEquipment::where('category_id',  $id)->orderBy('id', 'desc')->get();
         return view('admin.category.query', compact('typeEquipment'));
     }
 
