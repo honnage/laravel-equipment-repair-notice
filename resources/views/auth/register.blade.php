@@ -187,6 +187,8 @@
                         <strong>
                             @if ($message == "The password confirmation does not match.")
                                 <span class="text-danger">การยืนยันรหัสผ่านไม่ตรงกัน</span>
+                            @elseif ($message == "The password must be at least 8 characters.")
+                                <span class="text-danger">รหัสผ่านต้องมีอย่างน้อย 8 ตัวอักษร </span>
                             @else
                                 <span class="text-danger">{{$message}}</span>
                             @endif
