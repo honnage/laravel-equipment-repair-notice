@@ -40,7 +40,7 @@
             <div class="card mb-4">
                 <div class="card-header">
                     <i class="fas fa-table me-1"></i>
-                    ตาราง พนักงาน
+                    ตาราง พนักงาน {{Auth::user()->id}}
                 </div>
                 <div class="card-body">
                     @if($User->count() > 0)
@@ -59,6 +59,7 @@
                                 <th>แจ้งซ่อม</th>
                                 <th style="text-align: center">เพิ่มเติม</th>
                                 <th style="text-align: center">แก้ไข</th>
+                                <th style="text-align: center">ลบ</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -87,6 +88,19 @@
                                 </td>
                                 <td style="width: 6%; vertical-align: middle;">
                                     <center><a href="{{url('/user/edit/'.$row->id)}}" class="btn btn-warning" style="width: 70px;"><i class="fas fa-edit"></i></a></center>
+                                </td>
+                                <td style="width: 6%; text-align: center; vertical-align: middle;">
+                                    @if (Auth::user()->id != $row->id)
+                                        <form action="{{url('/user/destroy/'.$row->id)}}" method="get">
+                                            @csrf
+                                            @method('DELETE')
+                                            <a type="submit" class="btn btn-danger deleteform" data-name="{{$row->name}}" style="width: 70px;"><i class="fas fa-trash-alt"></i></a>
+                                        </form>
+                                    @else
+                                        <form action="" method="get">
+                                            <a type="#" class="btn btn-secondary deletecancel" data-name="{{$row->code}}" style="width: 70px;">-</a>
+                                        </form>
+                                    @endif
                                 </td>
                                
                             </tr>

@@ -88,4 +88,16 @@ class UserController extends Controller
             'status_beingRepaired', 'count_status_beingRepaired', 
             'status_sussecc', 'count_status_sussecc'));
     }
+
+    public function destroy($id)
+    {
+        $user = User::find($id);
+        if($user->Transaction->count() > 0){
+            Session()->flash('error','ไม่สามารถลบได้เนื่องจากมีประวัติการทำธุรกรรม');
+            return redirect()->back();
+        }
+        User::find($id)->delete();
+        return redirect('/user/all')->with('success','ลบข้อมูลเรียบร้อย');
+    
+    }
 }

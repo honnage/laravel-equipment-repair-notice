@@ -101,17 +101,6 @@
                     <label>อีเมล</label>
                 </div>
 
-                <nav style="margin-top: 5px; margin-bottom:5px">
-                    @error('password')
-                        <strong>
-                            @if ($message == "The gender field is required.")
-                                <span class="text-danger">กรุณาระบุเพศของคุณ</span>
-                            @else
-                                <span class="text-danger">{{$message}}</span>
-                            @endif
-                        </strong>
-                    @enderror
-                </nav>
                 <div class="txt_field">
                     <input type="password" id="password"  name="password" required >
                     <span></span>

@@ -69,6 +69,7 @@ Route::middleware(['auth:sanctum', 'admin'])->group(function(){
     Route::post('/user/update/{id}',[UserController::class,'update']);
     Route::get('/user/query/{id}',[UserController::class,'query']);
     Route::get('/user/query/{id}/status/{status}',[UserController::class,'queryStatus']);
+    Route::get('/user/destroy/{id}',[UserController::class,'destroy']);
 
 });
 
