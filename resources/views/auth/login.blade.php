@@ -91,6 +91,7 @@
    
         <div class="center">
             <h1>เข้าสู่ระบบ</h1>
+            <x-jet-validation-errors class="mb-4" style="color: red; margin: 0 50px;"/>
             <form method="POST" action="{{ route('login') }}">
                 @csrf
 
@@ -99,11 +100,24 @@
                     <span></span>
                     <label>อีเมล</label>
                 </div>
+
+                <nav style="margin-top: 5px; margin-bottom:5px">
+                    @error('password')
+                        <strong>
+                            @if ($message == "The gender field is required.")
+                                <span class="text-danger">กรุณาระบุเพศของคุณ</span>
+                            @else
+                                <span class="text-danger">{{$message}}</span>
+                            @endif
+                        </strong>
+                    @enderror
+                </nav>
                 <div class="txt_field">
                     <input type="password" id="password"  name="password" required >
                     <span></span>
                     <label>รหัสผ่าน</label>
                 </div>
+
 
                 <input type="submit" value="เข้าสู่ระบบ" class="mt-4" style="width: 100%; height: 50px; border: 1px solid; background: #2691d9; border-radius: 25px;
                     font-size: 18px; color: #e9f4fb; font-weight: 700; cursor: pointer; outline: none; ">

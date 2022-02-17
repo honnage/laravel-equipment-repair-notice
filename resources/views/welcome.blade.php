@@ -91,6 +91,7 @@
    
         <div class="center">
             <h1>เข้าสู่ระบบ</h1>
+            <x-jet-validation-errors class="mb-4" style="color: red; margin: 0 50px;"/>
             <form method="POST" action="{{ route('login') }}">
                 @csrf
 
