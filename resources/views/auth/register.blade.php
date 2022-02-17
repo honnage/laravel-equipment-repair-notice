@@ -107,11 +107,17 @@
                     <label>นามสกุล</label>
                 </div>
 
-                @error('gender')
-                    <strong>
-                        <span class="text-danger">{{$message}}</span>
-                    </strong>
-                @enderror
+                <nav style="margin-top: 5px; margin-bottom:5px">
+                    @error('gender')
+                        <strong>
+                            @if ($message == "The gender field is required.")
+                                <span class="text-danger">กรุณาระบุเพศของคุณ</span>
+                            @else
+                                <span class="text-danger">{{$message}}</span>
+                            @endif
+                        </strong>
+                    @enderror
+                </nav>
                 <div class="" style="color: #adadad; font-size: 14px;">
                     &nbsp; <label>เพศ</label> &emsp; &emsp; 
                     <label >
@@ -125,14 +131,24 @@
                     </label>
                 </div>
 
-                @error('phone')
-                    <strong>
-                        <span class="text-danger">{{$message}}</span>
-                    </strong>
-                @enderror
+                <nav style="margin-top: 5px; margin-bottom:0">
+                    @error('phone')
+                        <strong>
+                            @if ($message == "The phone has already been taken.")
+                                <span class="text-danger">หมายเลขโทรศัพท์นี้ถูกนำไปใช้แล้ว</span>
+                            @elseif ($message == "The phone must not be greater than 10 characters.")
+                                <span class="text-danger">หมายเลขโทรศัพท์ต้องไม่เกิน 10 ตัว</span>
+                            @elseif ($message == "The phone must be at least 10 characters.")
+                                <span class="text-danger">หมายเลขโทรศัพท์ต้องมีอย่างน้อย 10 ตัว</span>
+                            @else
+                                <span class="text-danger">{{$message}}</span>
+                            @endif
+                        </strong>
+                    @enderror
+                </nav>
                 <div class="txt_field">
-                    <input type="text" id="phone" name="phone" :value="old('phone')" required >
-                    <span></span>
+                    <input type="number" id="phone" name="phone" :value="old('phone')" required >
+                    <span> </span>
                     <label>เบอร์โทร</label>
                 </div>
 
@@ -148,22 +164,35 @@
                     <label>ตำแหน่ง</label>
                 </div>
 
-                @error('email')
-                    <strong>
-                        <span class="text-danger">{{$message}}</span>
-                    </strong>
-                @enderror
+         
+                <nav style="margin-top: 5px; margin-bottom:5px">
+                    @error('email')
+                        <strong>
+                            @if ($message == "The email has already been taken.")
+                                <span class="text-danger">อีเมลนี้ถูกใช้ไปแล้ว</span>
+                            @else
+                                <span class="text-danger">{{$message}}</span>
+                            @endif
+                        </strong>
+                    @enderror
+                </nav>
                 <div class="txt_field">
                     <input type="email" id="email" name="email" :value="old('email')" required >
                     <span></span>
                     <label>อีเมล</label>
                 </div>
 
-                @error('password')
-                    <strong>
-                        <span class="text-danger">{{$message}}</span>
-                    </strong>
-                @enderror
+                <nav style="margin-top: 5px; margin-bottom:5px">
+                    @error('password')
+                        <strong>
+                            @if ($message == "The password confirmation does not match.")
+                                <span class="text-danger">การยืนยันรหัสผ่านไม่ตรงกัน</span>
+                            @else
+                                <span class="text-danger">{{$message}}</span>
+                            @endif
+                        </strong>
+                    @enderror
+                </nav>
                 <div class="txt_field">
                     <input type="password" id="password"  name="password" required >
                     <span></span>
@@ -180,13 +209,7 @@
                     <label>ยืนยันรหัสผ่าน</label>
                 </div>
 
-                <div class="block mt-4">
-                    <label for="remember_me" class="flex items-center">
-                        <x-jet-checkbox id="remember_me" name="remember" />
-                        <span class="ml-2 text-sm text-gray-600">{{ __('จดจำฉัน') }}</span>
-                    </label>
-                </div>
-               
+    
                 <input type="submit" value="ลงทะเบียน" class="mt-4" style="width: 100%; height: 50px; border: 1px solid; background: #2691d9; border-radius: 25px;
                     font-size: 18px; color: #e9f4fb; font-weight: 700; cursor: pointer; outline: none; ">
                 <br>

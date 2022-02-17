@@ -105,13 +105,6 @@
                     <label>รหัสผ่าน</label>
                 </div>
 
-                <div class="block mt-4">
-                    <label for="remember_me" class="flex items-center">
-                        <x-jet-checkbox id="remember_me" name="remember" />
-                        <span class="ml-2 text-sm text-gray-600">{{ __('จดจำฉัน') }}</span>
-                    </label>
-                </div>
-
                 <input type="submit" value="เข้าสู่ระบบ" class="mt-4" style="width: 100%; height: 50px; border: 1px solid; background: #2691d9; border-radius: 25px;
                     font-size: 18px; color: #e9f4fb; font-weight: 700; cursor: pointer; outline: none; ">
                 <br>

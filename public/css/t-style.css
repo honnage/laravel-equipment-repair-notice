@@ -68,15 +68,15 @@ a:hover {
 form .txt_field{
   position: relative;
   border-bottom: 2px solid #adadad;
-  margin: 30px 0;
+  margin: 15px 0;
 }
 
 .txt_field input{
   width: 100%;
   padding: 0 5px;
   height: 40px;
-  font-size: 16px;
-  border: none;
+  /* font-size: 16px; */
+  /* border: none; */
   background: none;
   outline: none;
 }
@@ -87,7 +87,7 @@ form .txt_field{
   left: 5px;
   color: #adadad;
   transform: translateY(-50%);
-  font-size: 14px;
+  /* font-size: 14px; */
   pointer-events: none;
   transition: .5s;
 }
