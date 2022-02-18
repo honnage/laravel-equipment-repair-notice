@@ -20,7 +20,7 @@ class Equipment extends Model
         'user_id_updated',
     ];
 
-    public function categories(){
+    public function category(){
         return $this->belongsTo(Category::class);
     }
 
@@ -28,7 +28,6 @@ class Equipment extends Model
     //     return $this->belongsTo(TypeEquipment::class);
     // }
 
-    
     public function Transaction(){
         return $this->hasMany(Transaction::class, 'equipment_id');      
     }

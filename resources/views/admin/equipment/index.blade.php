@@ -49,7 +49,7 @@
                                 <th style="text-align: center">ราคา </th>
                                 <th style="text-align: center">อายุประกัน</th>
                                 <th style="text-align: center">วันที่ซื้อ</th>
-                                <th style="text-align: center">ประวัติ</th>
+                                {{-- <th style="text-align: center">ประวัติ</th> --}}
                                 <th style="text-align: center">แสดง</th>
                                 <th style="text-align: center">แก้ไข</th>
                                 <th style="text-align: center">ลบ</th>
@@ -60,24 +60,25 @@
                             <tr>
                                 {{-- <td style="width: 4%; vertical-align: middle;">{{$row->id}}</td> --}}
                                 <td style="vertical-align: middle;">{{$row->equipment_number}}</td>
-                                <td style="vertical-align: middle;">{{$row->name}}</td>
-                                <td style="vertical-align: middle;">{{$row->type_equipment_id}}</td>
+                                <td style="vertical-align: middle;">{{$row->equipment_name}}</td>
+                                <td style="vertical-align: middle;">{{$row->category_name}}</td>
                                 {{-- <td style="vertical-align: middle;"><a href="{{route('type')}}" style="text-decoration: none">{{$row->TypeEquipment->name}}</a></td> --}}
                                 {{-- <td style="vertical-align: middle;"><a href="{{route('category')}}" style="text-decoration: none">{{$row->TypeEquipment->category->name}}</a></td> --}}
+               
 
 
                                 <td style="vertical-align: middle; text-align: right;">{{ number_format( $row->price, 2, '.', ',')}} </td>
                                 <td style="vertical-align: middle; text-align: right;">{{$row->insurance}}</td>
                                 <td style="vertical-align: middle; text-align: center;">{{$row->purchase_date}}</td>
-                                <td style="vertical-align: middle;"> <center>{{ number_format( $row->Transaction->count() )}} ครั้ง<center></td>
+                                {{-- <td style="vertical-align: middle;"> <center>{{ number_format( $row->Transaction->count() )}} ครั้ง<center></td> --}}
                                 <td style="width: 6%; vertical-align: middle;">
-                                    <center><a href="{{url('/equipment/query/'.$row->id)}}" class="btn btn-success" style="width: 70px;"><i class="fas fa-eye"></i></a></center>
+                                    <center><a href="{{url('/equipment/query/'.$row->equid)}}" class="btn btn-success" style="width: 70px;"><i class="fas fa-eye"></i></a></center>
                                 </td>
                                 <td style="width: 6%; vertical-align: middle;">
-                                    <center><a href="{{url('/equipment/edit/'.$row->id)}}" class="btn btn-warning" style="width: 70px;"><i class="fas fa-edit"></i></a></center>
+                                    <center><a href="{{url('/equipment/edit/'.$row->equid)}}" class="btn btn-warning" style="width: 70px;"><i class="fas fa-edit"></i></a></center>
                                 </td>
                                 <td style="width: 6%; text-align: center; vertical-align: middle;">
-                                    <form action="{{url('/equipment/destroy/'.$row->id)}}" method="get">
+                                    <form action="{{url('/equipment/destroy/'.$row->equid)}}" method="get">
                                         @csrf
                                         @method('DELETE')
                                         <a type="submit" class="btn btn-danger deleteform" data-name="{{$row->name}}" style="width: 70px;"><i class="fas fa-trash-alt"></i></a>

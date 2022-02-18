@@ -89,11 +89,11 @@
 
                                     @foreach($categories as $row)
                                         <option value="{{$row->id}}"
-                                            {{-- @if(isset($equipment))
-                                                @if($equipment->categories == $row->id)
+                                            @if(isset($equipment))
+                                                @if($equipment->type_equipment_id == $row->id)
                                                     selected
                                                 @endif
-                                            @endif --}}
+                                            @endif
                                         > {{$row->name}} </option>
                                     @endforeach
                                 </select>

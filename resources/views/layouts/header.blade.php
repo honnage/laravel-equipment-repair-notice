@@ -91,10 +91,10 @@
                                         <div class="sb-nav-link-icon"><i class="fas fa-th"></i></i></div>
                                         จัดการครุภัณฑ์
                                     </a>
-                                    <a class="nav-link" href="{{ route('type') }}">
+                                    {{-- <a class="nav-link" href="{{ route('type') }}">
                                         <div class="sb-nav-link-icon"><i class="far fa-copy"></i></i></div>
                                         จัดการประเภทครุภัณฑ์
-                                    </a>
+                                    </a> --}}
                                     <a class="nav-link" href="{{ route('category') }}">
                                         <div class="sb-nav-link-icon"><i class="far fa-copy"></i></i></div>
                                         จัดการหมวดหมู่ครุภัณฑ์
