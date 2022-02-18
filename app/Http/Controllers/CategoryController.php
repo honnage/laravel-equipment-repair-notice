@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\TypeEquipment;
+use App\Models\Equipment;
 
 
 class CategoryController extends Controller
@@ -79,8 +80,8 @@ class CategoryController extends Controller
 
 
     public function query($id){
-        $typeEquipment = TypeEquipment::where('category_id',  $id)->orderBy('id', 'desc')->get();
-        return view('admin.category.query', compact('typeEquipment'));
+        $equipment = Equipment::where('type_equipment_id',  $id)->orderBy('id', 'desc')->get();
+        return view('admin.category.query', compact('equipment'));
     }
 
     

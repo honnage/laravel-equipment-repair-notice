@@ -20,9 +20,13 @@ class Equipment extends Model
         'user_id_updated',
     ];
 
-    public function TypeEquipment(){
-        return $this->belongsTo(TypeEquipment::class);
+    public function categories(){
+        return $this->belongsTo(Category::class);
     }
+
+    // public function TypeEquipment(){
+    //     return $this->belongsTo(TypeEquipment::class);
+    // }
 
     
     public function Transaction(){

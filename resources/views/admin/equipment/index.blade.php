@@ -29,44 +29,7 @@
                 <li class="breadcrumb-item active">จำนวนรายการทั้งหมด</li>
             </ol> --}}
             <br>
-            {{-- <div class="row">
-                <div class="col-xl-3 col-md-6">
-                    <div class="card bg-primary text-white mb-4">
-                        <div class="card-body">Primary Card</div>
-                        <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" style="text-decoration: none; font-size: 20px;" href="#">แจ้งซ่อม</a>
-                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-md-6">
-                    <div class="card bg-warning  mb-4">
-                        <div class="card-body">Warning Card</div>
-                        <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-dark stretched-link" style="text-decoration: none; font-size: 20px;" href="#">กำลังซ่อม</a>
-                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-md-6">
-                    <div class="card bg-success text-white mb-4">
-                        <div class="card-body">Success Card</div>
-                        <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" style="text-decoration: none; font-size: 20px;" href="#">สำเร็จ</a>
-                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-md-6">
-                    <div class="card bg-secondary text-white mb-4">
-                        <div class="card-body">Danger Card</div>
-                        <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" style="text-decoration: none; font-size: 20px;" href="#">ยกเลิก</a>
-                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                        </div>
-                    </div>
-                </div>
-            </div> --}}
+         
           
             <div class="card mb-4">
                 <div class="card-header">
@@ -81,7 +44,7 @@
                                 {{-- <th>รหัส</th> --}}
                                 <th>หมายเลขครุภัณฑ์</th>
                                 <th>ชื่อครุภัณฑ์</th>
-                                <th>ประเภทครุภัณฑ์</th>
+                                {{-- <th>ประเภทครุภัณฑ์</th> --}}
                                 <th>หมวดหมู่ครุภัณฑ์</th>
                                 <th style="text-align: center">ราคา </th>
                                 <th style="text-align: center">อายุประกัน</th>
@@ -98,8 +61,11 @@
                                 {{-- <td style="width: 4%; vertical-align: middle;">{{$row->id}}</td> --}}
                                 <td style="vertical-align: middle;">{{$row->equipment_number}}</td>
                                 <td style="vertical-align: middle;">{{$row->name}}</td>
-                                <td style="vertical-align: middle;"><a href="{{route('type')}}" style="text-decoration: none">{{$row->TypeEquipment->name}}</a></td>
-                                <td style="vertical-align: middle;"><a href="{{route('category')}}" style="text-decoration: none">{{$row->TypeEquipment->category->name}}</a></td>
+                                <td style="vertical-align: middle;">{{$row->type_equipment_id}}</td>
+                                {{-- <td style="vertical-align: middle;"><a href="{{route('type')}}" style="text-decoration: none">{{$row->TypeEquipment->name}}</a></td> --}}
+                                {{-- <td style="vertical-align: middle;"><a href="{{route('category')}}" style="text-decoration: none">{{$row->TypeEquipment->category->name}}</a></td> --}}
+
+
                                 <td style="vertical-align: middle; text-align: right;">{{ number_format( $row->price, 2, '.', ',')}} </td>
                                 <td style="vertical-align: middle; text-align: right;">{{$row->insurance}}</td>
                                 <td style="vertical-align: middle; text-align: center;">{{$row->purchase_date}}</td>

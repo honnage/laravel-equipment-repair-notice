@@ -15,7 +15,7 @@
         @endif
         <div class="d-flex justify-content-between mt-4">
             <div class=" flex-row-reverse  ">
-                <h1 class="text-left">ประเภทครุภัณฑ์</h1>
+                <h1 class="text-left">ครุภัณฑ์</h1>
             </div>
             
             <div class="d-flex flex-row-reverse  ">
@@ -33,7 +33,7 @@
                 ตาราง ประเภทครุภัณฑ์
             </div>
             <div class="card-body">
-                @if($typeEquipment->count() > 0)
+                @if($equipment->count() > 0)
                 <table id="datatablesSimple">
                     <thead>
                         <tr>
@@ -47,24 +47,28 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ( $typeEquipment as $row )
+                        @foreach ( $equipment as $row )
                         <tr>
-                            {{-- <th>{{$categories->firstItem()+$loop->index}}</th> --}}
-                            {{-- <td><img src="{{asset($row->categories_image)}}" width="70px" height="70px"></td> --}}
-                            <td style="vertical-align: middle;">{{$row->id}}</td>
+                            {{-- <td style="width: 4%; vertical-align: middle;">{{$row->id}}</td> --}}
+                            <td style="vertical-align: middle;">{{$row->equipment_number}}</td>
                             <td style="vertical-align: middle;">{{$row->name}}</td>
-                            <td style="vertical-align: middle;"><a href="{{route('category')}}" style="text-decoration: none">{{$row->category->name}}</a></td>
-                            <td style="vertical-align: middle;">
-                                <center>{{ number_format( $row->equipment->count() )}}<center>
+                            <td style="vertical-align: middle;">{{$row->type_equipment_id}}</td>
+                            {{-- <td style="vertical-align: middle;"><a href="{{route('type')}}" style="text-decoration: none">{{$row->TypeEquipment->name}}</a></td> --}}
+                            {{-- <td style="vertical-align: middle;"><a href="{{route('category')}}" style="text-decoration: none">{{$row->TypeEquipment->category->name}}</a></td> --}}
+
+
+                            <td style="vertical-align: middle; text-align: right;">{{ number_format( $row->price, 2, '.', ',')}} </td>
+                            <td style="vertical-align: middle; text-align: right;">{{$row->insurance}}</td>
+                            <td style="vertical-align: middle; text-align: center;">{{$row->purchase_date}}</td>
+                            <td style="vertical-align: middle;"> <center>{{ number_format( $row->Transaction->count() )}} ครั้ง<center></td>
+                            <td style="width: 6%; vertical-align: middle;">
+                                <center><a href="{{url('/equipment/query/'.$row->id)}}" class="btn btn-success" style="width: 70px;"><i class="fas fa-eye"></i></a></center>
                             </td>
                             <td style="width: 6%; vertical-align: middle;">
-                                <center><a href="{{url('/type/query/'.$row->id)}}" class="btn btn-success" style="width: 70px;"><i class="fas fa-eye"></i></a></center>
-                            </td>
-                            <td style="width: 6%; vertical-align: middle;">
-                                <center><a href="{{url('/type/edit/'.$row->id)}}" class="btn btn-warning" style="width: 70px;"><i class="fas fa-edit"></i></a></center>
+                                <center><a href="{{url('/equipment/edit/'.$row->id)}}" class="btn btn-warning" style="width: 70px;"><i class="fas fa-edit"></i></a></center>
                             </td>
                             <td style="width: 6%; text-align: center; vertical-align: middle;">
-                                <form action="{{url('/type/destroy/'.$row->id)}}" method="get">
+                                <form action="{{url('/equipment/destroy/'.$row->id)}}" method="get">
                                     @csrf
                                     @method('DELETE')
                                     <a type="submit" class="btn btn-danger deleteform" data-name="{{$row->name}}" style="width: 70px;"><i class="fas fa-trash-alt"></i></a>
@@ -75,7 +79,7 @@
                     </tbody>
                 </table>
                 @else
-                    <h3 style="color:red; text-align:center ;padding-top: 20px; padding-bottom: 20px">-- ไม่มีข้อมูล ประเภทครุภัณฑ์ --</h3>
+                    <h3 style="color:red; text-align:center ;padding-top: 20px; padding-bottom: 20px">-- ไม่มีข้อมูล ครุภัณฑ์ --</h3>
                 @endif
             </div>
         </div>

@@ -58,7 +58,7 @@
                                 <td style="width: 7%; vertical-align: middle;">{{$row->id}}</td>
                                 <td style="width: 65%; vertical-align: middle;">{{$row->name}}</td>
                                 <td style="width: 10%; vertical-align: middle;">
-                                    <center>{{ number_format( $row->TypeEquipment->count() )}}<center>
+                                    <center>{{ number_format( $row->equipment->count() )}}<center>
                                 </td>
                                 <td style="width: 6%; vertical-align: middle;">
                                     <center><a href="{{url('/category/query/'.$row->id)}}" class="btn btn-success" style="width: 70px;"><i class="fas fa-eye"></i></a></center>

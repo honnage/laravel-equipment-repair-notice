@@ -35,32 +35,68 @@
                                     <label for="firstname">ชื่อจริง</label>
                                 </div>
                                 <div class="col-sm-12">
-                                    <input type="text" class="form-control col-sm-6"  name="firstname" value="{{$User->firstname}}" readonly>
+                                    <input type="text" class="form-control col-sm-6"  name="firstname" value="{{$User->firstname}}" >
                                 </div>
                             </div>
 
-                            <div class="row align-items-center form-group mt-4">
-                                <div class="col-sm-12">
+                            <div class="form-group">
+                                <div class="col-sm-12 mt-4">
                                     <label for="gender">เพศ</label>
                                 </div>
-                                <div class="col-sm-12">
-                                    <input type="text" class="form-control col-sm-6"  name="gender" value="{{$User->gender}}" readonly>
-                                </div>
+                                <select class="form-control" name="gender">
+                                    @if($User->gender == "ชาย")
+                                        <option value="ชาย">ชาย</option>
+                                        <option value="หญิง">หญิง</option>
+                                    @else
+                                        <option value="หญิง">หญิง</option>
+                                        <option value="ชาย">ชาย</option>
+                                    @endif
+                                </select>
                             </div>
 
+                         
                             <div class="row align-items-center form-group mt-4">
                                 <div class="col-sm-12">
                                     <label for="phone">เบอร์โทร</label>
                                 </div>
                                 <div class="col-sm-12">
-                                    <input type="text" class="form-control col-sm-6"  name="phone" value="{{$User->phone}}" readonly>
+                                    <input type="text" class="form-control col-sm-6"  name="phone" value="{{$User->phone}}" >
                                 </div>
                             </div>
                         </div>
 
                         <div class="col-md-4">
-                            <div class="form-group">
+                            <div class="row align-items-center form-group ">
                                 <div class="col-sm-12">
+                                    <label for="email">อีเมล</label>
+                                </div>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control col-sm-6"  name="email" value="{{$User->email}}" readonly>
+                                </div>
+                            </div>
+
+                            <div class="row align-items-center form-group mt-4">
+                                <div class="col-sm-12">
+                                    <label for="lastname">นามสกุล</label>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="col-sm-12">
+                                        <input type="text" class="form-control col-sm-6"  name="lastname" value="{{$User->lastname}}" >
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row align-items-center form-group mt-4">
+                                <div class="col-sm-12">
+                                    <label for="department">ตำแหน่ง</label>
+                                </div>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control col-sm-6"  name="department" value="{{$User->department}}" >
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-sm-12 mt-4">
                                     <label for="status">สถานะ</label>
                                 </div>
                                 <select class="form-control" name="status">
@@ -78,37 +114,6 @@
                                     @endif
                                 </select>
                             </div>
-
-                            <div class="row align-items-center form-group mt-4">
-                                <div class="col-sm-12">
-                                    <label for="lastname">นามสกุล</label>
-                                </div>
-                                <div class="col-sm-12">
-                                    <div class="col-sm-12">
-                                        <input type="text" class="form-control col-sm-6"  name="lastname" value="{{$User->lastname}}" readonly>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row align-items-center form-group mt-4">
-                                <div class="col-sm-12">
-                                    <label for="department">ตำแหน่ง</label>
-                                </div>
-                                <div class="col-sm-12">
-                                    <input type="text" class="form-control col-sm-6"  name="department" value="{{$User->department}}" readonly>
-                                </div>
-                            </div>
-
-                            <div class="row align-items-center form-group mt-4">
-                                <div class="col-sm-12">
-                                    <label for="email">อีเมล</label>
-                                </div>
-                                <div class="col-sm-12">
-                                    <input type="text" class="form-control col-sm-6"  name="email" value="{{$User->email}}" readonly>
-                                </div>
-                            </div>
-
-                          
                         </div>
 
                         <div class="row align-items-center form-group col-md-8 mt-4">
@@ -116,7 +121,7 @@
                                 <label for="address">ที่อยู่</label>
                             </div>
                             <div class="col-sm-12">
-                                <input type="text" class="form-control col-sm-6"  name="address" value="{{$User->address}}" readonly>
+                                <input type="text" class="form-control col-sm-6"  name="address" value="{{$User->address}}" >
                             </div>
                         </div>
 

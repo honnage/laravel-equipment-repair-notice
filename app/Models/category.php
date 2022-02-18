@@ -15,7 +15,11 @@ class Category extends Model
         'user_id_updated',
     ];
 
-    public function TypeEquipment(){
-        return $this->hasMany(TypeEquipment::class, 'category_id');      
+    // public function TypeEquipment(){
+    //     return $this->hasMany(TypeEquipment::class, 'category_id');      
+    // }
+
+    public function equipment(){
+        return $this->hasMany(Equipment::class, 'type_equipment_id');      
     }
 }
