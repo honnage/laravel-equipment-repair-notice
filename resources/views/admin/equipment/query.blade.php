@@ -101,8 +101,8 @@
                                 <td style="vertical-align: middle;">{{$row->id}}</td>
                                 <td style="vertical-align: middle;"><a href="{{route('user')}}" style="text-decoration: none"> {{$row->User->firstname}} {{$row->User->lastname}}</a></td>
                                 <td style="vertical-align: middle;"><a href="{{route('equipment')}}" style="text-decoration: none">{{$row->Equipment->name}}</a></td>
-                                <td style="vertical-align: middle;"><a href="{{route('type')}}" style="text-decoration: none">{{$row->Equipment->TypeEquipment->name}}</a></td>
-                                <td style="vertical-align: middle;"><a href="{{route('category')}}" style="text-decoration: none">{{$row->Equipment->TypeEquipment->category->name}}</a></td>
+                                {{-- <td style="vertical-align: middle;"><a href="{{route('type')}}" style="text-decoration: none">{{$row->Equipment->TypeEquipment->name}}</a></td> --}}
+                                <td style="vertical-align: middle;"><a href="{{route('category')}}" style="text-decoration: none">{{$row->Equipment->name}}</a></td>
                                 <td style="vertical-align: middle;">{{$row->problem}}</td>
                                 <td style="vertical-align: middle; text-align: center">{{$row->created_at}}</td>
                                 <td style="vertical-align: middle; text-align: center">{{$row->set_at}}</td>

@@ -188,7 +188,7 @@
                                 </div>
                                 <div class="col-sm-12">
                                     @if (isset($transaction))
-                                        <input type="text" class="form-control col-sm-6"  name="" value="{{$transaction->equipment_id}} | {{$transaction->Equipment->name}} / {{$transaction->Equipment->TypeEquipment->name}} / {{$transaction->Equipment->category->name}}" readonly>
+                                        <input type="text" class="form-control col-sm-6"  name="" value="{{$transaction->equipment_id}} | {{$transaction->Equipment->name}} " readonly>
                                         <input type="hidden" class="form-control col-sm-6"  name="equipment_id" value="{{$transaction->equipment_id}} ">
                                     @else
                                         <select class="form-control" name="equipment_id">
