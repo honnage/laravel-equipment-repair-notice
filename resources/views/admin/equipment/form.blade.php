@@ -75,14 +75,14 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <div class="col-sm-12">
-                                    <label for="type_equipment_id">หมู่ครุภัณฑ์ <span style="color: red">*</span></label>
-                                    @error('type_equipment_id')
+                                    <label for="category_id">หมู่ครุภัณฑ์ <span style="color: red">*</span></label>
+                                    @error('category_id')
                                         <label>
                                             <span class="text-danger">{{$message}}</span>
                                         </label>
                                     @enderror
                                 </div>
-                                <select class="form-control" name="type_equipment_id">
+                                <select class="form-control" name="category_id">
                                     @if (!isset($equipment))
                                         <option value="" style="color:red;">--- กรุณาเลือกประเภทครุภัณฑ์ --- </option>
                                     @endif
@@ -90,7 +90,7 @@
                                     @foreach($categories as $row)
                                         <option value="{{$row->id}}"
                                             @if(isset($equipment))
-                                                @if($equipment->type_equipment_id == $row->id)
+                                                @if($equipment->category_id == $row->id)
                                                     selected
                                                 @endif
                                             @endif

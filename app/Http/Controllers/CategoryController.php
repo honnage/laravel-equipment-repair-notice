@@ -80,7 +80,7 @@ class CategoryController extends Controller
 
 
     public function query($id){
-        $equipment = Equipment::where('type_equipment_id',  $id)->orderBy('id', 'desc')->get();
+        $equipment = Equipment::where('category_id',  $id)->orderBy('id', 'desc')->get();
         return view('admin.category.query', compact('equipment'));
     }
 

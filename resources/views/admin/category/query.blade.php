@@ -52,7 +52,7 @@
                             {{-- <td style="width: 4%; vertical-align: middle;">{{$row->id}}</td> --}}
                             <td style="vertical-align: middle;">{{$row->equipment_number}}</td>
                             <td style="vertical-align: middle;">{{$row->name}}</td>
-                            <td style="vertical-align: middle;">{{$row->type_equipment_id}}</td>
+                            {{-- <td style="vertical-align: middle;">{{$row->type_equipment_id}}</td> --}}
                             {{-- <td style="vertical-align: middle;"><a href="{{route('type')}}" style="text-decoration: none">{{$row->TypeEquipment->name}}</a></td> --}}
                             {{-- <td style="vertical-align: middle;"><a href="{{route('category')}}" style="text-decoration: none">{{$row->TypeEquipment->category->name}}</a></td> --}}
 

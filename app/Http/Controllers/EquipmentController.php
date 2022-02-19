@@ -17,7 +17,7 @@ class EquipmentController extends Controller
     {
         $equipment = Equipment::orderBy('id', 'desc')->get();
         // $equipment = DB::table('equipment')
-        // ->join('categories','categories.id','=','equipment.type_equipment_id')
+        // ->join('categories','categories.id','=','equipment.category_id')
         // ->select(
         //     '*',
         //     'equipment.id as equid',
@@ -42,7 +42,7 @@ class EquipmentController extends Controller
             'name'=>'required|unique:equipment|max:191',
             'equipment_number'=>'required|unique:equipment|max:191',
             // 'purchase_date'=>'required',
-            'type_equipment_id'=>'required',
+            'category_id'=>'required',
             // 'insurance'=>'required|max:191',
             // 'price'=>'required|max:10',
         ],
@@ -56,7 +56,7 @@ class EquipmentController extends Controller
             'equipment_number.unique'=>"มีข้มูลหมายเลขครุภัณฑ์นี้ในฐานข้อมูลแล้ว",
 
             // 'purchase_date.required'=>"กรุณาเลือกวันที่ซื้อ",
-            'type_equipment_id.required'=>"กรุณาเลือกประเภทครุภัณฑ์",
+            'category_id.required'=>"กรุณาเลือกประเภทครุภัณฑ์",
 
             // 'insurance.required'=>"กรุณาป้อนอายุประกัน",
             // 'insurance.max'=>"ห้ามป้อนเกิน 191 ตัวอักษร",
@@ -69,7 +69,7 @@ class EquipmentController extends Controller
         $equipment->name = $request->name;
         $equipment->equipment_number = $request->equipment_number;
         $equipment->purchase_date = $request->purchase_date;
-        $equipment->type_equipment_id = $request->type_equipment_id;
+        $equipment->category_id = $request->category_id;
         $equipment->insurance = $request->insurance;
         $equipment->price = $request->price;
         $equipment->user_id_created = Auth::user()->id;
@@ -92,7 +92,7 @@ class EquipmentController extends Controller
             'name'=>'required|max:191',
             'equipment_number'=>'required|max:191',
             // 'purchase_date'=>'required',
-            'type_equipment_id'=>'required',
+            'category_id'=>'required',
             // 'insurance'=>'required|max:191',
             'price'=>'required|max:10',
         ],
@@ -104,7 +104,7 @@ class EquipmentController extends Controller
             'equipment_number.max'=>"ห้ามป้อนเกิน 191 ตัวอักษร",
 
             // 'purchase_date.required'=>"กรุณาเลือกวันที่ซื้อ",
-            'type_equipment_id.required'=>"กรุณาเลือกประเภทครุภัณฑ์",
+            'category_id.required'=>"กรุณาเลือกประเภทครุภัณฑ์",
 
             // 'insurance.required'=>"กรุณาป้อนอายุประกัน",
             // 'insurance.max'=>"ห้ามป้อนเกิน 191 ตัวอักษร",
@@ -118,7 +118,7 @@ class EquipmentController extends Controller
             'name'=>$request->name,
             'equipment_number'=>$request->equipment_number,
             'purchase_date'=>$request->purchase_date,
-            'type_equipment_id'=>$request->type_equipment_id,
+            'category_id'=>$request->category_id,
             'insurance'=>$request->insurance,
             'price'=>$request->price,
             'user_id_updated'=> Auth::user()->id
