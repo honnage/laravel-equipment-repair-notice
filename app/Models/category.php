@@ -19,7 +19,7 @@ class Category extends Model
     //     return $this->hasMany(TypeEquipment::class, 'category_id');      
     // }
 
-    public function equipment(){
-        return $this->hasMany(Equipment::class, 'type_equipment_id');      
+    public function Equipment(){
+        return $this->hasMany(Equipment::class, 'category_id');      
     }
 }

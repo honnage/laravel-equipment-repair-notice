@@ -23,6 +23,8 @@
                       <tr>
                         <th style="width: 20%">ชื่อ - นามสกุล</th>
                         <td style="width: 80%">{{$transaction->user->firstname}} {{$transaction->user->lastname}}</td>
+                        {{-- <td style="width: 80%">{{$transaction->firstname}} {{$transaction->lastname}}</td> --}}
+
                       </tr>
                       <tr>
                         <th style="width: 20%">ตำแหน่ง</th>

@@ -73,7 +73,7 @@
                                 <div class="col-sm-6 d-flex">
                                     <input type="datetime" class="form-control col-sm-12"  name="set_at" value="{{$transaction->set_at}}" readonly> &nbsp;&nbsp;&nbsp;
                                     <input type="datetime-local" class="form-control col-sm-12"  name="set_at" value="{{$transaction->set_at}}" >
-                                    <input type="hidden" class="form-control col-sm-12"  name="set_at" value="{{$transaction->set_at}}" >
+                                    {{-- <input type="hidden" class="form-control col-sm-12"  name="set_at" value="{{$transaction->set_at}}" > --}}
                                 </div>
                             </div>
                             @endif

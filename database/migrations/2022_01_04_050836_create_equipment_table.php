@@ -16,7 +16,8 @@ class CreateEquipmentTable extends Migration
         Schema::create('equipment', function (Blueprint $table) {
             $table->id();
             // $table->integer('category_id'); //รหัสหมวดหมู่
-            $table->integer('type_equipment_id'); //รหัสประเภท
+            // $table->integer('type_equipment_id'); //รหัสประเภท
+            $table->integer('category_id'); //รหัสประเภท
             $table->string('name'); //ชื่อครุภัณฑ์
             $table->string('equipment_number'); //หมายเลขครุภัณฑ์
             $table->date('purchase_date')->nullable(); ; //วันที่ซื้อ

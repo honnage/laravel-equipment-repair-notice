@@ -84,6 +84,7 @@
                                 <th style="vertical-align: middle;">รหัสแจ้งซ่อม</th>
                                 <th style="text-align: center; vertical-align: middle;">ผู้แจ้งซ่อม</th>
                                 <th style="text-align: center; vertical-align: middle;">ชื่อครุภัณฑ์</th>
+                                <th style="text-align: center; vertical-align: middle;">หมวดหมู่ครุภัณฑ์</th>
                                 <th style="text-align: center; vertical-align: middle;">อาการหรือปัญหา</th>
                                 <th style="text-align: center; vertical-align: middle;">วันที่แจ้งซ่อม </th>
                                 <th style="text-align: center; vertical-align: middle;">กำหนดส่งคืน </th>
@@ -97,8 +98,13 @@
                             @foreach ( $transaction as $row )
                             <tr>
                                 <td style="vertical-align: middle;">{{$row->id}}</td>
-                                <td style="vertical-align: middle;"><a href="{{route('user')}}" style="text-decoration: none"> {{$row->User->firstname}} {{$row->User->lastname}}</a></td>
-                                <td style="vertical-align: middle;"><a href="{{route('equipment')}}" style="text-decoration: none">{{$row->Equipment->name}}</a></td>
+                                {{-- <td style="vertical-align: middle;"><a href="{{route('user')}}" style="text-decoration: none"> {{$row->User->firstname}} {{$row->User->lastname}}</a></td> --}}
+                                {{-- <td style="vertical-align: middle;"><a href="{{route('equipment')}}" style="text-decoration: none">{{$row->Equipment->name}}</a></td> --}}
+
+                                <td style="vertical-align: middle;"><a href="{{route('user')}}" style="text-decoration: none"> {{$row->firstname}} {{$row->lastname}}</a></td>
+                                <td style="vertical-align: middle;"><a href="{{route('equipment')}}" style="text-decoration: none">{{$row->equipment_name}}</a></td>
+                                <td style="vertical-align: middle;"><a href="{{route('category')}}" style="text-decoration: none">{{$row->category_name}}</a></td>
+
                                 {{-- <td style="vertical-align: middle;"><a href="{{route('type')}}" style="text-decoration: none">{{$row->Equipment->TypeEquipment->name}}</a></td> --}}
                                 {{-- <td style="vertical-align: middle;"><a href="{{route('category')}}" style="text-decoration: none">{{$row->Equipment->category->name}}</a></td> --}}
                                 <td style="vertical-align: middle;">{{$row->problem}}</td>
@@ -124,13 +130,13 @@
                                 <td style="width: 4%; vertical-align: middle; text-align: center">
                                     @if ($row->status != "แจ้งซ่อม")
                                         <form action="" method="get">
-                                            <a type="#" class="btn btn-secondary deletecancel" data-name="{{$row->code}}" style="width: 70px;">-</a>
+                                            <a type="#" class="btn btn-secondary deletecancel" data-name="" style="width: 70px;">-</a>
                                         </form>
                                     @else
                                         <form action="{{url('/transaction/destroy/'.$row->id)}}" method="get">
                                             @csrf
                                             @method('DELETE')
-                                            <a type="submit" class="btn btn-danger deleteform" data-name="{{$row->code}}" style="width: 70px;"><i class="fas fa-trash-alt"></i></a>
+                                            <a type="submit" class="btn btn-danger deleteform" data-name="" style="width: 70px;"><i class="fas fa-trash-alt"></i></a>
                                         </form>
                                     @endif
                                 </td>

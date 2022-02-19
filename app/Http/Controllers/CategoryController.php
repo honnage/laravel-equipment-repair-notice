@@ -70,7 +70,7 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         $category = Category::find($id);
-        if($category->TypeEquipment->count() > 0){
+        if($category->Equipment->count() > 0){
             Session()->flash('error','ไม่สามารถลบได้เนื่องจากมีหมวดหมู่ครุภัณฑ์นี้ใช้งานอยู่');
             return redirect()->back();
         }

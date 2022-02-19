@@ -48,9 +48,11 @@ class TransactionController extends Controller
         // ->join('categories', 'categories.id', '=', 'equipment.type_equipment_id')
         // ->select(
         //     '*',
-        //     'transactions.id as tranID',
+        //     'transactions.id as id',
         //     'transactions.status as tranStaus',
-        //     'equipment.name as equipment_name')
+        //     'equipment.name as equipment_name',
+        //     'categories.name as category_name',
+        //     'transactions.status as status')
         // ->orderBy('transactions.id', 'DESC')
         // ->get();
 
@@ -215,6 +217,7 @@ class TransactionController extends Controller
 
     public function update(Request $request, $id)
     {
+        // dd($request->all());
         $request->validate(
             [
                 'user_id' => 'required',

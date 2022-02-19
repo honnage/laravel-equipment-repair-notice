@@ -62,6 +62,8 @@
                                 <td style="vertical-align: middle;">{{$row->equipment_number}}</td>
                                 <td style="vertical-align: middle;">{{$row->equipment_name}}</td>
                                 <td style="vertical-align: middle;">{{$row->category_name}}</td>
+                                <td style="vertical-align: middle;"><a href="{{route('category')}}" style="text-decoration: none">{{$row->category->name}}</a></td>
+
                                 {{-- <td style="vertical-align: middle;"><a href="{{route('type')}}" style="text-decoration: none">{{$row->TypeEquipment->name}}</a></td> --}}
                                 {{-- <td style="vertical-align: middle;"><a href="{{route('category')}}" style="text-decoration: none">{{$row->TypeEquipment->category->name}}</a></td> --}}
                

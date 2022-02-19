@@ -15,16 +15,16 @@ class EquipmentController extends Controller
 {
     public function index()
     {
-        // $equipment = Equipment::orderBy('id', 'desc')->get();
-        $equipment = DB::table('equipment')
-        ->join('categories','categories.id','=','equipment.type_equipment_id')
-        ->select(
-            '*',
-            'equipment.id as equid',
-            'equipment.name as equipment_name',
-            'categories.name as category_name')
-        ->orderBy('equipment.id', 'DESC')
-        ->get();
+        $equipment = Equipment::orderBy('id', 'desc')->get();
+        // $equipment = DB::table('equipment')
+        // ->join('categories','categories.id','=','equipment.type_equipment_id')
+        // ->select(
+        //     '*',
+        //     'equipment.id as equid',
+        //     'equipment.name as equipment_name',
+        //     'categories.name as category_name')
+        // ->orderBy('equipment.id', 'DESC')
+        // ->get();
         return view('admin.equipment.index', compact('equipment'));
     }
 
