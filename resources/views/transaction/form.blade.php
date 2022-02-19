@@ -126,13 +126,13 @@
                                                                     selected
                                                                 @endif
                                                             @endif
-                                                        > {{$row->equipment_number}} | {{$row->name}} | {{$row->TypeEquipment->name}} / {{$row->TypeEquipment->category->name}} </option>
+                                                        > {{$row->equipment_number}} | {{$row->category->name}} | {{$row->name}}  </option>
                                                     @endforeach
                                                 @endif
                                             </select>
                                         @else
                                             @if(isset($transaction) )
-                                                <input type="text" class="form-control col-sm-6"  name="" value="{{$transaction->Equipment->id}} | {{$transaction->Equipment->name}} / {{$transaction->Equipment->TypeEquipment->name}} / {{$transaction->Equipment->TypeEquipment->category->name}}" readonly>
+                                                <input type="text" class="form-control col-sm-6"  name="" value="{{$transaction->equipment_id}} | {{$transaction->Equipment->category->name}} | {{$transaction->Equipment->name}} " readonly>
                                             @else
                                                 <select class="form-control" name="equipment_id">
                                                     @if (!isset($transaction))
@@ -144,7 +144,7 @@
                                                                         selected
                                                                     @endif
                                                                 @endif
-                                                            > {{$row->equipment_number}} | {{$row->name}} | {{$row->TypeEquipment->name}} / {{$row->TypeEquipment->category->name}} </option>
+                                                            >  {{$row->equipment_number}} | {{$row->category->name}} | {{$row->name}}  </option>
                                                         @endforeach
                                                     @endif
 
@@ -156,7 +156,7 @@
                                                                     selected
                                                                 @endif
                                                             @endif
-                                                        > {{$row->equipment_number}} | {{$row->name}} | {{$row->TypeEquipment->name}} / {{$row->TypeEquipment->category->name}} </option>
+                                                        >  {{$row->equipment_number}} | {{$row->category->name}} | {{$row->name}}  </option>
                                                     @endforeach
                                                     @endif
                                                 </select>

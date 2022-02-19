@@ -48,8 +48,10 @@
             <th style="width: 25%">ชื่อครุภัณฑ์</th>
             <td style="width: 75%">{{$transaction->Equipment->name}}</td>
           </tr>
-     
-        
+          <tr>
+            <th style="width: 25%">หมวดหมู่ครุภัณฑ์</th>
+            <td style="width: 75%">{{$transaction->Equipment->category->name}}</td>
+          </tr>
           <tr>
             <th style="width: 25%">อาการหรือปัญหา</th>
             <td style="width: 75%">{{$transaction->problem}} </td>
@@ -75,7 +77,8 @@
           <tr>
             <th style="width: 25%">สถานะ</th>
             <td style="width: 75%"> 
-                @if ( $transaction->status == "แจ้งซ่อม" )                    
+              {{$transaction->status}} 
+                {{-- @if ( $transaction->status == "แจ้งซ่อม" )                    
                     <span style="color:#2591f7; font-weight: 750">{{$transaction->status}} </span>                       
                 @elseif ( $transaction->status == "กำลังซ่อม" )
                     <span style="color:#d38510; font-weight: 750">{{$transaction->status}} </span>                            
@@ -83,7 +86,7 @@
                     <span style="color:green; font-weight: 750">{{$transaction->status}} </span>
                 @else
                     <span style="color:#757575; font-weight: 750">{{$transaction->status}} </span>
-                @endif
+                @endif --}}
             </td>
           </tr>
           <tr>

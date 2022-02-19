@@ -42,20 +42,6 @@ class TransactionController extends Controller
             ->get();
 
         $transaction = Transaction::orderBy('updated_at', 'desc')->get();
-        // $transaction = DB::table('transactions')
-        // ->join('equipment', 'equipment.id', '=', 'transactions.equipment_id')
-        // ->join('users', 'users.id', '=', 'transactions.user_id')
-        // ->join('categories', 'categories.id', '=', 'equipment.type_equipment_id')
-        // ->select(
-        //     '*',
-        //     'transactions.id as id',
-        //     'transactions.status as tranStaus',
-        //     'equipment.name as equipment_name',
-        //     'categories.name as category_name',
-        //     'transactions.status as status')
-        // ->orderBy('transactions.id', 'DESC')
-        // ->get();
-
         $count_translation = $transaction->count();
         $count_status_notifyRepair = $status_notifyRepair->count();
         $count_status_cancelr = $status_cancelr->count();

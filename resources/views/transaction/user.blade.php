@@ -96,7 +96,6 @@
                                         <th style="vertical-align: middle;">รหัสแจ้งซ่อม</th>
                                         <th style="text-align: center; vertical-align: middle;">ผู้แจ้งซ่อม</th>
                                         <th style="text-align: center; vertical-align: middle;">ชื่อครุภัณฑ์</th>
-                                        <th style="text-align: center; vertical-align: middle;">ประเภท</th>
                                         <th style="text-align: center; vertical-align: middle;">หมวดหมู่</th>
                                         <th style="text-align: center; vertical-align: middle;">อาการหรือปัญหา</th>
                                         <th style="text-align: center; vertical-align: middle;">วันที่แจ้ง </th>
@@ -113,6 +112,7 @@
                                         <td style="vertical-align: middle;">{{$row->id}}</td>
                                         <td style="vertical-align: middle;">{{$row->User->firstname}} {{$row->User->lastname}}</td>
                                         <td style="vertical-align: middle;">{{$row->Equipment->name}}</td>
+                                        <td style="vertical-align: middle;">{{$row->Equipment->category->name}}</td>
                                         {{-- <td style="vertical-align: middle;">{{$row->Equipment->TypeEquipment->name}}</td> --}}
                                         {{-- <td style="vertical-align: middle;">{{$row->Equipment->TypeEquipment->category->name}}</td> --}}
                                         <td style="vertical-align: middle;">{{$row->problem}}</td>
@@ -136,7 +136,7 @@
                                         </td>
                                         <td style="width: 4%; vertical-align: middle;">
                                             @if ($row->status != "แจ้งซ่อม")
-                                                <a type="#" class="btn btn-secondary editCancel" data-name="{{$row->code}}" style="width: 70px;">-</a>
+                                                <a type="#" class="btn btn-secondary " data-name="{{$row->code}}" style="width: 70px;">-</a>
                                             @else
                                                 <center><a href="{{url('/transaction/edit/'.$row->id)}}" class="btn btn-warning" style="width: 70px"><i class="fas fa-edit"></i></a></center>
                                             @endif
@@ -144,7 +144,7 @@
                                         <td style="width: 4%; vertical-align: middle; text-align: center">
                                             @if ($row->status != "แจ้งซ่อม")
                                                 <form action="" method="get">
-                                                    <a type="#" class="btn btn-secondary deleteCancel" data-name="{{$row->code}}" style="width: 70px;">-</a>
+                                                    <a type="#" class="btn btn-secondary" data-name="{{$row->code}}" style="width: 70px;">-</a>
                                                 </form>
                                             @else
                                                 <form action="{{url('/transaction/destroy/'.$row->id)}}" method="get">

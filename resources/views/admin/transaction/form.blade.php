@@ -71,9 +71,12 @@
                                 </div>
                           
                                 <div class="col-sm-6 d-flex">
+                                             
+
                                     <input type="datetime" class="form-control col-sm-12"  name="set_at" value="{{$transaction->set_at}}" readonly> &nbsp;&nbsp;&nbsp;
-                                    <input type="datetime-local" class="form-control col-sm-12"  name="set_at" value="{{$transaction->set_at}}" >
+                                    <input type="datetime" class="form-control col-sm-12"  name="set_at" value="{{$transaction->set_at}}" >
                                     {{-- <input type="hidden" class="form-control col-sm-12"  name="set_at" value="{{$transaction->set_at}}" > --}}
+
                                 </div>
                             </div>
                             @endif
@@ -139,11 +142,13 @@
                                                 <option value="ยกเลิก">ยกเลิก</option>
                                                 <option value="กำลังซ่อม">กำลังซ่อม</option>
                                             @endif
+
                                         @else
                                             <option value="แจ้งซ่อม">แจ้งซ่อม</option>
                                             <option value="กำลังซ่อม">กำลังซ่อม</option>
                                             <option value="ยกเลิก">ยกเลิก</option>
                                             <option value="เรียบร้อย">เรียบร้อย</option>
+
                                         @endif
                                     </select>
                                 </div>
@@ -188,7 +193,7 @@
                                 </div>
                                 <div class="col-sm-12">
                                     @if (isset($transaction))
-                                        <input type="text" class="form-control col-sm-6"  name="" value="{{$transaction->equipment_id}} | {{$transaction->Equipment->name}} " readonly>
+                                        <input type="text" class="form-control col-sm-6"  name="" value="{{$transaction->equipment_id}} | {{$transaction->Equipment->category->name}} | {{$transaction->Equipment->name}} " readonly>
                                         <input type="hidden" class="form-control col-sm-6"  name="equipment_id" value="{{$transaction->equipment_id}} ">
                                     @else
                                         <select class="form-control" name="equipment_id">
@@ -202,7 +207,7 @@
                                                             selected
                                                         @endif
                                                     @endif
-                                                > {{$row->equipment_number}} | {{$row->name}} | {{$row->category->name}} </option>
+                                                > {{$row->equipment_number}} | {{$row->category->name}} | {{$row->name}} </option>
                                             @endforeach
                                         </select>
                                     @endif
