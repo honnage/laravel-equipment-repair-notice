@@ -85,7 +85,6 @@
                                         <th style="vertical-align: middle;">รหัสแจ้งซ่อม</th>
                                         <th style="text-align: center; vertical-align: middle;">ผู้แจ้งซ่อม</th>
                                         <th style="text-align: center; vertical-align: middle;">ชื่อครุภัณฑ์</th>
-                                        <th style="text-align: center; vertical-align: middle;">ประเภท</th>
                                         <th style="text-align: center; vertical-align: middle;">หมวดหมู่</th>
                                         <th style="text-align: center; vertical-align: middle;">อาการหรือปัญหา</th>
                                         <th style="text-align: center; vertical-align: middle;">วันที่แจ้งซ่อม </th>
@@ -102,8 +101,7 @@
                                         <td style="width: 7%; vertical-align: middle;">{{$row->id}}</td>
                                         <td style="width: 10%; vertical-align: middle;">{{$row->User->firstname}} {{$row->User->lastname}}</td>
                                         <td style="width: 15%; vertical-align: middle;">{{$row->Equipment->name}}</td>
-                                        <td style="width: 10%; vertical-align: middle;">{{$row->Equipment->TypeEquipment->name}}</td>
-                                        <td style="width: 8%; vertical-align: middle;">{{$row->Equipment->TypeEquipment->category->name}}</td>
+                                        <td style="width: 8%; vertical-align: middle;">{{$row->Equipment->category->name}}</td>
                                         <td style="width: 15%; vertical-align: middle;">{{$row->problem}}</td>
                                         <td style="width: 14%; vertical-align: middle; text-align: center">{{$row->created_at}}</td>
                                         <td style="width: 8%; vertical-align: middle; text-align: center">{{$row->set_at}}</td>

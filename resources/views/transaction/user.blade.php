@@ -113,8 +113,6 @@
                                         <td style="vertical-align: middle;">{{$row->User->firstname}} {{$row->User->lastname}}</td>
                                         <td style="vertical-align: middle;">{{$row->Equipment->name}}</td>
                                         <td style="vertical-align: middle;">{{$row->Equipment->category->name}}</td>
-                                        {{-- <td style="vertical-align: middle;">{{$row->Equipment->TypeEquipment->name}}</td> --}}
-                                        {{-- <td style="vertical-align: middle;">{{$row->Equipment->TypeEquipment->category->name}}</td> --}}
                                         <td style="vertical-align: middle;">{{$row->problem}}</td>
                                         <td style="vertical-align: middle; text-align: center;  width: 8%;">{{$row->created_at}}</td>
                                         <td style="vertical-align: middle; text-align: center; width: 8%;  ">{{$row->set_at}}</td>

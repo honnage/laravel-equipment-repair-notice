@@ -90,7 +90,7 @@
                                     <center><a href="{{url('/user/edit/'.$row->id)}}" class="btn btn-warning" style="width: 70px;"><i class="fas fa-edit"></i></a></center>
                                 </td>
                                 <td style="width: 6%; text-align: center; vertical-align: middle;">
-                                    @if (Auth::user()->id != $row->id || $row->id != 1)
+                                    @if (Auth::user()->id != $row->id && $row->id != 1)
                                         <form action="{{url('/user/destroy/'.$row->id)}}" method="get">
                                             @csrf
                                             @method('DELETE')

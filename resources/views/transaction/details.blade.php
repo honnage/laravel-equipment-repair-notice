@@ -57,12 +57,8 @@
                                 <td style="width: 80%">{{$transaction->Equipment->name}}</td>
                               </tr>
                               <tr>
-                                <th style="width: 20%">ประเภทครุภัณฑ์</th>
-                                <td style="width: 80%">{{$transaction->Equipment->TypeEquipment->name}}</td>
-                              </tr>
-                              <tr>
                                 <th style="width: 20%">หมวดหมู่ครุภัณฑ์</th>
-                                <td style="width: 80%">{{$transaction->Equipment->TypeEquipment->category->name}}</td>
+                                <td style="width: 80%">{{$transaction->Equipment->category->name}}</td>
                               </tr>
                               <tr>
                                 <th style="width: 20%">อาการหรือปัญหา</th>
