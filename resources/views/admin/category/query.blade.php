@@ -37,10 +37,13 @@
                 <table id="datatablesSimple">
                     <thead>
                         <tr>
-                            <th>รหัส</th>
-                            <th>ประเภทครุภัณฑ์</th>
+                            <th>หมายเลขครุภัณฑ์</th>
+                            <th>ชื่อครุภัณฑ์</th>
                             <th>หมวดหมู่ครุภัณฑ์</th>
-                            <th style="text-align: center">จำนวน</th>
+                            <th style="text-align: center">ราคา </th>
+                            <th style="text-align: center">อายุประกัน</th>
+                            <th style="text-align: center">วันที่ซื้อ</th>
+                            <th style="text-align: center">ประวัติ</th>
                             <th style="text-align: center">แสดง</th>
                             <th style="text-align: center">แก้ไข</th>
                             <th style="text-align: center">ลบ</th>
@@ -49,14 +52,9 @@
                     <tbody>
                         @foreach ( $equipment as $row )
                         <tr>
-                            {{-- <td style="width: 4%; vertical-align: middle;">{{$row->id}}</td> --}}
                             <td style="vertical-align: middle;">{{$row->equipment_number}}</td>
                             <td style="vertical-align: middle;">{{$row->name}}</td>
-                            {{-- <td style="vertical-align: middle;">{{$row->type_equipment_id}}</td> --}}
-                            {{-- <td style="vertical-align: middle;"><a href="{{route('type')}}" style="text-decoration: none">{{$row->TypeEquipment->name}}</a></td> --}}
-                            {{-- <td style="vertical-align: middle;"><a href="{{route('category')}}" style="text-decoration: none">{{$row->TypeEquipment->category->name}}</a></td> --}}
-
-
+                            <td style="vertical-align: middle;"><a href="{{route('category')}}" style="text-decoration: none">{{$row->category->name}}</a></td>
                             <td style="vertical-align: middle; text-align: right;">{{ number_format( $row->price, 2, '.', ',')}} </td>
                             <td style="vertical-align: middle; text-align: right;">{{$row->insurance}}</td>
                             <td style="vertical-align: middle; text-align: center;">{{$row->purchase_date}}</td>

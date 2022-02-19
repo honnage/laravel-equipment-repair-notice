@@ -202,7 +202,7 @@
                                                             selected
                                                         @endif
                                                     @endif
-                                                > {{$row->equipment_number}} | {{$row->name}} | </option>
+                                                > {{$row->equipment_number}} | {{$row->name}} | {{$row->category->name}} </option>
                                             @endforeach
                                         </select>
                                     @endif
