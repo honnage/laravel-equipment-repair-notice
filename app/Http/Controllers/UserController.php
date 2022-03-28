@@ -35,11 +35,6 @@ class UserController extends Controller
     {
         // dd($request->all());
         if($request->password){
-            // $request->validate([
-            //     'password' => $this->passwordRules(),
-            // ]);
-
-            // dd($request->all());
             DB::table('users')
             ->where('id','=',$id)
             ->update([
@@ -52,7 +47,6 @@ class UserController extends Controller
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
             ]);
-            // dd($user->password);
         }else{
             User::find($id)->update($request->all());
         }
@@ -165,10 +159,8 @@ class UserController extends Controller
             'address.max'=>"ห้ามป้อนเกิน 255 ตัวอักษร",
             'department.required'=>"กรุณาป้อนตำแหน่ง",
             'department.max'=>"ห้ามป้อนเกิน 255 ตัวอักษร",
-
         ]);
 
- 
         $user = new User;
         $user->firstname = $request->firstname;
         $user->lastname = $request->lastname;
@@ -180,11 +172,7 @@ class UserController extends Controller
         $user->password = Hash::make($request->password);
         // 'password' => Hash::make($request->newPassword)
 
-        // dd( $user);
-        $user->save();
-
-        
+        $user->save();        
         return redirect('/user/all')->with('success', 'บันทึกข้อมูลเรียบร้อย');
-       
     }
 }

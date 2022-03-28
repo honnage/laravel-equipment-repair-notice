@@ -22,9 +22,7 @@ class EquipmentController extends Controller
     public function create()
     {
         $categories = Category::all();
-        // $typeEquipment = TypeEquipment::all();
-        $typeEquipment = TypeEquipment::orderBy('category_id', 'DESC')->get();
-        return view('admin.equipment.form',  compact('categories','typeEquipment')); 
+        return view('admin.equipment.form',  compact('categories')); 
     }
 
     public function store(Request $request){
@@ -73,8 +71,7 @@ class EquipmentController extends Controller
     {
         $equipment = Equipment::find($id);
         $categories = Category::all();
-        $typeEquipment = TypeEquipment::orderBy('category_id', 'DESC')->get();
-        return view('admin.equipment.form', compact('equipment', 'categories', 'typeEquipment'));
+        return view('admin.equipment.form', compact('equipment', 'categories'));
     }
 
     public function update(Request $request, $id)

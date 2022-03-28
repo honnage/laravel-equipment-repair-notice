@@ -22,7 +22,7 @@
                         <div class="col-sm-5">
                           <input type="text" class="form-control" name="firstname" required placeholder="กรณาป้อนชื่อจริง">
                         </div>
-                        <div class="col-sm-2">
+                        <div class="col-sm-4">
                             @error('firstname')
                                 <strong>
                                     <span class="text-danger">{{$message}}</span>
@@ -36,7 +36,7 @@
                         <div class="col-sm-5">
                           <input type="text" class="form-control" name="lastname" required placeholder="กรณาป้อนนามสกุล">
                         </div>
-                        <div class="col-sm-2">
+                        <div class="col-sm-4">
                             @error('lastname')
                                 <strong>
                                     <span class="text-danger">{{$message}}</span>
@@ -59,7 +59,7 @@
                                 <label for="female">หญิง </label>
                             </label>
                         </div>
-                        <div class="col-sm-2">
+                        <div class="col-sm-4">
                             @error('gender')
                                 <strong>
                                     <span class="text-danger">{{$message}}</span>
@@ -73,7 +73,7 @@
                         <div class="col-sm-5">
                           <input type="text" class="form-control" name="phone" required placeholder="กรณาป้อนเบอร์โทร">
                         </div>
-                        <div class="col-sm-2">
+                        <div class="col-sm-4">
                             @error('phone')
                                 <strong>
                                     @if ($message == "The phone has already been taken.")
@@ -95,7 +95,7 @@
                         <div class="col-sm-5">
                           <input type="text" class="form-control" name="address" required placeholder="กรณาป้อนที่อยู่">
                         </div>
-                        <div class="col-sm-2">
+                        <div class="col-sm-4">
                             @error('address')
                                 <strong>
                                     <span class="text-danger">{{$message}}</span>
@@ -109,7 +109,7 @@
                         <div class="col-sm-5">
                           <input type="text" class="form-control" name="department" required placeholder="กรณาป้อนตำแหน่ง">
                         </div>
-                        <div class="col-sm-2">
+                        <div class="col-sm-4">
                             @error('department')
                                 <strong>
                                     <span class="text-danger">{{$message}}</span>
@@ -124,7 +124,7 @@
                         <div class="col-sm-5">
                           <input type="email" class="form-control" name="email" required placeholder="กรณาป้อนอีเมล">
                         </div>
-                        <div class="col-sm-2">
+                        <div class="col-sm-4">
                             @error('email')
                                 <strong>
                                     <span class="text-danger">{{$message}}</span>
@@ -139,7 +139,7 @@
                         <div class="col-sm-5">
                           <input type="text" class="form-control" name="password" required placeholder="กรณาป้อนรหัสผ่าน">
                         </div>
-                        <div class="col-sm-2">
+                        <div class="col-sm-4">
                             @error('password')
                                 <strong>
                                     @if ($message == "The password confirmation does not match.")
