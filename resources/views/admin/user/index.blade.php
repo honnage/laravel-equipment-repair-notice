@@ -39,16 +39,16 @@
                     <table id="datatablesSimple">
                         <thead>
                             <tr>
-                                <th>รหัส</th>
-                                <th>สถานะ</th>
-                                <th>ชื่อจริง</th>
-                                <th>นามสกุล</th>
-                                <th>เพศ</th>
-                                <th>ตำแหน่ง</th>
-                                <th>อีเมล</th>
-                                <th>เบอร์โทร</th>
-                                <th>ที่อยู่</th>
-                                <th>แจ้งซ่อม</th>
+                                <th style="text-align: center">รหัส</th>
+                                <th style="text-align: center">สถานะ</th>
+                                <th style="text-align: center">ชื่อจริง</th>
+                                <th style="text-align: center">นามสกุล</th>
+                                <th style="text-align: center">เพศ</th>
+                                <th style="text-align: center">ตำแหน่ง</th>
+                                <th style="text-align: center">อีเมล</th>
+                                <th style="text-align: center">เบอร์โทร</th>
+                                <th style="text-align: center">ที่อยู่</th>
+                                <th style="text-align: center">แจ้งซ่อม</th>
                                 <th style="text-align: center">เพิ่มเติม</th>
                                 <th style="text-align: center">แก้ไข</th>
                                 <th style="text-align: center">ลบ</th>

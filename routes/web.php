@@ -71,10 +71,8 @@ Route::middleware(['auth:sanctum', 'admin'])->group(function(){
     Route::get('/user/query/{id}/status/{status}',[UserController::class,'queryStatus']);
     Route::get('/user/destroy/{id}',[UserController::class,'destroy']);
 
-    
-  
-
-
+    Route::post('/user/add',[UserController::class,'store'])->name('addUser');
+    Route::get('/user/create',[UserController::class,'createUser'])->name('createUser');
 });
 
 
@@ -92,6 +90,5 @@ Route::middleware(['auth:sanctum'])->group(function(){
     Route::get('/transaction/user/query/{id}',[TransactionController::class,'queryByuser']);
     Route::get('/transaction/details/{id}',[TransactionController::class,'details']);
 });
-Route::post('/user/add',[UserController::class,'store'])->name('addUser');
-Route::get('/user/create',[UserController::class,'createUser'])->name('createUser');
+
 // Route::get('/user/store',[UserController::class,'storeUser'])->name('storeUser');

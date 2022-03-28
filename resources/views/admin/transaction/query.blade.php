@@ -82,7 +82,7 @@
                     <table id="datatablesSimple">
                         <thead>
                             <tr>
-                                <th style="vertical-align: middle;">รหัสแจ้งซ่อม</th>
+                                <th style="text-align: center; vertical-align: middle;">รหัสแจ้งซ่อม</th>
                                 <th style="text-align: center; vertical-align: middle;">ผู้แจ้งซ่อม</th>
                                 <th style="text-align: center; vertical-align: middle;">ชื่อครุภัณฑ์</th>
                                 <th style="text-align: center; vertical-align: middle;">หมวดหมู่ครุภัณฑ์</th>

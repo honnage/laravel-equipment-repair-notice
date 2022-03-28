@@ -41,9 +41,9 @@
                     <table id="datatablesSimple">
                         <thead>
                             <tr>
-                                <th>หมายเลขครุภัณฑ์</th>
-                                <th>ชื่อครุภัณฑ์</th>
-                                <th>หมวดหมู่ครุภัณฑ์</th>
+                                <th style="text-align: center">หมายเลขครุภัณฑ์</th>
+                                <th style="text-align: center">ชื่อครุภัณฑ์</th>
+                                <th style="text-align: center">หมวดหมู่ครุภัณฑ์</th>
                                 <th style="text-align: center">ราคา </th>
                                 <th style="text-align: center">อายุประกัน</th>
                                 <th style="text-align: center">วันที่ซื้อ</th>

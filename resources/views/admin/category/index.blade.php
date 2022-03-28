@@ -42,8 +42,8 @@
                     <table id="datatablesSimple">
                         <thead>
                             <tr>
-                                <th>รหัส</th>
-                                <th>หมวดหมู่ครุภัณฑ์</th>
+                                <th style="text-align: center">รหัส</th>
+                                <th style="text-align: center">หมวดหมู่ครุภัณฑ์</th>
                                 <th style="text-align: center">จำนวน</th>
                                 <th style="text-align: center">แสดง</th>
                                 <th style="text-align: center">แก้ไข</th>
