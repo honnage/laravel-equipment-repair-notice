@@ -33,7 +33,30 @@ class UserController extends Controller
 
     public function update(Request $request, $id)
     {
-        User::find($id)->update($request->all());
+        // dd($request->all());
+        if($request->password){
+            // $request->validate([
+            //     'password' => $this->passwordRules(),
+            // ]);
+
+            // dd($request->all());
+            DB::table('users')
+            ->where('id','=',$id)
+            ->update([
+                'firstname' => $request->firstname,
+                'lastname' => $request->lastname,
+                'gender' => $request->gender,
+                'phone' => $request->phone,
+                'address' => $request->address,
+                'department' => $request->department,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+            ]);
+            // dd($user->password);
+        }else{
+            User::find($id)->update($request->all());
+        }
+       
         return redirect('/user/all')->with('success','อัพเดทข้อมูลเรียบร้อย');
     }
 
@@ -111,7 +134,6 @@ class UserController extends Controller
     public function createUser(){
         return view('admin.user.create');
     }
-
 
 
     public function store(Request $request)

@@ -63,6 +63,15 @@
                                     <input type="text" class="form-control col-sm-6"  name="phone" value="{{$User->phone}}" >
                                 </div>
                             </div>
+
+                            <div class="row align-items-center form-group mt-4">
+                                <div class="col-sm-12">
+                                    <label for="address">ที่อยู่</label>
+                                </div>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control col-sm-6"  name="address" value="{{$User->address}}">
+                                </div>
+                            </div>
                         </div>
 
                         <div class="col-md-4">
@@ -114,16 +123,25 @@
                                     @endif
                                 </select>
                             </div>
+
+                            <div class="row align-items-center form-group ">
+                                <div class="col-sm-12 mt-4">
+                                    <label for="password">รหัสผ่าน</label>
+                                </div>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control col-sm-6"  name="password" value="{{$User->password}}">
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="row align-items-center form-group col-md-8 mt-4">
+                        {{-- <div class="row align-items-center form-group col-md-8 mt-4">
                             <div class="col-sm-12">
                                 <label for="address">ที่อยู่</label>
                             </div>
                             <div class="col-sm-12">
                                 <input type="text" class="form-control col-sm-6"  name="address" value="{{$User->address}}" >
                             </div>
-                        </div>
+                        </div> --}}
 
                         <div class="col-md-4">
                         </div>
