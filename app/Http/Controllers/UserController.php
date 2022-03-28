@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
@@ -9,8 +10,15 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Transaction;
 
+use Illuminate\Support\Facades\Hash;
+use App\Actions\Fortify\PasswordValidationRules;
+
+
 class UserController extends Controller
+
 {
+    use PasswordValidationRules;
+
     public function index()
     {
         $User = User::orderBy('id', 'desc')->get();
@@ -98,6 +106,63 @@ class UserController extends Controller
         }
         User::find($id)->delete();
         return redirect('/user/all')->with('success','ลบข้อมูลเรียบร้อย');
-    
+    }
+
+    public function createUser(){
+        return view('admin.user.create');
+    }
+
+
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'email'=>'required|unique:users|max:255',
+            'phone'=>'required|unique:users|max:100|min:10',
+            'password' => $this->passwordRules(),
+            'firstname'=>'required|max:255',
+            'lastname'=>'required|max:255',
+            'gender'=>'required',
+            'address'=>'required|max:255',
+            'department'=>'required|max:255',
+        ],
+        [
+            'email.required'=>"กรุณาป้อนอีเมล",
+            'email.max'=>"ห้ามป้อนเกิน 255 ตัวอักษร",
+            'email.unique'=>"มีข้มูลอีเมลนี้ในฐานข้อมูลแล้ว",
+            'phone.required'=>"กรุณาป้อนเบอร์โทร",
+            'phone.max'=>"ห้ามป้อนตัวเลขเกิน 10 ตัวอักษร",
+            'phone.min'=>"ต้องป้อนตัวเลข 10 ตัวอักษร",
+            'phone.unique'=>"มีข้มูลเบอร์โทรนี้ในฐานข้อมูลแล้ว",
+            'firstname.required'=>"กรุณาป้อนชื่อจริง",
+            'firstname.max'=>"ห้ามป้อนเกิน 255 ตัวอักษร",
+            'lastname.required'=>"กรุณาป้อนนามสกุล",
+            'lastname.max'=>"ห้ามป้อนเกิน 255 ตัวอักษร",
+            'gender.required'=>"กรุณาเลือกเพศของท่าน",
+            'address.required'=>"กรุณาป้อนที่อยู่",
+            'address.max'=>"ห้ามป้อนเกิน 255 ตัวอักษร",
+            'department.required'=>"กรุณาป้อนตำแหน่ง",
+            'department.max'=>"ห้ามป้อนเกิน 255 ตัวอักษร",
+
+        ]);
+
+ 
+        $user = new User;
+        $user->firstname = $request->firstname;
+        $user->lastname = $request->lastname;
+        $user->gender = $request->gender;
+        $user->phone = $request->phone;
+        $user->address = $request->address;
+        $user->department = $request->department;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        // 'password' => Hash::make($request->newPassword)
+
+        // dd( $user);
+        $user->save();
+
+        
+        return redirect('/user/all')->with('success', 'บันทึกข้อมูลเรียบร้อย');
+       
     }
 }

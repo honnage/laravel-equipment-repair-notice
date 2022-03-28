@@ -14,27 +14,19 @@
                 </div>
             @endif
 
-            {{-- <h1 class="mt-4">ประเภทครุภัณฑ์</h1>
-            <div class="d-flex flex-row-reverse  ">
-                <button href="#" class="  btn btn-outline-success" >ฟอร์มข้อมูล </button>
-            </div> --}}
+
             <div class="d-flex justify-content-between mt-4">
                 <div class=" flex-row-reverse  ">
                     <h1 class="text-left">พนักงาน</h1>
                 </div>
-              
-                <div class="d-flex flex-row-reverse  ">
-                    {{-- <a class="nav-link" href="{{ route('type') }}"> --}}
-                    {{-- <a href="{{ route('createRegister') }}" class="btn btn-outline-success" style=" display: flex; align-items: center"><i class="fas fa-plus-circle"></i>&nbsp; สมัคร </a> --}}
 
-                    {{-- <a href="{{ route('typeCreate') }}" class="btn btn-outline-success" style=" display: flex; align-items: center"><i class="fas fa-plus-circle"></i>&nbsp; เพิ่มประเภท </a> --}}
+                <div class="d-flex flex-row-reverse  ">
+                    {{-- <a h href="{{url('/transaction/downloadPDF/'.$transaction->id)}}" class="btn btn-outline-success" style=" display: flex; align-items: center"><i class="fas fa-print"></i>&nbsp; พิมพ์ </a> --}}
+
+                    <a href="{{ route('createUser') }}" class="btn btn-outline-success" style=" display: flex; align-items: center"><i class="fas fa-plus-circle"></i>&nbsp; เพิ่มสมาชิก </a>
                 </div>
-              
             </div>
 
-            {{-- <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item active">จำนวนรายการทั้งหมด</li>
-            </ol> --}}
             <br>
            
             <div class="card mb-4">

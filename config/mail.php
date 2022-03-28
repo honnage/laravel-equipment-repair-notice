@@ -90,19 +90,20 @@ return [
     | used globally for all e-mails that are sent by your application.
     |
     */
-    'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
 
-    'stream'=>[
-        'ssl'=>[
-            'allow_self_signed'=>true,
-            'verify_peer'=>false,
-            'verify_peer_name'=>false,
-        ],
-    ],
+    // 'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
+
+    // 'stream'=>[
+    //     'ssl'=>[
+    //         'allow_self_signed'=>true,
+    //         'verify_peer'=>false,
+    //         'verify_peer_name'=>false,
+    //     ],
+    // ],
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'passakorn.hxn@gmail.com'),
-        'name' => env('MAIL_FROM_NAME', 'Laravel'),
+        // 'address' => env('MAIL_FROM_ADDRESS', 'passakorn.hxn@gmail.com'),
+        // 'name' => env('MAIL_FROM_NAME', 'Laravel'),
     ],
 
     /*
