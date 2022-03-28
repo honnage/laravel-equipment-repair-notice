@@ -137,7 +137,7 @@
                     <div class="form-group row my-3">
                         <label for="password" class="col-sm-1 col-form-label">รหัสผ่าน</label>
                         <div class="col-sm-5">
-                          <input type="password" class="form-control" name="password" required placeholder="กรณาป้อนรหัสผ่าน">
+                          <input type="text" class="form-control" name="password" required placeholder="กรณาป้อนรหัสผ่าน">
                         </div>
                         <div class="col-sm-2">
                             @error('password')
@@ -157,7 +157,7 @@
                     <div class="form-group row my-3">
                         <label for="password_confirmation" class="col-sm-1 col-form-label">ยืนยันรหัสผ่าน</label>
                         <div class="col-sm-5">
-                          <input id="password_confirmation"  type="password" name="password_confirmation" required autocomplete="new-password"  class="form-control" placeholder="กรณายืนยันรหัสผ่าน">
+                          <input id="password_confirmation"  type="text" name="password_confirmation" required autocomplete="new-password"  class="form-control" placeholder="กรณายืนยันรหัสผ่าน">
                         </div>
                     </div>
 

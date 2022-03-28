@@ -77,8 +77,8 @@ Route::middleware(['auth:sanctum', 'admin'])->group(function(){
 
 
 Route::middleware(['auth:sanctum'])->group(function(){
-    Route::get('/dashboard',[TransactionController::class,'user'])->name('dashboard');
-    // Route::get('/dashboard',[TransactionController::class,'user'])->middleware('auth', 'verified')->name('dashboard');
+    // Route::get('/dashboard',[TransactionController::class,'user'])->name('dashboard');
+    Route::get('/dashboard',[TransactionController::class,'user'])->middleware('auth', 'verified')->name('dashboard');
     Route::get('/transaction/details/user/{id}',[TransactionController::class,'userDetail']);
     Route::get('/transaction/downloadPDF/{id}',[TransactionController::class,'downloadPDF']);
 
